@@ -1,4 +1,4 @@
-# gif-dio
+# GIF图搜索功能 前端
 
 > front-end of the gif searching system
 
