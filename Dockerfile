@@ -8,7 +8,6 @@ ENV FRONTEND=/opt/frontend
 WORKDIR $FRONTEND
 
 COPY package.json $FRONTEND
-COPY package-lock.json $FRONTEND
 RUN npm install
 
 COPY . $FRONTEND
