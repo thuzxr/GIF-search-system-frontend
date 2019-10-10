@@ -21,7 +21,7 @@ ENV HOME=/opt/app
 WORKDIR $HOME
 
 # Copy frontend from the first stage
-COPY --from=0 /opt/frontend/build dist
+COPY --from=0 /opt/frontend/dist dist
 COPY nginx/ nginx/
 
 RUN rm -r /etc/nginx/conf.d \
