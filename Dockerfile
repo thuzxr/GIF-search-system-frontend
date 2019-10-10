@@ -1,7 +1,8 @@
 # First stage, build the frontend
 FROM node:10.16.1
 
-RUN npm install npm
+RUN npm -v
+RUN npm install npm -g
 RUN npm config set registry https://registry.npm.taobao.org
 
 ENV FRONTEND=/opt/frontend
