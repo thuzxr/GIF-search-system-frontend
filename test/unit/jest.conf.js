@@ -24,12 +24,12 @@ module.exports = {
     '!**/node_modules/**'
   ],
   coverageThreshold: {
-    "global": {
-      "branches": 0,
-      "functions": 0,
-      "lines": 0,
-      "statements": -10
+    'global': {
+      'branches': 0,
+      'functions': 0,
+      'lines': 0,
+      'statements': -10
     }
   },
-  testURL: "http://localhost/"
+  testURL: 'http://localhost/'
 }
