@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     search: function () {
-      axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + this.text).then(response => {
+      axios.get('https://gif-dio-go-stardustcrusaders.app.secoder.net/search?key=' + this.text).then(response => {
         console.log(response)
         if (response.data.status === 'succeed') {
           this.ImgSrc = response.data.result[0].Oss_url
