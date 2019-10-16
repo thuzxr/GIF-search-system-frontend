@@ -22,7 +22,7 @@
 import axios from 'axios'
 import picStart from '@/assets/start.gif'
 import picNotfind from '@/assets/timg.jpg'
-import page from '@/components/page'
+import page from '@/components/Page'
 axios.defaults.timeout = 5000
 
 export default {
