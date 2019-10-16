@@ -25,6 +25,8 @@ export default {
   props: ['arr'],
   computed: {
     pages () {
+      this.changevalue()
+      // this.allpage = 300
       // this.allpage = this.arr[0]
       // this.item = this.arr[1]
       var pag = []
@@ -47,6 +49,10 @@ export default {
     }
   },
   methods: {
+    changevalue () {
+      this.allpage = this.arr[0]
+      this.item = this.arr[1]
+    },
     goto: function (index) {
       if (index === this.current) return
       this.current = index
