@@ -1,44 +1,13 @@
 <template>
   <div>
     <div>
-      <input v-model="text" />
+      <el-input placeholder="请输入内容" v-model="text" class="searchClass">
+        <el-button slot="append" icon="el-icon-search" @click="search">
+        </el-button>
+      </el-input>
     </div>
     <div>
       <button @click="search">搜索</button>
-    </div>
-    <div>
-      <page v-bind:arr="[total, item]" @click.native="getImgList(arr)"></page>
-    </div>
-    <div class="deit">
-      <div class="crumbs">
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item>
-            <i class="el-icon-date"></i> 数据管理
-          </el-breadcrumb-item>
-          <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-        </el-breadcrumb>
-        <div class="cantainer">
-          <el-table
-            style="width: 100%;"
-            :data="imgList.slice((currentPage-1)*pagesize,currentPage*pagesize)"
-          >
-            <el-table-column type="index" width="50"></el-table-column>
-            <el-table-column label="日期" prop="date" width="180"></el-table-column>
-              <template slot-scope="scope">
-                <img :src="ImgSrc"/>
-              </template>
-          </el-table>
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20, 40]"
-            :page-size="pagesize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="imgList.length"
-          ></el-pagination>
-        </div>
-      </div>
     </div>
     <div>
       <p>{{ImgTitle}}</p>
@@ -74,7 +43,7 @@ export default {
     search: function () {
       // var tmp = 'arr[0]' + this.arr[0]
       console.log('123123')
-      /* axios.get('http://127.0.0.1:8000/search?key=' + this.text).then(response => {
+      axios.get('http://127.0.0.1:8000/search?key=' + this.text).then(response => {
         console.log(response)
         if (response.data.status === 'succeed') {
           this.ImgSrc = response.data.result[0].Oss_url
@@ -84,9 +53,10 @@ export default {
           this.ImgTitle = 'Oops! 找不到你想要的Gif'
         }
       })
-      console.log(this.text) */
+      console.log(this.text)
+      /*
       this.ImgSrc = picNotfind
-      this.ImgTitle = 'Oops! 找不到你想要的Gif'
+      this.ImgTitle = 'Oops! 找不到你想要的Gif' */
     },
     getImgList (arr) {
       var tmp = 'arr[0] ' + arr[0]
@@ -103,3 +73,54 @@ export default {
   }
 }
 </script>
+
+<style>
+  .searchClass{
+    border: 1px solid #c5c5c5;
+    border-radius: 20px;
+    background: #f4f4f4;
+    width: 600px;
+  }
+  .searchClass .el-input-group__prepend {
+    border: none;
+    background-color: transparent;
+    padding: 0 10px 0 30px;
+  }
+  .searchClass .el-input-group__append {
+    border: none;
+    background-color: transparent;
+  }
+  .searchClass .el-input__inner {
+    height: 36px;
+    line-height: 36px;
+    border: none;
+    background-color: transparent;
+  }
+  .searchClass .el-icon-search{
+    font-size: 20px;
+  }
+  .searchClass .centerClass {
+    height: 100%;
+    line-height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+  }
+  .searchClass .line {
+    width: 1px;
+    height: 26px;
+    background-color: #c5c5c5;
+    margin-left: 14px;
+  }
+  .searchClass:hover{
+    border: 1px solid #D5E3E8;
+    background: #fff;
+  }
+  .searchClass:hover .line {
+    background-color: #D5E3E8;
+  }
+  .searchClass:hover .el-icon-search{
+    color: #409eff;
+    font-size: 16px;
+  }
+</style>
