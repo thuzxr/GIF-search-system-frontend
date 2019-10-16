@@ -31,12 +31,12 @@ build:
 unit-test:
   extends: .test
   script:
-    - npm test
-  # after_script:
-  #   - SUFFIX=$RANDOM
-  #   - curl "http://10.0.0.11/sonar-scanner.tar.gz" -s -o "/tmp/sonar-$SUFFIX.tar.gz"
-  #   - tar -xf "/tmp/sonar-$SUFFIX.tar.gz" -C /opt
-  #   - /opt/sonar-scanner/bin/sonar-scanner
+    - npm run test:unit
+  after_script:
+    - SUFFIX=$RANDOM
+    - curl "http://10.0.0.11/sonar-scanner.tar.gz" -s -o "/tmp/sonar-$SUFFIX.tar.gz"
+    - tar -xf "/tmp/sonar-$SUFFIX.tar.gz" -C /opt
+    - /opt/sonar-scanner/bin/sonar-scanner
 
 style-test:
   extends: .test
@@ -50,4 +50,3 @@ deploy:
     - deployer dyno replace $CI_PROJECT_NAME "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" "$REGISTRY_USER" "$REGISTRY_PWD"
   only:
     - master
-    - ci-cd

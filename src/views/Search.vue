@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <el-input placeholder="请输入内容" v-model="text" class="searchClass">
+      <el-input placeholder="请输入内容" v-model="text" class="searchClass" style="width:50%">
         <el-button slot="append" icon="el-icon-search" @click="search">
         </el-button>
       </el-input>
@@ -20,9 +20,8 @@
 
 <script>
 import axios from 'axios'
-import picStart from '@/assets/start.gif'
+import picStart from '@/assets/start.jpg'
 import picNotfind from '@/assets/timg.jpg'
-import page from '@/components/Page'
 axios.defaults.timeout = 5000
 
 export default {
@@ -65,10 +64,10 @@ export default {
         this.item = arr[1]
       }
     }
-  },
-  components: {
-    page: page
   }
+//   components: {
+//     page: page
+//   }
 }
 </script>
 
