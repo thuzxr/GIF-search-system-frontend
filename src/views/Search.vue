@@ -1,19 +1,43 @@
 <template>
   <div>
-    <div>
-      <el-input placeholder="请输入内容" v-model="text" class="searchClass" style="width:50%">
-        <el-button slot="append" icon="el-icon-search" @click="search">
+    <transition name="el-zoom-in-center">
+      <div v-show="show2">
+        <el-input placeholder="请输入内容" v-model="text" class="searchClass" style="width:50%">
+          <el-button slot="append" icon="el-icon-search" @click="search">
+          </el-button>
+        </el-input>
+      </div>
+    </transition>
+    <transition name="123">
+      <div v-show="!show2">
+        <el-button icon="el-icon-search" @click="search">
         </el-button>
-      </el-input>
-    </div>
+      </div>
+    </transition>
     <div>
-      <button @click="search">搜索</button>
+      <button @click="search(); show2 = !show2;">搜索</button>
     </div>
     <div>
       <p>{{ImgTitle}}</p>
     </div>
-    <div>
-      <img :src="ImgSrc" />
+    <div style="width=30%;height=50%;margin:auto"><!-- 不太对-->
+      <img :src="imgList[currentImg]" />
+    </div>
+    <div style="width:50%;margin:auto" >
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="6">
+          <img style="width:100%;height:auto" :src="imgList[0]" />
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -27,10 +51,14 @@ axios.defaults.timeout = 5000
 export default {
   data () {
     return {
+      show2: true,
+      currentImg: 3,
       currentPage: 1,
       pagesize: 10,
       imgList: ['http://photocdn.sohu.com/20150605/mp17789131_1433477044749_5.gif',
-        'http://photocdn.sohu.com/20150605/mp17789131_1433477044749_5.gif'],
+        'http://img3.imgtn.bdimg.com/it/u=4053947426,2335504109&fm=26&gp=0.jpg',
+        'http://b-ssl.duitang.com/uploads/blog/201308/24/20130824172634_iLEzt.gif',
+        'http://b-ssl.duitang.com/uploads/item/201604/17/20160417202350_CTSUe.thumb.700_0.gif'],
       text: '',
       ImgSrc: picStart,
       ImgTitle: '点击按钮开始搜索',
@@ -72,6 +100,9 @@ export default {
 </script>
 
 <style>
+  .gifLayout{
+    width: 50%;
+  }
   .searchClass{
     border: 1px solid #c5c5c5;
     border-radius: 20px;
@@ -119,5 +150,31 @@ export default {
   .searchClass:hover .el-icon-search{
     color: #409eff;
     font-size: 16px;
+  }
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
   }
 </style>
