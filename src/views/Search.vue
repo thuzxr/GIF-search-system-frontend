@@ -41,7 +41,7 @@ export default {
   methods: {
     search: function () {
       axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + this.text).then(response => {
-        console.log(response)
+        // console.log(response)
         if (response.data.status === 'succeed') {
           this.ImgSrc = response.data.result[0].Oss_url
           this.ImgTitle = response.data.result[0].Title
@@ -50,20 +50,20 @@ export default {
           this.ImgTitle = 'Oops! 找不到你想要的Gif'
         }
       })
-      console.log(this.text)
+      // console.log(this.text)
       /*
       this.ImgSrc = picNotfind
       this.ImgTitle = 'Oops! 找不到你想要的Gif' */
-    },
-    getImgList (arr) {
-      var tmp = 'arr[0] ' + arr[0]
-      console.log(tmp)
-      console.log('123123')
-      this.pageNum = arr[0]
-      if (arr[1]) {
-        this.item = arr[1]
-      }
     }
+    // getImgList (arr) {
+    //   var tmp = 'arr[0] ' + arr[0]
+    //   console.log(tmp)
+    //   console.log('123123')
+    //   this.pageNum = arr[0]
+    //   if (arr[1]) {
+    //     this.item = arr[1]
+    //   }
+    // }
   }
 //   components: {
 //     page: page
