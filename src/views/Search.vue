@@ -1,27 +1,23 @@
 <template>
   <div>
-    <transition name="el-zoom-in-center">
-      <div v-show="show2">
-        <el-input placeholder="请输入内容" v-model="text" class="searchClass" style="width:50%">
-          <el-button slot="append" icon="el-icon-search" @click="search">
+    <transition><!-- name="el-zoom-in-center" -->
+      <div class="searchDiv">
+        <el-input placeholder="请输入内容" v-model="text" class="searchClass" >
+          <el-button slot="append" icon="el-icon-search" @click="search(); show2=!show2;">
           </el-button>
         </el-input>
       </div>
     </transition>
-    <transition name="123">
-      <div v-show="!show2">
-        <el-button icon="el-icon-search" @click="search">
-        </el-button>
-      </div>
-    </transition>
+    <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
     <div>
+      
       <button @click="search(); show2 = !show2;">搜索</button>
     </div>
     <div>
       <p>{{ImgTitle}}</p>
     </div>
     <div style="width=30%;height=50%;margin:auto"><!-- 不太对-->
-      <img :src="imgList[currentImg]" />
+      <img :src="imgList[currentImg]" /><!---->
     </div>
     <div style="width:50%;margin:auto" >
       <el-row :gutter="20">
@@ -103,12 +99,28 @@ export default {
   .gifLayout{
     width: 50%;
   }
-  .searchClass{
-    border: 1px solid #c5c5c5;
-    border-radius: 20px;
-    background: #f4f4f4;
-    width: 600px;
+  .searchDiv{
+    width: 6%;
+    text-align: center;
+    transition-duration: 1s;
+    margin: 0 auto;
   }
+  .searchDiv:hover{
+    width: 30%;
+    text-align: center;
+  }
+  .searchDiv:active{
+    width: 30%;
+    text-align: center;
+  }
+  .searchClass{
+    width: 50%;
+    text-align: center;
+    border: 1px solid #c5c5c5;
+    border-radius:20px;
+    background: #f4f4f4;
+  }
+  
   .searchClass .el-input-group__prepend {
     border: none;
     background-color: transparent;
@@ -119,10 +131,12 @@ export default {
     background-color: transparent;
   }
   .searchClass .el-input__inner {
+    
     height: 36px;
     line-height: 36px;
     border: none;
     background-color: transparent;
+    transition-duration: 3s;
   }
   .searchClass .el-icon-search{
     font-size: 20px;
@@ -140,6 +154,7 @@ export default {
     background-color: #c5c5c5;
     margin-left: 14px;
   }
+  
   .searchClass:hover{
     border: 1px solid #D5E3E8;
     background: #fff;
@@ -149,7 +164,7 @@ export default {
   }
   .searchClass:hover .el-icon-search{
     color: #409eff;
-    font-size: 16px;
+    font-size: 20px;
   }
   .el-row {
     margin-bottom: 20px;
