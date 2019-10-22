@@ -1,7 +1,7 @@
 <template>
   <transition><!-- name="el-zoom-in-center" -->
     <div class="searchDiv">
-      <el-input placeholder="请输入内容" v-model="text" class="searchClass" >
+      <el-input placeholder="请输入内容" v-model="text" class="searchClass" @keyup.enter.native="doSearch">
         <el-button slot="append" icon="el-icon-search" @click='doSearch'>
         </el-button>
       </el-input>
