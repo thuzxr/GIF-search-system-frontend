@@ -1,16 +1,18 @@
 <template>
   <div>
     <TopNavBar></TopNavBar>
-    <p>manage...</p>
+    <Login></Login>
   </div>
 </template>
 
 <script>
 import TopNavBar from '../components/TopNavBar.vue'
+import Login from '../components/Login.vue'
 export default {
   name: 'Manage',
   components: {
-    TopNavBar
+    TopNavBar,
+    Login
   }
 }
 </script>
