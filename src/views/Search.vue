@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TopNavBar></TopNavBar>
     <SearchInput @doSearch='search'></SearchInput>
     <div>
       <p>{{ImgTitle}}</p>
@@ -31,11 +32,13 @@
 import picStart from '@/assets/start.jpg'
 import picNotfind from '@/assets/timg.jpg'
 import SearchInput from '../components/SearchInput.vue'
+import TopNavBar from '../components/TopNavBar.vue'
 
 import axios from 'axios'
 axios.defaults.timeout = 5000
 
 export default {
+  name: 'Search',
   data () {
     return {
       currentImg: 3,
@@ -62,7 +65,8 @@ export default {
     }
   },
   components: {
-    SearchInput
+    SearchInput,
+    TopNavBar
   }
 }
 </script>
