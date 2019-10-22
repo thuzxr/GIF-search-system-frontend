@@ -1,29 +1,19 @@
 <template>
   <div>
     <TopNavBar></TopNavBar>
+    <div style="margin-top: 30px;">
     <SearchInput @doSearch='search'></SearchInput>
-    <div>
-      <p>{{ImgTitle}}</p>
+    <v-gallery :images="imgList" class="image-box">
+            <a href="javascript:void(0);"
+               :data-image="img.url"
+               :title="img.title"
+               v-for="img in imgList" >
+                <div class="bgbox">
+                    <img :src="img.url">
+                </div>
+            </a>
+    </v-gallery>
     </div>
-    <div style="width=30%;height=50%;margin:auto"><!-- 不太对-->
-      <img :src="ImgSrc" /><!---->
-    </div>
-<!--    <div style="width:50%;margin:auto" >
-      <el-row :gutter="20">
-        <el-col :span="6">
-          <div class="grid-content bg-purple"></div>
-        </el-col>
-        <el-col :span="6">
-          <img style="width:100%;height:auto" :src="imgList[0]" />
-        </el-col>
-        <el-col :span="6">
-          <div class="grid-content bg-purple"></div>
-        </el-col>
-        <el-col :span="6">
-          <div class="grid-content bg-purple"></div>
-        </el-col>
-      </el-row>
-    </div> -->
   </div>
 </template>
 
@@ -55,8 +45,16 @@ export default {
     search: function (text) {
       axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
         if (response.data.status === 'succeed') {
-          this.ImgSrc = response.data.result[0].Oss_url
-          this.ImgTitle = response.data.result[0].Title
+          var list = response.data.result
+          this.imgList = list.map(function (item) {
+            var t = {
+              title: item.Title,
+              url: item.Oss_url,
+              thumbnail: item.Oss_url
+            }
+            return t
+          })
+          console.log(list[0])
         } else {
           this.ImgSrc = picNotfind
           this.ImgTitle = 'Oops! 找不到你想要的Gif'
@@ -71,35 +69,33 @@ export default {
 }
 </script>
 
-<style>
-  .gifLayout{
-    width: 50%;
-  }
-
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
+<style lang="scss" scoped>
+    .image-box{
+        a {
+            clear: both;
+            display: inline-block;
+            margin: 0 10px 10px 0;
+            position: relative;
+            text-align: center;
+            .bgbox {
+                background-color: #FFFFFF;
+                height: 150px;
+                display:table-cell;
+                vertical-align:middle;
+                padding: 4px;
+                border-radius: 2px;
+                img{ width: 200px;display: block;}
+            }
+            .img-title {
+                bottom: 5px;
+                display: block;
+                text-align: center;
+                color: #999999;
+                padding-top: 5px;
+            }
+            &:hover {
+                .img-title { color: #232323; }
+            }
+        }
     }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
 </style>

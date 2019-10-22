@@ -27,13 +27,13 @@ export default {
 
 <style>
   .searchDiv{
-    width: 6%;
+    width: 15%;
     text-align: center;
     transition-duration: 1s;
     margin: 0 auto;
   }
   .searchDiv:hover{
-    width: 30%;
+    width: 50%;
     text-align: center;
   }
   .searchDiv:active{
