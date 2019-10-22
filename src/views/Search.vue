@@ -1,25 +1,13 @@
 <template>
   <div>
-    <transition><!-- name="el-zoom-in-center" -->
-      <div class="searchDiv">
-        <el-input placeholder="请输入内容" v-model="text" class="searchClass" >
-          <el-button slot="append" icon="el-icon-search" @click="search(); show2=!show2;">
-          </el-button>
-        </el-input>
-      </div>
-    </transition>
-    <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-    <div>
-      
-      <button @click="search(); show2 = !show2;">搜索</button>
-    </div>
+    <SearchInput @doSearch='search'></SearchInput>
     <div>
       <p>{{ImgTitle}}</p>
     </div>
     <div style="width=30%;height=50%;margin:auto"><!-- 不太对-->
-      <img :src="imgList[currentImg]" /><!---->
+      <img :src="ImgSrc" /><!---->
     </div>
-    <div style="width:50%;margin:auto" >
+<!--    <div style="width:50%;margin:auto" >
       <el-row :gutter="20">
         <el-col :span="6">
           <div class="grid-content bg-purple"></div>
@@ -34,38 +22,35 @@
           <div class="grid-content bg-purple"></div>
         </el-col>
       </el-row>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+
 import picStart from '@/assets/start.jpg'
 import picNotfind from '@/assets/timg.jpg'
+import SearchInput from '../components/SearchInput.vue'
+
+import axios from 'axios'
 axios.defaults.timeout = 5000
 
 export default {
   data () {
     return {
-      show2: true,
       currentImg: 3,
       currentPage: 1,
       pagesize: 10,
-      imgList: ['http://photocdn.sohu.com/20150605/mp17789131_1433477044749_5.gif',
-        'http://img3.imgtn.bdimg.com/it/u=4053947426,2335504109&fm=26&gp=0.jpg',
-        'http://b-ssl.duitang.com/uploads/blog/201308/24/20130824172634_iLEzt.gif',
-        'http://b-ssl.duitang.com/uploads/item/201604/17/20160417202350_CTSUe.thumb.700_0.gif'],
-      text: '',
+      imgList: [],
       ImgSrc: picStart,
-      ImgTitle: '点击按钮开始搜索',
+      ImgTitle: '',
       item: 1,
       total: 30
     }
   },
   methods: {
-    search: function () {
-      axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + this.text).then(response => {
-        // console.log(response)
+    search: function (text) {
+      axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
         if (response.data.status === 'succeed') {
           this.ImgSrc = response.data.result[0].Oss_url
           this.ImgTitle = response.data.result[0].Title
@@ -74,24 +59,11 @@ export default {
           this.ImgTitle = 'Oops! 找不到你想要的Gif'
         }
       })
-      // console.log(this.text)
-      /*
-      this.ImgSrc = picNotfind
-      this.ImgTitle = 'Oops! 找不到你想要的Gif' */
     }
-    // getImgList (arr) {
-    //   var tmp = 'arr[0] ' + arr[0]
-    //   console.log(tmp)
-    //   console.log('123123')
-    //   this.pageNum = arr[0]
-    //   if (arr[1]) {
-    //     this.item = arr[1]
-    //   }
-    // }
+  },
+  components: {
+    SearchInput
   }
-//   components: {
-//     page: page
-//   }
 }
 </script>
 
@@ -99,73 +71,7 @@ export default {
   .gifLayout{
     width: 50%;
   }
-  .searchDiv{
-    width: 6%;
-    text-align: center;
-    transition-duration: 1s;
-    margin: 0 auto;
-  }
-  .searchDiv:hover{
-    width: 30%;
-    text-align: center;
-  }
-  .searchDiv:active{
-    width: 30%;
-    text-align: center;
-  }
-  .searchClass{
-    width: 50%;
-    text-align: center;
-    border: 1px solid #c5c5c5;
-    border-radius:20px;
-    background: #f4f4f4;
-  }
-  
-  .searchClass .el-input-group__prepend {
-    border: none;
-    background-color: transparent;
-    padding: 0 10px 0 30px;
-  }
-  .searchClass .el-input-group__append {
-    border: none;
-    background-color: transparent;
-  }
-  .searchClass .el-input__inner {
-    
-    height: 36px;
-    line-height: 36px;
-    border: none;
-    background-color: transparent;
-    transition-duration: 3s;
-  }
-  .searchClass .el-icon-search{
-    font-size: 20px;
-  }
-  .searchClass .centerClass {
-    height: 100%;
-    line-height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: right;
-  }
-  .searchClass .line {
-    width: 1px;
-    height: 26px;
-    background-color: #c5c5c5;
-    margin-left: 14px;
-  }
-  
-  .searchClass:hover{
-    border: 1px solid #D5E3E8;
-    background: #fff;
-  }
-  .searchClass:hover .line {
-    background-color: #D5E3E8;
-  }
-  .searchClass:hover .el-icon-search{
-    color: #409eff;
-    font-size: 20px;
-  }
+
   .el-row {
     margin-bottom: 20px;
     &:last-child {
