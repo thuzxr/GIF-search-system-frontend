@@ -1,9 +1,8 @@
 <template>
   <div id="app" style="margin: 0px; padding: 0px;">
-    <router-view/>
+    <router-view />
   </div>
 </template>
-
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -12,6 +11,7 @@
   text-align: center;
   color: #2c3e50;
 }
+
 #nav {
   padding: 0px;
 }
@@ -29,4 +29,5 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

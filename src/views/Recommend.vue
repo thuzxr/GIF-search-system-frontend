@@ -1,11 +1,9 @@
 <template>
   <div>
-    <TopNavBar></TopNavBar>
+    <top-nav-bar></top-nav-bar>
     <p>recommend...</p>
-
   </div>
 </template>
-
 <script>
 import TopNavBar from '../components/TopNavBar.vue'
 
@@ -41,10 +39,10 @@ export default {
 
   },
   components: {
-    TopNavBar
+    'top-nav-bar': TopNavBar
   }
 }
-</script>
 
+</script>
 <style>
 </style>
