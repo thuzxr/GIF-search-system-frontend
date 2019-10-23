@@ -58,38 +58,5 @@ export default {
 
 </script>
 <style>
-.image-box a {
-  clear: both;
-  display: inline-block;
-  margin: 0 10px 10px 0;
-  position: relative;
-  text-align: center;
-}
-
-.image-box a .bgbox {
-  background-color: #FFFFFF;
-  height: 150px;
-  display: table-cell;
-  vertical-align: middle;
-  padding: 4px;
-  border-radius: 2px;
-}
-
-.image-box a .bgbox img {
-  width: 200px;
-  display: block;
-}
-
-.image-box a .img-title {
-  bottom: 5px;
-  display: block;
-  text-align: center;
-  color: #999999;
-  padding-top: 5px;
-}
-
-.image-box a:hover .img-title {
-  color: #232323;
-}
 
 </style>

@@ -4,13 +4,23 @@
       <div class="bgbox">
         <img :src="img.url">
       </div>
+      <div style="position:relative;">
+        <img :src="this.imgLike" />
+        <input type="button" value="按钮" style="position:absolute; right:10px; top:10px;" />
+      </div>
     </a>
   </v-gallery>
 </template>
 
 <script>
+import picNotfind from '@/assets/timg.jpg'
 export default {
   name: 'ImgGallery',
+  data () {
+    return {
+      imgLike: picNotfind
+    }
+  },
   props: {
     imgList: {
       type: Array,
