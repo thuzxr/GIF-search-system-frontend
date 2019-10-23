@@ -33,7 +33,7 @@ export default {
     margin: 0 auto;
   }
   .searchDiv:hover{
-    width: 50%;
+    width: 35%;
     text-align: center;
   }
   .searchDiv:active{
