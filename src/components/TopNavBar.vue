@@ -9,8 +9,8 @@
     active-text-color="#ffd04b"
     router>
       <el-menu-item index="/">搜索</el-menu-item>
-      <el-menu-item index="/manage">推荐</el-menu-item>
-      <el-menu-item index="/recommend">管理</el-menu-item>
+      <el-menu-item index="/recommend">推荐</el-menu-item>
+      <el-menu-item index="/manage">管理</el-menu-item>
   </el-menu>
   </div>
 </template>
