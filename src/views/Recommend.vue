@@ -2,7 +2,7 @@
   <div>
     <TopNavBar></TopNavBar>
     <p>recommend...</p>
-   
+
   </div>
 </template>
 
@@ -14,10 +14,12 @@ axios.defaults.timeout = 5000
 export default {
   name: 'Recommend',
   data () {
-    imgList: []
+    return {
+      imgList: []
+    }
   },
   mounted () {
-    /*axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
+    /* axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
         if (response.data.status === 'succeed') {
           var list = response.data.result
           this.imgList = list.map(function (item) {
@@ -36,7 +38,7 @@ export default {
       })*/
   },
   methods: {
-    
+
   },
   components: {
     TopNavBar

@@ -1,7 +1,7 @@
 <template>
   <transition><!-- name="el-zoom-in-center" -->
     <div class="searchDiv">
-      <el-input placeholder="请输入内容" v-model="text" class="searchClass" @keyup.enter.native="doSearch">
+      <el-input placeholder="请输入内容" v-model="text" class="searchClass" >
         <el-button slot="append" icon="el-icon-search" @click='doSearch'>
         </el-button>
       </el-input>
@@ -18,8 +18,8 @@ export default {
     }
   },
   methods: {
-    doSearch: function() {
-      this.$emit('doSearch', this.text);
+    doSearch: function () {
+      this.$emit('doSearch', this.text)
     }
   }
 }
@@ -27,13 +27,13 @@ export default {
 
 <style>
   .searchDiv{
-    width: 15%;
+    width: 6%;
     text-align: center;
     transition-duration: 1s;
     margin: 0 auto;
   }
   .searchDiv:hover{
-    width: 35%;
+    width: 30%;
     text-align: center;
   }
   .searchDiv:active{
