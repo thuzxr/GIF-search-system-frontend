@@ -2,24 +2,23 @@
   <div>
     her
     <ul class="pagination">
-      <li v-show="current != 1" @click="goto(1)" ><a herf="javascript:void(0)">首页</a></li>
-      <li v-show="current != 1" @click="current-- && goto(current)" ><a herf="javascript:void(0)">上一页</a></li>
+      <li v-show="current != 1" @click="goto(1)"><a herf="javascript:void(0)">首页</a></li>
+      <li v-show="current != 1" @click="current-- && goto(current)"><a herf="javascript:void(0)">上一页</a></li>
       <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
-        <a href="javascript:void(0)" >{{index}}</a>
+        <a href="javascript:void(0)">{{index}}</a>
       </li>
       <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="javascript:void(0)">下一页</a></li>
       <li v-show="allpage != current && allpage != 0 " @click="goto(allpage)"><a href="javascript:void(0)">尾页</a></li>
     </ul>
   </div>
 </template>
-
 <script>
 export default {
   data () {
     return {
       current: 1, // 当前
       showItem: 5, // 每页显示条数
-      allpage: 20// 当前第n页 ， 也可以 watch current 的变化
+      allpage: 20 // 当前第n页 ， 也可以 watch current 的变化
     }
   },
   props: ['arr'],
@@ -59,16 +58,38 @@ export default {
       this.$emit('getPageList', [this.current, this.item ? this.item : null])
     },
     pagechange: function (p) {
-      this.current = p// 页码改变event ， p 为新的 current
+      this.current = p // 页码改变event ， p 为新的 current
       console.log('pagechange', p)
     }
   }
 }
+
 </script>
 <style>
-  .pagination {position: relative;}
-  .pagination li{display: inline-block;margin:0 5px;}
-  .pagination li a{padding:.5rem 1rem;display:inline-block;border:1px solid #ddd;background:#fff;color:#0E90D2}
-  .pagination li a:hover{background:#eee;}
-  .pagination li.active a{background:#0E90D2;color:#fff}
+.pagination {
+  position: relative;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination li a {
+  padding: .5rem 1rem;
+  display: inline-block;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #0E90D2
+}
+
+.pagination li a:hover {
+  background: #eee;
+}
+
+.pagination li.active a {
+  background: #0E90D2;
+  color: #fff
+}
+
 </style>
