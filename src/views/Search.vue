@@ -7,7 +7,7 @@
             <a href="javascript:void(0);"
                :data-image="img.url"
                :title="img.title"
-               v-for="img in imgList" >
+               v-for="img in imgList" :key="img.title">
                 <div class="bgbox">
                     <img :src="img.url">
                 </div>

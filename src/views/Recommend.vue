@@ -35,7 +35,7 @@ export default {
           this.ImgSrc = picNotfind
           this.ImgTitle = 'Oops! 找不到你想要的Gif'
         }
-      })*/
+      }) */
   },
   methods: {
 
