@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopNavBar></TopNavBar>
+    <top-nav-bar></top-nav-bar>
     <p>manage...</p>
   </div>
 </template>
@@ -9,7 +9,7 @@ import TopNavBar from '../components/TopNavBar.vue'
 export default {
   name: 'Manage',
   components: {
-    TopNavBar
+    'top-nav-bar': TopNavBar
   }
 }
 

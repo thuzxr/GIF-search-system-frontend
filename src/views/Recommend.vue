@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopNavBar></TopNavBar>
+    <top-nav-bar></top-nav-bar>
     <p>recommend...</p>
   </div>
 </template>
@@ -11,12 +11,12 @@ import axios from 'axios'
 axios.defaults.timeout = 5000
 export default {
   name: 'Recommend',
-  data() {
+  data () {
     return {
       imgList: []
     }
   },
-  mounted() {
+  mounted () {
     /* axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
         if (response.data.status === 'succeed') {
           var list = response.data.result
@@ -39,7 +39,7 @@ export default {
 
   },
   components: {
-    TopNavBar
+    'top-nav-bar': TopNavBar
   }
 }
 

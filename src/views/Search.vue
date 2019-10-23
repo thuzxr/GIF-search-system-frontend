@@ -1,47 +1,39 @@
 <template>
   <div>
-    <TopNavBar></TopNavBar>
+    <top-nav-bar></top-nav-bar>
     <div style="margin-top: 30px;">
-      <SearchInput @doSearch='search'></SearchInput>
-      <v-gallery :images="imgList" class="image-box">
-        <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
-          <div class="bgbox">
-            <img :src="img.url">
-          </div>
-        </a>
-      </v-gallery>
+      <search-input @doSearch="search"></search-input>
+      <img-gallery v-bind:imgList="imgList"></img-gallery>
     </div>
   </div>
 </template>
 <script>
-import picStart from '@/assets/start.jpg'
 import picNotfind from '@/assets/timg.jpg'
 import SearchInput from '../components/SearchInput.vue'
 import TopNavBar from '../components/TopNavBar.vue'
+import ImgGallery from '../components/ImgGallery.vue'
 
 import axios from 'axios'
 axios.defaults.timeout = 5000
 
 export default {
   name: 'Search',
-  data() {
+  data () {
     return {
       currentImg: 3,
       currentPage: 1,
       pagesize: 10,
       imgList: [],
-      ImgSrc: picStart,
-      ImgTitle: '',
       item: 1,
       total: 30
     }
   },
   methods: {
-    search: function(text) {
+    search: function (text) {
       axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
         if (response.data.status === 'succeed') {
           var list = response.data.result
-          this.imgList = list.map(function(item) {
+          this.imgList = list.map(function (item) {
             var t = {
               title: item.Title,
               url: item.Oss_url,
@@ -58,8 +50,9 @@ export default {
     }
   },
   components: {
-    SearchInput,
-    TopNavBar
+    'search-input': SearchInput,
+    'top-nav-bar': TopNavBar,
+    'img-gallery': ImgGallery
   }
 }
 

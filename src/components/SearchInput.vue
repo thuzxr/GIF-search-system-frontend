@@ -12,13 +12,13 @@
 <script>
 export default {
   name: 'SearchInput',
-  data() {
+  data () {
     return {
       'text': ''
     }
   },
   methods: {
-    doSearch: function() {
+    doSearch: function () {
       this.$emit('doSearch', this.text)
     }
   }

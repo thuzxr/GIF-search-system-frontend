@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       current: 1, // 当前
       showItem: 5, // 每页显示条数
@@ -23,7 +23,7 @@ export default {
   },
   props: ['arr'],
   computed: {
-    pages() {
+    pages () {
       this.changevalue()
       // this.allpage = 300
       // this.allpage = this.arr[0]
@@ -48,16 +48,16 @@ export default {
     }
   },
   methods: {
-    changevalue() {
+    changevalue () {
       this.allpage = this.arr[0]
       this.item = this.arr[1]
     },
-    goto: function(index) {
+    goto: function (index) {
       if (index === this.current) return
       this.current = index
       this.$emit('getPageList', [this.current, this.item ? this.item : null])
     },
-    pagechange: function(p) {
+    pagechange: function (p) {
       this.current = p // 页码改变event ， p 为新的 current
       console.log('pagechange', p)
     }
