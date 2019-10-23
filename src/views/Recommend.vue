@@ -2,10 +2,8 @@
   <div>
     <TopNavBar></TopNavBar>
     <p>recommend...</p>
-
   </div>
 </template>
-
 <script>
 import TopNavBar from '../components/TopNavBar.vue'
 
@@ -13,12 +11,12 @@ import axios from 'axios'
 axios.defaults.timeout = 5000
 export default {
   name: 'Recommend',
-  data () {
+  data() {
     return {
       imgList: []
     }
   },
-  mounted () {
+  mounted() {
     /* axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
         if (response.data.status === 'succeed') {
           var list = response.data.result
@@ -44,7 +42,7 @@ export default {
     TopNavBar
   }
 }
-</script>
 
+</script>
 <style>
 </style>

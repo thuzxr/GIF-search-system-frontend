@@ -4,7 +4,6 @@
     <p>manage...</p>
   </div>
 </template>
-
 <script>
 import TopNavBar from '../components/TopNavBar.vue'
 export default {
@@ -13,7 +12,7 @@ export default {
     TopNavBar
   }
 }
-</script>
 
+</script>
 <style>
 </style>
