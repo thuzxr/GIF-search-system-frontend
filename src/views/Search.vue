@@ -2,7 +2,7 @@
   <div>
     <div style="margin-top: 30px;">
       <search-input @doSearch="search"></search-input>
-      <p v-show="err"> Oops! 找不到你想要的Gif </p>
+      <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
       <img-gallery v-bind:imgList="imgList"></img-gallery>
     </div>
   </div>

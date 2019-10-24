@@ -8,8 +8,8 @@
                         </div>
                         <form role="form">
                             <base-input class="input-group-alternative mb-3"
-                                        placeholder="Email"
-                                        addon-left-icon="ni ni-email-83"
+                                        placeholder="Name"
+                                        addon-left-icon="ni ni-hat-3"
                                         v-model="model.email">
                             </base-input>
 
@@ -24,7 +24,7 @@
                                 <span class="text-muted">Remember me</span>
                             </base-checkbox> -->
                             <div class="text-center">
-                                <base-button type="primary" class="my-4">Sign in</base-button>
+                                <base-button type="primary" class="my-4" @click.stop="login">Sign in</base-button>
                             </div>
                         </form>
                     </div>
@@ -41,6 +41,10 @@
         </div>
 </template>
 <script>
+
+import axios from 'axios'
+axios.defaults.timeout = 5000
+
 export default {
   name: 'login',
   data () {
@@ -49,6 +53,13 @@ export default {
         email: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    login: function () {
+      axios.get('http://49.233.71.202:8080/login?user=' + this.model.email + '&' + 'password=' + this.model.password).then(response => {
+        alert(response.data.status)
+      })
     }
   }
 }
