@@ -1,18 +1,18 @@
 <template>
   <div>
     <TopNavBar></TopNavBar>
-    <Login></Login>
+    <Upload></Upload>
   </div>
 </template>
 
 <script>
 import TopNavBar from '../components/TopNavBar.vue'
-import Login from '../components/Login.vue'
+import Upload from '../components/Upload.vue'
 export default {
   name: 'Manage',
   components: {
     TopNavBar,
-    Login
+    Upload
   }
 }
 </script>
