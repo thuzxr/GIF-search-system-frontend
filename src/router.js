@@ -9,19 +9,19 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [{
-      path: '/',
-      name: 'search',
-      component: Search
-    },
-    {
-      path: '/manage',
-      name: 'manage',
-      component: Manage
-    },
-    {
-      path: '/recommend',
-      name: 'recommend',
-      component: Recommend
-    }
+    path: '/',
+    name: 'search',
+    component: Search
+  },
+  {
+    path: '/manage',
+    name: 'manage',
+    component: Manage
+  },
+  {
+    path: '/recommend',
+    name: 'recommend',
+    component: Recommend
+  }
   ]
 })

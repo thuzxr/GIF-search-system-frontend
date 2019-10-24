@@ -31,6 +31,7 @@ export default {
   methods: {
     search: function (text) {
       axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
+        console.log(response.data)
         if (response.data.status === 'succeed') {
           var list = response.data.result
           this.imgList = list.map(function (item) {

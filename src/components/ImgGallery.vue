@@ -2,23 +2,31 @@
   <v-gallery :images="imgList" class="image-box">
     <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
       <div class="bgbox">
-        <img :src="img.url">
-      </div>
-      <div style="position:relative;">
-        <img :src="this.imgLike" />
-        <input type="button" value="按钮" style="position:absolute; right:10px; top:10px;" />
+        <div style="position:relative;">
+          <img :src="img.url">
+          <favor-button @click="test"></favor-button>
+        </div>
       </div>
     </a>
+
   </v-gallery>
 </template>
 
 <script>
 import picNotfind from '@/assets/timg.jpg'
+import FavorButton from '@/components/FavorButton.vue'
 export default {
   name: 'ImgGallery',
   data () {
     return {
-      imgLike: picNotfind
+      imgLike: picNotfind,
+      isLike: false
+    }
+  },
+  methods: {
+    test: function () {
+      this.isLike = !this.isLike
+      console.log('here!')
     }
   },
   props: {
@@ -26,12 +34,41 @@ export default {
       type: Array,
       required: true
     }
+  },
+  components: {
+    'favor-button': FavorButton
   }
 }
 </script>
 
 <style>
-
+.likeCss{
+  color: #FF69B4;
+  background-color: #FF69B4;
+  border-color: #FF69B4;
+}
+.el-button--primary{
+  color: #fff;
+  background-color: #FF69B4;
+  border-color: #FF69B4;
+}
+.el-button--primary:hover{
+  background-color: #FF69B4;
+  border-color: #FF69B4;
+}
+.el-button--primary:focus{
+  background-color: #FF69B4;
+  border-color: #FF69B4;
+}
+.red {
+  color: #fff!important;
+  background-color: orange!important;
+  font-size: 14px;
+}
+.blue {
+  color: blue!important;
+  font-size: 20px;
+}
 .image-box a {
   clear: both;
   display: inline-block;
