@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import NavLayout from './views/NavLayout.vue'
 
 Vue.use(Router)
 
@@ -10,7 +11,7 @@ export default new Router({
     {
       path: '/',
       redirect: 'search',
-      component: Manage,
+      component: NavLayout,
       children: [
         {
           path: '/search',

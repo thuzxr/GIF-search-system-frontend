@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="margin: 0px;">
+  <div id="app">
     <router-view />
   </div>
 </template>
@@ -10,6 +10,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #ffffff;
+}
+
+body {
+	background-color: #ffffff;
 }
 
 </style>

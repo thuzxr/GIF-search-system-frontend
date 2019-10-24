@@ -9,11 +9,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "bootstrap": "^4.3.1",
-=======
     "ali-oss": "^6.1.1",
->>>>>>> develop
     "core-js": "^2.6.5",
     "nouislider": "^14.0.3",
     "v-gallery": "^1.2.4",

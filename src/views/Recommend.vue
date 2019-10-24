@@ -1,12 +1,9 @@
 <template>
   <div>
-    <top-nav-bar></top-nav-bar>
-    <p>recommend...</p>
     <img-gallery v-bind:imgList="imgList"></img-gallery>
   </div>
 </template>
 <script>
-import TopNavBar from '../components/TopNavBar.vue'
 import ImgGallery from '../components/ImgGallery.vue'
 
 import axios from 'axios'
@@ -49,7 +46,6 @@ export default {
 
   },
   components: {
-    'top-nav-bar': TopNavBar,
     'img-gallery': ImgGallery
   }
 }

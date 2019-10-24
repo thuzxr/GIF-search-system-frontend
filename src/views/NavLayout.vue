@@ -1,16 +1,16 @@
 <template>
   <div>
-    <upload-gif></upload-gif>
+    <top-nav-bar></top-nav-bar>
+	<router-view></router-view>
   </div>
 </template>
 
 <script>
 import TopNavBar from '../components/TopNavBar.vue'
-import Upload from '../components/Upload.vue'
 export default {
-  name: 'Manage',
+  name: 'NavLayout',
   components: {
-    'upload-gif': Upload
+    'top-nav-bar': TopNavBar,
   }
 }
 
