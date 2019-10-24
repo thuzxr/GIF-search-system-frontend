@@ -1,6 +1,5 @@
 <template>
   <div>
-    <top-nav-bar></top-nav-bar>
     <div style="margin-top: 30px;">
       <search-input @doSearch="search"></search-input>
       <img-gallery v-bind:imgList="imgList"></img-gallery>
@@ -10,7 +9,6 @@
 <script>
 import picNotfind from '@/assets/timg.jpg'
 import SearchInput from '../components/SearchInput.vue'
-import TopNavBar from '../components/TopNavBar.vue'
 import ImgGallery from '../components/ImgGallery.vue'
 
 import axios from 'axios'
@@ -51,7 +49,6 @@ export default {
   },
   components: {
     'search-input': SearchInput,
-    'top-nav-bar': TopNavBar,
     'img-gallery': ImgGallery
   }
 }
