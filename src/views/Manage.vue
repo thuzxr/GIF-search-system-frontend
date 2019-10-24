@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <base-nav class="navbar-top navbar-horizontal"
                       containerClasses="px-4 container"
                       background-color="#FFFFFF"
@@ -57,9 +58,15 @@
     <div style="margin-top: 50px;">
       <router-view></router-view>
     </div>
+=======
+    <top-nav-bar></top-nav-bar>
+    <upload-gif></upload-gif>
+>>>>>>> develop
   </div>
 </template>
+
 <script>
+<<<<<<< HEAD
 // import TopNavBar from '../components/TopNavBar.vue'
 export default {
   name: 'Manage',
@@ -74,6 +81,15 @@ export default {
         backgroundSize: '100% 100%'
       }
     }
+=======
+import TopNavBar from '../components/TopNavBar.vue'
+import Upload from '../components/Upload.vue'
+export default {
+  name: 'Manage',
+  components: {
+    'top-nav-bar': TopNavBar,
+    'upload-gif': Upload
+>>>>>>> develop
   }
 }
 
