@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p v-show="err"> Oops! 找不到你想要的Gif </p>
     <img-gallery v-bind:imgList="imgList"></img-gallery>
   </div>
 </template>
@@ -12,20 +13,16 @@ export default {
   name: 'Recommend',
   data () {
     return {
-      currentImg: 3,
-      currentPage: 1,
-      pagesize: 10,
       imgList: [],
       imgName: '4fd32a6fae93404a956129260ec0a606',
-      item: 1,
-      total: 30,
-      text: ''
+      err: false
     }
   },
   mounted () {
-    axios.get('https://gif-dio-go-stardustcrusaders.app.secoder.net/recommend?name=' + this.imgName).then(response => {
+    axios.get('http://49.233.71.202:8080/recommend?name=' + this.imgName).then(response => {
       console.log(response.data)
       if (response.data.status === 'succeed') {
+        this.err = false
         var list = response.data.result
         this.imgList = list.map(function (item) {
           var t = {
@@ -37,8 +34,12 @@ export default {
         })
         console.log(list[0])
       } else {
-        // this.ImgSrc = picNotfind
-        this.ImgTitle = 'Oops! 找不到你想要的Gif'
+        this.err = true
+        this.imgList = [{
+          title: 'Oops! 找不到你想要的Gif',
+          url: '../assets/timg.jpg',
+          thumbnail: '../assets/timg.jpg'
+        }]
       }
     })
   },
