@@ -22,7 +22,7 @@
 
 <script>
 import OSS from 'ali-oss'
-import axios from 'axios'
+import { axiosInstance } from '../axios_config.js'
 export default {
   data () {
     return {
@@ -59,7 +59,7 @@ export default {
         this.counter += 1
         let result = client.put(name + '.gif', item.file)
         console.log(result)
-        axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/backend_upload?keyword=' + this.label_1 + '&name=' + name + '&title=' + this.title)
+        axiosInstance({ url: '/backend_upload?keyword=' + this.label_1 + '&name=' + name + '&title=' + this.title })
       } catch (e) {
         console.log(e)
       }

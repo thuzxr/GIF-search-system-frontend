@@ -1,34 +1,27 @@
 <template>
   <div>
-    <top-nav-bar></top-nav-bar>
-    <p>recommend...</p>
+    <p v-show="err"> Oops! 找不到你想要的Gif </p>
     <img-gallery v-bind:imgList="imgList"></img-gallery>
   </div>
 </template>
 <script>
-import TopNavBar from '../components/TopNavBar.vue'
 import ImgGallery from '../components/ImgGallery.vue'
+import { axiosInstance } from '../axios_config.js'
 
-import axios from 'axios'
-axios.defaults.timeout = 5000
 export default {
   name: 'Recommend',
   data () {
     return {
-      currentImg: 3,
-      currentPage: 1,
-      pagesize: 10,
       imgList: [],
       imgName: '4fd32a6fae93404a956129260ec0a606',
-      item: 1,
-      total: 30,
-      text: ''
+      err: false
     }
   },
   mounted () {
-    axios.get('https://gif-dio-go-stardustcrusaders.app.secoder.net/recommend?name=' + this.imgName).then(response => {
+    axiosInstance({ url: '/backend_recommend?name=' + this.imgName }).then(response => {
       console.log(response.data)
       if (response.data.status === 'succeed') {
+        this.err = false
         var list = response.data.result
         this.imgList = list.map(function (item) {
           var t = {
@@ -40,8 +33,12 @@ export default {
         })
         console.log(list[0])
       } else {
-        // this.ImgSrc = picNotfind
-        this.ImgTitle = 'Oops! 找不到你想要的Gif'
+        this.err = true
+        this.imgList = [{
+          title: 'Oops! 找不到你想要的Gif',
+          url: '../assets/timg.jpg',
+          thumbnail: '../assets/timg.jpg'
+        }]
       }
     })
   },
@@ -49,7 +46,6 @@ export default {
 
   },
   components: {
-    'top-nav-bar': TopNavBar,
     'img-gallery': ImgGallery
   }
 }

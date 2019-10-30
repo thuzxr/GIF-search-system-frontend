@@ -5,6 +5,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import vGallery from 'v-gallery'
+
+import ArgonDashboard from './plugins/argon-dashboard'
+Vue.use(ArgonDashboard)
+
 Vue.use(vGallery)
 
 Vue.use(ElementUI)

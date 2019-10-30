@@ -1,38 +1,32 @@
 <template>
   <div>
-    <top-nav-bar></top-nav-bar>
     <div style="margin-top: 30px;">
       <search-input @doSearch="search"></search-input>
+      <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
       <img-gallery v-bind:imgList="imgList"></img-gallery>
     </div>
   </div>
 </template>
 <script>
-import picNotfind from '@/assets/timg.jpg'
 import SearchInput from '../components/SearchInput.vue'
-import TopNavBar from '../components/TopNavBar.vue'
 import ImgGallery from '../components/ImgGallery.vue'
 
-import axios from 'axios'
-axios.defaults.timeout = 5000
+import { axiosInstance } from '../axios_config.js'
 
 export default {
   name: 'Search',
   data () {
     return {
-      currentImg: 3,
-      currentPage: 1,
-      pagesize: 10,
       imgList: [],
-      item: 1,
-      total: 30
+      err: false
     }
   },
   methods: {
     search: function (text) {
-      axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
+      axiosInstance({ url: '/backend_search?key=' + text }).then(response => {
         console.log(response.data)
         if (response.data.status === 'succeed') {
+          this.err = false
           var list = response.data.result
           this.imgList = list.map(function (item) {
             var t = {
@@ -44,15 +38,14 @@ export default {
           })
           console.log(list[0])
         } else {
-          this.ImgSrc = picNotfind
-          this.ImgTitle = 'Oops! 找不到你想要的Gif'
+          this.err = true
+          this.imgList = []
         }
       })
     }
   },
   components: {
     'search-input': SearchInput,
-    'top-nav-bar': TopNavBar,
     'img-gallery': ImgGallery
   }
 }
