@@ -10,7 +10,7 @@ import TopNavBar from '../components/TopNavBar.vue'
 export default {
   name: 'NavLayout',
   components: {
-    'top-nav-bar': TopNavBar,
+    'top-nav-bar': TopNavBar
   }
 }
 

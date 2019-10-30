@@ -37,7 +37,7 @@ export default new Router({
           path: '/recommend',
           name: 'recommend',
           component: () => import('./views/Recommend.vue')
-        },
+        }
       ]
     }
   ]
