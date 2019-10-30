@@ -1,50 +1,32 @@
 <template>
   <div>
-    <TopNavBar></TopNavBar>
     <div style="margin-top: 30px;">
-    <SearchInput @doSearch='search'></SearchInput>
-    <v-gallery :images="imgList" class="image-box">
-            <a href="javascript:void(0);"
-               :data-image="img.url"
-               :title="img.title"
-               v-for="img in imgList" :key="img.title">
-                <div class="bgbox">
-                    <img :src="img.url">
-                </div>
-            </a>
-    </v-gallery>
+      <search-input @doSearch="search"></search-input>
+      <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
+      <img-gallery v-bind:imgList="imgList"></img-gallery>
     </div>
   </div>
 </template>
-
 <script>
-
-import picStart from '@/assets/start.jpg'
-import picNotfind from '@/assets/timg.jpg'
 import SearchInput from '../components/SearchInput.vue'
-import TopNavBar from '../components/TopNavBar.vue'
+import ImgGallery from '../components/ImgGallery.vue'
 
-import axios from 'axios'
-axios.defaults.timeout = 5000
+import { axiosInstance } from '../axios_config.js'
 
 export default {
   name: 'Search',
   data () {
     return {
-      currentImg: 3,
-      currentPage: 1,
-      pagesize: 10,
       imgList: [],
-      ImgSrc: picStart,
-      ImgTitle: '',
-      item: 1,
-      total: 30
+      err: false
     }
   },
   methods: {
     search: function (text) {
-      axios.get('https://gif-dio-stardustcrusaders.app.secoder.net/query?key=' + text).then(response => {
+      axiosInstance({ url: '/backend_search?key=' + text }).then(response => {
+        console.log(response.data)
         if (response.data.status === 'succeed') {
+          this.err = false
           var list = response.data.result
           this.imgList = list.map(function (item) {
             var t = {
@@ -56,45 +38,19 @@ export default {
           })
           console.log(list[0])
         } else {
-          this.ImgSrc = picNotfind
-          this.ImgTitle = 'Oops! 找不到你想要的Gif'
+          this.err = true
+          this.imgList = []
         }
       })
     }
   },
   components: {
-    SearchInput,
-    TopNavBar
+    'search-input': SearchInput,
+    'img-gallery': ImgGallery
   }
 }
-</script>
 
+</script>
 <style>
-    .image-box a {
-      clear: both;
-      display: inline-block;
-      margin: 0 10px 10px 0;
-      position: relative;
-      text-align: center;
-    }
-    .image-box a .bgbox{
-                background-color: #FFFFFF;
-                height: 150px;
-                display:table-cell;
-                vertical-align:middle;
-                padding: 4px;
-                border-radius: 2px;
-            }
-    .image-box a .bgbox img{
-      width: 200px;
-      display: block;
-      }
-      .image-box a .img-title {
-                bottom: 5px;
-                display: block;
-                text-align: center;
-                color: #999999;
-                padding-top: 5px;
-            }
-      .image-box a:hover .img-title { color: #232323; }
+
 </style>
