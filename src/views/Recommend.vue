@@ -6,9 +6,8 @@
 </template>
 <script>
 import ImgGallery from '../components/ImgGallery.vue'
+import { axiosInstance } from '../axios_config.js'
 
-import axios from 'axios'
-axios.defaults.timeout = 5000
 export default {
   name: 'Recommend',
   data () {
@@ -19,7 +18,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://49.233.71.202:8080/recommend?name=' + this.imgName).then(response => {
+    axiosInstance({ url: '/backend_recommend?name=' + this.imgName }).then(response => {
       console.log(response.data)
       if (response.data.status === 'succeed') {
         this.err = false

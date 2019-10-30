@@ -55,8 +55,7 @@
 </template>
 <script>
 
-import axios from 'axios'
-axios.defaults.timeout = 5000
+import { axiosInstance } from '../axios_config.js'
 
 export default {
   name: 'register',
@@ -70,7 +69,7 @@ export default {
   },
   methods: {
     register: function () {
-      axios.get('http://49.233.71.202:8080/register?user=' + this.model.name + '&' + 'password=' + this.model.password).then(response => {
+      axiosInstance({ url: '/backend_register?user=' + this.model.name + '&' + 'password=' + this.model.password }).then(response => {
         alert(response.data.status)
       })
     }

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import TopNavBar from '../components/TopNavBar.vue'
 import Upload from '../components/Upload.vue'
 export default {
   name: 'Manage',

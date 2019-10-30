@@ -4,8 +4,8 @@
       <el-menu-item index="/search">搜索</el-menu-item>
       <el-menu-item index="/recommend">推荐</el-menu-item>
       <el-menu-item index="/manage">管理</el-menu-item>
-	  <el-menu-item index="/login">登录</el-menu-item>
-	  <el-menu-item index="/register">注册</el-menu-item>
+    <el-menu-item index="/login">登录</el-menu-item>
+    <el-menu-item index="/register">注册</el-menu-item>
     </el-menu>
   </div>
 </template>

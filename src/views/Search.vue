@@ -11,8 +11,7 @@
 import SearchInput from '../components/SearchInput.vue'
 import ImgGallery from '../components/ImgGallery.vue'
 
-import axios from 'axios'
-axios.defaults.timeout = 5000
+import { axiosInstance } from '../axios_config.js'
 
 export default {
   name: 'Search',
@@ -24,7 +23,7 @@ export default {
   },
   methods: {
     search: function (text) {
-      axios.get('http://49.233.71.202:8080/search?key=' + text).then(response => {
+      axiosInstance({ url: '/backend_search?key=' + text }).then(response => {
         console.log(response.data)
         if (response.data.status === 'succeed') {
           this.err = false
