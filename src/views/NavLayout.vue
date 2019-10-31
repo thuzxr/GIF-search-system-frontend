@@ -1,16 +1,71 @@
 <template>
   <div>
-    <top-nav-bar></top-nav-bar>
-  <router-view></router-view>
+    <base-nav class="navbar-top navbar-horizontal navbar-light"
+                  containerClasses="container"
+                  expand>
+            <router-link slot="brand" class="navbar-brand" to="/">
+                <img src="../assets/start.gif"/>
+            </router-link>
+
+            <template v-slot="{closeMenu}">
+                <!-- Collapse header -->
+                <div class="navbar-collapse-header d-md-none">
+                    <div class="row">
+                        <div class="col-6 collapse-brand">
+                            <router-link to="/">
+                                <img src="../assets/start.jpg">
+                            </router-link>
+                        </div>
+                        <div class="col-6 collapse-close">
+                            <button type="button"
+                                    @click="closeMenu"
+                                    class="navbar-toggler"
+                                    aria-label="Toggle sidenav">
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navbar items -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <router-link class="nav-link nav-link-icon" to="/search">
+                            <i class="ni ni-planet"></i>
+                            <span class="nav-link-inner--text">Search</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link nav-link-icon" to="/register">
+                            <i class="ni ni-circle-08"></i>
+                            <span class="nav-link-inner--text">Register</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link nav-link-icon" to="/login">
+                            <i class="ni ni-key-25"></i>
+                            <span class="nav-link-inner--text">Login</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link nav-link-icon" to="/profile">
+                            <i class="ni ni-single-02"></i>
+                            <span class="nav-link-inner--text">Profile</span>
+                        </router-link>
+                    </li>
+                </ul>
+            </template>
+        </base-nav>
+    <div containerClasses="container" expand>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import TopNavBar from '../components/TopNavBar.vue'
 export default {
   name: 'NavLayout',
   components: {
-    'top-nav-bar': TopNavBar
   }
 }
 
