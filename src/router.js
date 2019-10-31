@@ -16,27 +16,27 @@ export default new Router({
         {
           path: '/search',
           name: 'search',
-          component: () => import('./views/Search.vue')
+          component: () => import('@/views/Search.vue')
         },
         {
           path: '/login',
           name: 'login',
-          component: () => import('./views/Login.vue')
+          component: () => import('@/views/Login.vue')
         },
         {
           path: '/manage',
           name: 'manage',
-          component: () => import('./views/Manage.vue')
+          component: () => import('@/views/Manage.vue')
         },
         {
           path: '/register',
           name: 'register',
-          component: () => import('./views/Register.vue')
+          component: () => import('@/views/Register.vue')
         },
         {
           path: '/recommend',
           name: 'recommend',
-          component: () => import('./views/Recommend.vue')
+          component: () => import('@/views/Recommend.vue')
         }
       ]
     }
