@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import NavLayout from './views/NavLayout.vue'
+import NavLayout from '@/layout/NavLayout.vue'
 
 Vue.use(Router)
 

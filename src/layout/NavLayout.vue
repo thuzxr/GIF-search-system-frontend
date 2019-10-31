@@ -6,6 +6,9 @@
             <router-link slot="brand" class="navbar-brand" to="/">
                 <img src="../assets/start.gif"/>
             </router-link>
+            <router-link slot="brand" class="navbar-brand" to="/">
+                <h1> gif-dio </h1>
+            </router-link>
 
             <template v-slot="{closeMenu}">
                 <!-- Collapse header -->
