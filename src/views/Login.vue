@@ -57,7 +57,7 @@ export default {
   methods: {
     login: function () {
       axiosInstance({ 
-        baseURL: 'http://183.173.138.8:8080',
+        // baseURL: 'http://183.173.138.8:8080',
         // headers:{
         //   "Access-Control-Allow-Origin":"*", 
         //   "Access-Control-Allow-Methods":"POST ,GET, OPTIONS, PUT, DELETE", 
