@@ -23,6 +23,7 @@
                             <button type="button"
                                     @click="closeMenu"
                                     class="navbar-toggler"
+                                    data-toggle="collapse"
                                     aria-label="Toggle sidenav">
                                 <span></span>
                                 <span></span>
@@ -33,20 +34,8 @@
                 <!-- Navbar items -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <router-link class="nav-link nav-link-icon" to="/search">
-                            <i class="ni ni-planet"></i>
-                            <span class="nav-link-inner--text">Search</span>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link nav-link-icon" to="/register">
-                            <i class="ni ni-circle-08"></i>
-                            <span class="nav-link-inner--text">Register</span>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/login">
-                            <i class="ni ni-key-25"></i>
+                            <i class="ni ni-single-02"></i>
                             <span class="nav-link-inner--text">Login</span>
                         </router-link>
                     </li>
