@@ -9,9 +9,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "vue-chartjs": "3.4.2",
+    "vue-clipboard2": "0.3.0",
+    "bootstrap-vue": "2.0.0-rc.15",
+    "chart.js": "2.8.0",
     "bootstrap": "^4.3.1",
     "ali-oss": "^6.1.1",
     "core-js": "^2.6.5",
+    "js-base64": "^2.5.1",
     "nouislider": "^14.0.3",
     "v-gallery": "^1.2.4",
     "vue": "^2.6.10",

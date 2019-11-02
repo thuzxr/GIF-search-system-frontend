@@ -56,8 +56,11 @@ export default {
   },
   methods: {
     login: function () {
-      axiosInstance({ url: '/backend_login?user=' + this.model.email + '&' + 'password=' + this.model.password }).then(response => {
+      axiosInstance({
+        // baseURL: 'http://183.173.140.191:8080',
+        url: '/backend_login?user=' + this.model.email + '&' + 'password=' + this.model.password }).then(response => {
         alert(response.data.status)
+        console.log(response.headers)
       })
     }
   }

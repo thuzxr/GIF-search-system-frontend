@@ -6,9 +6,12 @@
             <navbar-toggle-button @click.native="showSidebar">
                 <span class="navbar-toggler-icon"></span>
             </navbar-toggle-button>
-            <router-link class="navbar-brand" to="/">
-                <img :src="logo" class="navbar-brand-img" alt="...">
+            <router-link class="navbar-brand-img" to="/">
+                <h1>gif-dio</h1>
             </router-link>
+<!--            <router-link to="/">
+                <img :src="logo" class="navbar-brand-img" alt="...">
+            </router-link> -->
 
             <slot name="mobile-right">
                 <ul class="nav align-items-center d-md-none">
@@ -27,7 +30,7 @@
                         <a slot="title" class="nav-link" href="#" role="button">
                             <div class="media align-items-center">
                               <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="img/theme/team-1-800x800.jpg">
+                                <img src="../../assets/dio.jpg">
                               </span>
                             </div>
                         </a>
@@ -75,16 +78,17 @@
                     </div>
                 </div>
 
+                <hr class="my-3">
                 <ul class="navbar-nav">
                     <slot name="links">
                     </slot>
                 </ul>
                 <!--Divider-->
-                <hr class="my-3">
+           <!--     <hr class="my-3"> -->
                 <!--Heading-->
-                <h6 class="navbar-heading text-muted">Documentation</h6>
+                <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
                 <!--Navigation-->
-                <ul class="navbar-nav mb-md-3">
+               <!-- <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
                         <a class="nav-link"
                            href="https://demos.creative-tim.com/vue-argon-dashboard/documentation">
@@ -103,25 +107,26 @@
                             <i class="ni ni-ui-04"></i> Components
                         </a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             </div>
     </nav>
 </template>
 <script>
 import NavbarToggleButton from '@/components/NavbarToggleButton'
+import logo from '@/assets/start.jpg'
 
 export default {
   name: 'sidebar',
+  data () {
+    return {
+      logo: logo
+    }
+  },
   components: {
     NavbarToggleButton
   },
   props: {
-    logo: {
-      type: String,
-      default: 'img/brand/green.png',
-      description: 'Sidebar app logo'
-    },
     autoClose: {
       type: Boolean,
       default: true,

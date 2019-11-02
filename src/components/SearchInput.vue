@@ -28,7 +28,7 @@ export default {
 <style>
 .searchDiv {
   width: 30%;
-  min-width: 200px;
+  min-width: 350px;
   text-align: center;
   transition-duration: 0.5s;
   margin: 0 auto;
@@ -36,7 +36,7 @@ export default {
 
 .searchDiv:hover {
   width: 50%;
-  min-width: 200px;
+  min-width: 350px;
   text-align: center;
 }
 
