@@ -27,7 +27,7 @@
 <script>
 import OSS from 'ali-oss'
 import { Base64 } from 'js-base64'
-import { axiosInstance } from '../axios_config.js'
+
 export default {
   data () {
     return {
@@ -74,9 +74,11 @@ export default {
         let str = nowtime + this.title + String(this.counter)
         this.counter += 1
         let name = Base64.encode(str)
+        console.log(name)
         let result = client.put(name + '.gif', item.file)
         console.log(result)
-        axiosInstance({ url: '/backend_upload?keyword=' + this.label + '&name=' + name + '&title=' + this.title })
+        name = name.replace('+', '%2B')
+        this.$api.upload(this.label, name, this.title)
       } catch (e) {
         console.log(e)
       }

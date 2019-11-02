@@ -10,7 +10,7 @@
                             <base-input class="input-group-alternative mb-3"
                                         placeholder="Name"
                                         addon-left-icon="ni ni-hat-3"
-                                        v-model="model.email">
+                                        v-model="model.name">
                             </base-input>
 
                             <base-input class="input-group-alternative"
@@ -42,25 +42,23 @@
 </template>
 <script>
 
-import { axiosInstance } from '../axios_config.js'
-
 export default {
   name: 'login',
   data () {
     return {
       model: {
-        email: '',
+        name: '',
         password: ''
       }
     }
   },
   methods: {
-    login: function () {
-      axiosInstance({
-        // baseURL: 'http://183.173.140.191:8080',
-        url: '/backend_login?user=' + this.model.email + '&' + 'password=' + this.model.password }).then(response => {
-        alert(response.data.status)
-        console.log(response.headers)
+    login () {
+      this.$api.login(this.model.name, this.model.password).then(res => {
+        alert(res.data.status)
+        console.log(res.headers)
+      }).catch(res => {
+        alert(res)
       })
     }
   }

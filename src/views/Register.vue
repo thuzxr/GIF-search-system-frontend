@@ -55,8 +55,6 @@
 </template>
 <script>
 
-import { axiosInstance } from '../axios_config.js'
-
 export default {
   name: 'register',
   data () {
@@ -69,8 +67,8 @@ export default {
   },
   methods: {
     register: function () {
-      axiosInstance({ url: '/backend_register?user=' + this.model.name + '&' + 'password=' + this.model.password }).then(response => {
-        alert(response.data.status)
+      this.$api.register(this.model.name, this.model.password).then(response => {
+        alert(response.status)
       })
     }
   }
