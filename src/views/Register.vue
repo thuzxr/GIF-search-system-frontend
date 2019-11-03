@@ -18,8 +18,36 @@
                                     placeholder="Password"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
+                                    v-model="model.confirm_password">
+                        </base-input>
+
+                        <base-input class="input-group-alternative"
+                                    placeholder="Confirm Password"
+                                    type="password"
+                                    addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password">
                         </base-input>
+
+                        
+
+                            <base-input class="input-group-alternative"
+                                        placeholder="Verification code"
+                                        type="Name"
+                                        addon-left-icon="ni ni-send"
+                                        v-model="model.vericode">
+                            </base-input>
+                        <div class="row text-center">
+                            <!-- <span @click.stop="getCaptchaImgUrl" class="box-verify"><img id="captchaIdImg" :src="model.captchaImgUrl" /></span> -->
+                            <div style="width:30%">
+                            <base-button type="primary" class="my-4" @click.stop="getCaptchaImgUrl">刷新验证码</base-button>
+                            </div>
+
+                            <div style="width:30%">
+                            <img id="captchaIdImg" :src="model.captchaImgUrl"/>
+                            </div>
+
+                        </div>
+
 
      <!--                   <div class="text-muted font-italic">
                             <small>password strength: <span class="text-success font-weight-700">strong</span></small>
@@ -63,16 +91,37 @@ export default {
     return {
       model: {
         name: '',
-        password: ''
+        password: '',
+        confirm_password:'',
+        vericode:'',
+        captchaId:'',
+        captchaImgUrl:''
       }
     }
   },
   methods: {
     register: function () {
-      axiosInstance({ url: '/backend_register?user=' + this.model.name + '&' + 'password=' + this.model.password }).then(response => {
-        alert(response.data.status)
-      })
-    }
+      if(this.model.password!=this.model.confirm_password){
+          alert("两次密码不一致")
+      } else {
+        axiosInstance({
+            url: '/register?user=' + this.model.name + '&' + 'password=' + this.model.password +'&vericode='+this.model.vericode+'&captchaId='+this.model.captchaId}).then(response => {
+            alert(response.data.status)
+        })
+      }
+    },
+    getCaptchaImgUrl() {
+        axiosInstance({url:'/refresh_veri.html'})
+        .then(res => {
+          this.model.captchaId = res.data.captchaId
+          //这里的端口8000是后端gin的端口
+          this.model.captchaImgUrl = 'http://183.172.82.157:8000/get_veri/' + res.data.captchaId+'.png'
+          console.log(this.model.captchaId)
+        }).catch(err => {
+          console.log(err)
+        })
+        // console.log(this.captchaImgUrl)
+      }
   }
 }
 </script>

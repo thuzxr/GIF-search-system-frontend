@@ -23,7 +23,8 @@ export default {
   },
   methods: {
     search: function (text) {
-      axiosInstance({ url: '/backend_search?key=' + text }).then(response => {
+      axiosInstance({
+        url: '/search?key=' + text }).then(response => {
         console.log(response.data)
         if (response.data.status === 'succeed') {
           this.err = false
