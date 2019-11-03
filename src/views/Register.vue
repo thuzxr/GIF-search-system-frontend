@@ -28,8 +28,6 @@
                                     v-model="model.password">
                         </base-input>
 
-                        
-
                             <base-input class="input-group-alternative"
                                         placeholder="Verification code"
                                         type="Name"
@@ -47,7 +45,6 @@
                             </div>
 
                         </div>
-
 
      <!--                   <div class="text-muted font-italic">
                             <small>password strength: <span class="text-success font-weight-700">strong</span></small>
@@ -90,32 +87,32 @@ export default {
       model: {
         name: '',
         password: '',
-        confirm_password:'',
-        vericode:'',
-        captchaId:'',
-        captchaImgUrl:''
+        confirm_password: '',
+        vericode: '',
+        captchaId: '',
+        captchaImgUrl: ''
       }
     }
   },
   methods: {
     register: function () {
-      if(this.model.password!=this.model.confirm_password){
-          alert("两次密码不一致")
+      if (this.model.password != this.model.confirm_password) {
+        alert('两次密码不一致')
       } else {
-        this.$api.register(this.model.name, this.model.password,this.model.vericode,this.model.captchaId).then(response => {
+        this.$api.register(this.model.name, this.model.password, this.model.vericode, this.model.captchaId).then(response => {
           alert(response.status)
         })
       }
     },
-    getCaptchaImgUrl() {
-        this.$api.getCaptchaId().then(res => {
-          this.model.captchaId = res.data.captchaId
-          this.model.captchaImgUrl = config.baseURL+'/get_veri/' + res.data.captchaId+'.png'
-          console.log(this.model.captchaId)
-        }).catch(err => {
-          console.log(err)
-        })
-      }
+    getCaptchaImgUrl () {
+      this.$api.getCaptchaId().then(res => {
+        this.model.captchaId = res.captchaId
+        this.model.captchaImgUrl = config.baseURL + '/get_veri/' + res.captchaId + '.png'
+        console.log(this.model.captchaId)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>
