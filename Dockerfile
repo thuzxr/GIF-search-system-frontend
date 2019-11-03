@@ -9,6 +9,7 @@ WORKDIR $FRONTEND
 
 COPY package.json $FRONTEND
 COPY package-lock.json $FRONTEND
+RUN npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 RUN npm install
 
 COPY . $FRONTEND
