@@ -7,9 +7,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import vGallery from 'v-gallery'
 
 import ArgonDashboard from './plugins/argon-dashboard'
-Vue.use(ArgonDashboard)
 
+import api from './http/index'
 Vue.use(vGallery)
+Vue.use(ArgonDashboard)
+Vue.use(api)
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

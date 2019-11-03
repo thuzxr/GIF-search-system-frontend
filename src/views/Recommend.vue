@@ -6,7 +6,6 @@
 </template>
 <script>
 import ImgGallery from '../components/ImgGallery.vue'
-import { axiosInstance } from '../axios_config.js'
 
 export default {
   name: 'Recommend',
@@ -18,11 +17,10 @@ export default {
     }
   },
   mounted () {
-    axiosInstance({ url: '/backend_recommend?name=' + this.imgName }).then(response => {
-      console.log(response.data)
-      if (response.data.status === 'succeed') {
+    this.$api.recommend(this.imgName).then(response => {
+      if (response.status === 'succeed') {
         this.err = false
-        var list = response.data.result
+        var list = response.result
         this.imgList = list.map(function (item) {
           var t = {
             title: item.Title,
@@ -31,7 +29,6 @@ export default {
           }
           return t
         })
-        console.log(list[0])
       } else {
         this.err = true
         this.imgList = [{

@@ -11,8 +11,6 @@
 import SearchInput from '../components/SearchInput.vue'
 import ImgGallery from '../components/ImgGallery.vue'
 
-import { axiosInstance } from '../axios_config.js'
-
 export default {
   name: 'Search',
   data () {
@@ -23,12 +21,11 @@ export default {
   },
   methods: {
     search: function (text) {
-      axiosInstance({
-        url: '/search?key=' + text }).then(response => {
-        console.log(response.data)
-        if (response.data.status === 'succeed') {
+      this.$api.search(text).then(response => {
+        console.log(response.result)
+        if (response.status === 'succeed') {
           this.err = false
-          var list = response.data.result
+          var list = response.result
           this.imgList = list.map(function (item) {
             var t = {
               title: item.Title,
@@ -42,6 +39,8 @@ export default {
           this.err = true
           this.imgList = []
         }
+      }).catch(res => {
+        alert(res)
       })
     }
   },

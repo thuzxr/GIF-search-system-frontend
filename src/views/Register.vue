@@ -82,9 +82,7 @@
     </div>
 </template>
 <script>
-
-import { axiosInstance } from '../axios_config.js'
-
+import config from '../http/config'
 export default {
   name: 'register',
   data () {
@@ -104,23 +102,19 @@ export default {
       if(this.model.password!=this.model.confirm_password){
           alert("两次密码不一致")
       } else {
-        axiosInstance({
-            url: '/register?user=' + this.model.name + '&' + 'password=' + this.model.password +'&vericode='+this.model.vericode+'&captchaId='+this.model.captchaId}).then(response => {
-            alert(response.data.status)
+        this.$api.register(this.model.name, this.model.password,this.model.vericode,this.model.captchaId).then(response => {
+          alert(response.status)
         })
       }
     },
     getCaptchaImgUrl() {
-        axiosInstance({url:'/refresh_veri.html'})
-        .then(res => {
+        this.$api.getCaptchaId().then(res => {
           this.model.captchaId = res.data.captchaId
-          //这里的端口8000是后端gin的端口
-          this.model.captchaImgUrl = 'http://183.172.82.157:8000/get_veri/' + res.data.captchaId+'.png'
+          this.model.captchaImgUrl = config.baseURL+'/get_veri/' + res.data.captchaId+'.png'
           console.log(this.model.captchaId)
         }).catch(err => {
           console.log(err)
         })
-        // console.log(this.captchaImgUrl)
       }
   }
 }
