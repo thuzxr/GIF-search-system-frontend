@@ -51,7 +51,7 @@ export default function $axios (options) {
     // response 拦截器
     instance.interceptors.response.use(
       response => {
-        let data
+        let data = response.data
         // IE9时response.data是undefined，因此需要使用response.request.responseText(Stringify后的字符串)
         // if (response.data == undefined) {
         //   data = JSON.parse(response.request.responseText)
