@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <base-nav class="navbar-top navbar-horizontal navbar-light"
                   containerClasses="container"
+                  :title="navTitle"
                   expand>
             <router-link slot="brand" class="navbar-brand" to="/">
                 <img src="../assets/start.gif"/>
@@ -48,7 +49,7 @@
                 </ul>
             </template>
         </base-nav>
-    <div containerClasses="container" expand>
+    <div containerClasses="container">
       <router-view></router-view>
     </div>
   </div>
@@ -57,6 +58,11 @@
 <script>
 export default {
   name: 'NavLayout',
+  data () {
+    return {
+      navTitle: 'gif-dio-search'
+    }
+  },
   components: {
   }
 }
