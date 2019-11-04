@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-center" style="margin-top: 30px;">
+    <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7 col-10">
             <div class="card bg-secondary shadow border-0">
                 <div class="card-body px-lg-5 py-lg-5">
@@ -36,11 +36,11 @@
                             </base-input>
                         <div class="row text-center">
                             <!-- <span @click.stop="getCaptchaImgUrl" class="box-verify"><img id="captchaIdImg" :src="model.captchaImgUrl" /></span> -->
-                            <div style="width:30%">
+                            <div class="col-5">
                             <base-button type="primary" class="my-4" @click.stop="getCaptchaImgUrl">刷新验证码</base-button>
                             </div>
 
-                            <div style="width:30%">
+                            <div class="col-7">
                             <img id="captchaIdImg" :src="model.captchaImgUrl"/>
                             </div>
 

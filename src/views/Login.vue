@@ -1,5 +1,5 @@
 <template>
-        <div class="row justify-content-center" style="margin-top: 30px;">
+        <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7 col-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">

@@ -34,7 +34,8 @@ export const search = (keyword) => {
   var realUrl = '/backend_search?key=' + keyword
   return axios({
     url: realUrl,
-    method: 'get'
+    method: 'get',
+    withCredentials: false
   })
 }
 
