@@ -55,8 +55,7 @@ export default {
   methods: {
     login () {
       this.$api.login(this.model.name, this.model.password).then(res => {
-        alert(res.data.status)
-        console.log(res.headers)
+        alert(res.status)
       }).catch(res => {
         alert(res)
       })

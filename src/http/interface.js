@@ -14,8 +14,16 @@ export const login = (name, password) => {
   })
 }
 
-export const register = (name, password) => {
-  var realUrl = '/backend_register?user=' + name + '&password=' + password
+export const register = (name, password, vericode, captchaId) => {
+  var realUrl = '/backend_register?user=' + name + '&password=' + password + '&vericode=' + vericode + '&captchaId=' + captchaId
+  return axios({
+    url: realUrl,
+    method: 'get'
+  })
+}
+
+export const getCaptchaId = () => {
+  var realUrl = '/refresh_veri'
   return axios({
     url: realUrl,
     method: 'get'
@@ -52,5 +60,6 @@ export default {
   search,
   register,
   recommend,
-  upload
+  upload,
+  getCaptchaId
 }
