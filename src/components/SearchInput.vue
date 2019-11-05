@@ -5,7 +5,7 @@
       <base-input placeholder="Search"
         class="input-group-alternative"
         alternative=""
-        addon-right-icon="fas fa-search">
+        addon-right-icon="ni ni-world">
       </base-input>
     </div>
   </transition>
@@ -54,7 +54,6 @@ export default {
   background: #f4f4f4;
 }
 
-
 .searchClass .centerClass {
   height: 100%;
   line-height: 100%;
@@ -77,11 +76,6 @@ export default {
 
 .searchClass:hover .line {
   background-color: #D5E3E8;
-}
-
-.searchClass:hover .el-icon-search {
-  color: #409eff;
-  font-size: 20px;
 }
 
 </style>
