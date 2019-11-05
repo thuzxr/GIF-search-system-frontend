@@ -2,10 +2,11 @@
   <transition>
     <!-- name="el-zoom-in-center" -->
     <div class="searchDiv">
-      <el-input placeholder="请输入内容" v-model="text" class="searchClass" @keyup.enter.native='doSearch'>
-        <el-button slot="append" icon="el-icon-search" @click='doSearch'>
-        </el-button>
-      </el-input>
+      <base-input placeholder="Search"
+        class="input-group-alternative"
+        alternative=""
+        addon-right-icon="ni ni-world">
+      </base-input>
     </div>
   </transition>
 </template>
@@ -53,30 +54,6 @@ export default {
   background: #f4f4f4;
 }
 
-.searchClass .el-input-group__prepend {
-  border: none;
-  background-color: transparent;
-  padding: 0 10px 0 30px;
-}
-
-.searchClass .el-input-group__append {
-  border: none;
-  background-color: transparent;
-}
-
-.searchClass .el-input__inner {
-
-  height: 36px;
-  line-height: 36px;
-  border: none;
-  background-color: transparent;
-  transition-duration: 3s;
-}
-
-.searchClass .el-icon-search {
-  font-size: 20px;
-}
-
 .searchClass .centerClass {
   height: 100%;
   line-height: 100%;
@@ -99,11 +76,6 @@ export default {
 
 .searchClass:hover .line {
   background-color: #D5E3E8;
-}
-
-.searchClass:hover .el-icon-search {
-  color: #409eff;
-  font-size: 20px;
 }
 
 </style>
