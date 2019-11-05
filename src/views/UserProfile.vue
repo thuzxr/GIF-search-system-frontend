@@ -1,14 +1,14 @@
 <template>
     <div>
-        <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-                     style="min-height: 600px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <base-header class="header pb-8 pt-5 d-flex align-items-center"
+                     style="min-height: 600px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <span class="mask bg-gradient-success opacity-8"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Hello Jesse</h1>
+                    <div class="col-xl-8 col-12">
+                        <h1 class="display-2 text-white">Hello Dio</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                         <a href="#!" class="btn btn-info">Edit profile</a>
                     </div>
@@ -25,7 +25,7 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                        <img src="../assets/dio.jpg" class="rounded-circle">
                                     </a>
                                 </div>
                             </div>

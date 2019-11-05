@@ -25,19 +25,9 @@ export default new Router({
           component: () => import('@/views/Login.vue')
         },
         {
-          path: '/manage',
-          name: 'manage',
-          component: () => import('@/views/Manage.vue')
-        },
-        {
           path: '/register',
           name: 'register',
           component: () => import('@/views/Register.vue')
-        },
-        {
-          path: '/recommend',
-          name: 'recommend',
-          component: () => import('@/views/Recommend.vue')
         }
       ]
     },
@@ -52,27 +42,27 @@ export default new Router({
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
+          component: () => import('./views/Dashboard.vue')
         },
         {
           path: '/icons',
           name: 'icons',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
+          component: () => import('./views/Icons.vue')
         },
         {
           path: '/profile',
           name: 'profile',
-          component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+          component: () => import('./views/UserProfile.vue')
         },
         {
-          path: '/maps',
-          name: 'maps',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Maps.vue')
+          path: '/recommend',
+          name: 'recommend',
+          component: () => import('@/views/Recommend.vue')
         },
         {
-          path: '/tables',
-          name: 'tables',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
+          path: '/upload',
+          name: 'upload',
+          component: () => import('@/views/Manage.vue')
         }
       ]
     }
