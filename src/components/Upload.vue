@@ -1,8 +1,22 @@
 <template>
   <div>
-
-    <el-input v-model="title" placeholder="请输入图片标题" style="width: 50%;"></el-input>
-    <p> </p>
+    <div class="hello">    
+    <picture-input 
+      ref="pictureInput"
+      width="300" 
+      :crop="false"
+      height="300" 
+      margin="16" 
+      accept="image/jpeg,image/png,image/gif" 
+      size="10" 
+      button-class="btn"
+      :custom-strings="{
+        upload: '<h1>Bummer!</h1>',
+        drag: 'Drag a 😺 GIF or GTFO'
+      }"
+      @change="onChange">
+    </picture-input>
+  </div>
     <el-upload
       class="upload-demo"
       ref="upload"
@@ -14,19 +28,13 @@
       <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
       <el-button style="margin-left: 10px;" size="small" type="success" @click="upload">上传到服务器</el-button>
     </el-upload>
-    <p> </p>
-    <el-row :gutter="20" type="flex" class="row-bg" justify="center">
-      <el-col :span="4"><el-input v-model="label_1" placeholder="标签1"></el-input></el-col>
-      <el-col :span="4"><el-input v-model="label_2" placeholder="标签2"></el-input></el-col>
-      <el-col :span="4"><el-input v-model="label_3" placeholder="标签3"></el-input></el-col>
-      <el-col :span="4"><el-input v-model="label_4" placeholder="标签4"></el-input></el-col>
-  </el-row>
   </div>
 </template>
 
 <script>
 import OSS from 'ali-oss'
 import { Base64 } from 'js-base64'
+import PictureInput from 'vue-picture-input'
 
 export default {
   data () {
@@ -39,6 +47,9 @@ export default {
       label: '',
       counter: 0
     }
+  },
+  components: {
+    PictureInput
   },
   methods: {
     upload: function () {
@@ -81,6 +92,14 @@ export default {
         this.$api.upload(this.label, name, this.title)
       } catch (e) {
         console.log(e)
+      }
+    },
+    onChange () {
+      console.log('New picture selected!')
+      if (this.$refs.pictureInput.image) {
+        console.log('Picture loaded.')
+      } else {
+        console.log('FileReader API not supported: use the <form>, Luke!')
       }
     }
   }
