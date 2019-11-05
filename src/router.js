@@ -62,7 +62,7 @@ export default new Router({
         {
           path: '/upload',
           name: 'upload',
-          component: () => import('@/views/Manage.vue')
+          component: () => import('@/views/Upload.vue')
         }
       ]
     }

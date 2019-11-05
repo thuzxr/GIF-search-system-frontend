@@ -11,7 +11,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    setPerm(state, n) {
+    setPerm (state, n) {
       state.user.perm = n
       console.log('in store' + state.user.perm)
     }

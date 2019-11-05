@@ -1,7 +1,7 @@
 import router from '@/router'
 
 // free login whitelist
-const whitelist = ['/register', '/login', '/404']
+// const whitelist = ['/register', '/login', '/404']
 
 /* define router rule of different state && different properties */
 router.beforeEach(async (to, from, next) => {
