@@ -18,7 +18,6 @@
                     </div>
                   </div>
 
-                  <template>
                     <div class=" dropdown-header noti-title">
                       <h6 class="text-overflow m-0">Welcome!</h6>
                     </div>
@@ -35,7 +34,6 @@
                       <i class="ni ni-user-run"></i>
                       <span>Logout</span>
                     </router-link>
-                  </template>
                 </base-dropdown>
             </li>
         </ul>
