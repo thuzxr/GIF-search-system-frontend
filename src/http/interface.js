@@ -31,11 +31,14 @@ export const getCaptchaId = () => {
 }
 
 export const search = (keyword) => {
-  var realUrl = '/backend_search?key=' + keyword
+  var realUrl = '/backend_search'
   return axios({
     url: realUrl,
     method: 'get',
-    withCredentials: false
+    withCredentials: false,
+    params: {
+      key: keyword
+    }
   })
 }
 
@@ -55,6 +58,14 @@ export const upload = (keyword, name, title) => {
   })
 }
 
+export const requestPerm = () => {
+  var realUrl = '/backend_userperm'
+  return axios({
+    url: realUrl,
+    method: 'get'
+  })
+}
+
 // 默认全部导出
 export default {
   login,
@@ -62,5 +73,6 @@ export default {
   register,
   recommend,
   upload,
-  getCaptchaId
+  getCaptchaId,
+  requestPerm
 }

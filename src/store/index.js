@@ -14,6 +14,14 @@ export default new Vuex.Store({
     setPerm (state, n) {
       state.user.perm = n
       console.log('in store' + state.user.perm)
+    },
+    login (state, userState) {
+      state.user.perm = userState.perm
+      state.user.name = userState.name
+    },
+    logout (state) {
+      state.user.name = ''
+      state.user.perm = 0
     }
   }
 })
