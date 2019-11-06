@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <div style="margin-top: 30px;">
+  <div class="container">
+  <div class="row justify-content-around mt-3"
+       :class="[noImg ? 'mt-lg-9 mt-md-7 mt-sm-5': 'mt-lg-5 mt-md-4']">
       <search-input @doSearch="search"></search-input>
       <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
-      <img-gallery v-bind:imgList="imgList"></img-gallery>
-    </div>
+  </div>
+  <img-gallery v-bind:imgList="imgList"></img-gallery>
   </div>
 </template>
 <script>
@@ -17,6 +18,11 @@ export default {
     return {
       imgList: [],
       err: false
+    }
+  },
+  computed: {
+    noImg () {
+      return (this.err || !this.imgList || this.imgList.length === 0)
     }
   },
   methods: {

@@ -1,14 +1,16 @@
 <template>
-  <div class="container">
-    <base-nav class="navbar-top navbar-horizontal navbar-light"
-                  containerClasses="container"
+  <div class="main-content">
+          <base-header class="header d-flex align-items-center"
+                 style="min-height: 88px; background-size: cover; background-position: center top;">
+                <span class="mask bg-gradient-success opacity-8"></span>
+            <base-nav class="navbar-top navbar-horizontal navbar-dark"
                   :title="navTitle"
                   expand>
             <router-link slot="brand" class="navbar-brand" to="/">
                 <img src="../assets/start.gif"/>
             </router-link>
             <router-link slot="brand" class="navbar-brand" to="/">
-                <h1> gif-dio </h1>
+                <h1 class="text-white"> gif-dio </h1>
             </router-link>
 
             <template v-slot="{closeMenu}">
@@ -49,6 +51,8 @@
                 </ul>
             </template>
         </base-nav>
+        <!-- Header container -->
+    </base-header>
     <div containerClasses="container">
       <router-view></router-view>
     </div>
