@@ -56,13 +56,16 @@
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    Dio Brando<span class="font-weight-light">, 120</span>
+                                    Dio Brando<span class="font-weight-light">, 151</span>
                                 </h3>
                                 <div class="h5 font-weight-300">
                                     <i class="ni location_pin mr-2">birthday: April 4th, 1868</i>
                                 </div>
                                 <div class="h5 font-weight-300">
                                     <i class="ni location_pin mr-2">height: 6'5" (195 cm)</i>
+                                </div>
+                                <div class="h5 font-weight-300">
+                                    <i class="ni location_pin mr-2">London, England -- Cairo, Egypt</i>
                                 </div>
                                 <hr class="my-4" />
                                 <h4>I'm through with being a mere mortal, jojo!</h4>
