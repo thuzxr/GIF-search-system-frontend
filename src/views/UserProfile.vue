@@ -7,7 +7,7 @@
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-xl-8 col-12">
+                    <div class="col-xl-8 text-center">
                         <h1 class="display-2 text-white">Hello Dio</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                     </div>

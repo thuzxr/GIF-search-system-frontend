@@ -1,5 +1,19 @@
 <template>
   <div>
+    <base-header class="header pb-4 pt-6 d-flex align-items-center"
+        style="background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-success opacity-12"></span>
+        <!-- Header container -->
+        <div class="container-fluid">
+            <div class="row justify-content-around">
+                <div class="col-10 text-center">
+                    <h1 class="display-2 text-white">Recommend</h1>
+                    <p class="text-white mt-0 mb-5">You can get many interesting gifs here! They are recommended according to your favourite gifs.</p>
+                </div>
+            </div>
+        </div>
+    </base-header>
     <p v-show="err"> Oops! 找不到你想要的Gif </p>
     <img-gallery v-bind:imgList="imgList"></img-gallery>
   </div>

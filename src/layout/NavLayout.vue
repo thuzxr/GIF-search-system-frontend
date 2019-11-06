@@ -53,9 +53,7 @@
         </base-nav>
         <!-- Header container -->
     </base-header>
-    <div containerClasses="container">
       <router-view></router-view>
-    </div>
   </div>
 </template>
 
