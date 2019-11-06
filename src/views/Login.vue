@@ -1,5 +1,6 @@
 <template>
-        <div class="row justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center mt-5 pb-5">
             <div class="col-lg-5 col-md-7 col-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
@@ -39,6 +40,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </template>
 <script>
 

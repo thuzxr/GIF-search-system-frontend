@@ -2,11 +2,20 @@
   <transition>
     <!-- name="el-zoom-in-center" -->
     <div class="searchDiv">
-      <base-input placeholder="Search"
-        class="input-group-alternative"
-        alternative=""
-        addon-right-icon="ni ni-world">
-      </base-input>
+      <div class="form-group input-group input-group-alternative" alternative="">
+        <input placeholder="Search"
+               class="form-control"
+               aria-describedby="addon-right"
+               v-model="text"
+               @keyup.enter='doSearch'>
+        <div class="input-group-append">
+          <span class="input-group-text">
+              <slot name="addonRight" >
+                  <i class="ni ni-world" @click.stop="doSearch"></i>
+              </slot>
+          </span>
+        </div>
+      </div>
     </div>
   </transition>
 </template>
@@ -20,6 +29,10 @@ export default {
   },
   methods: {
     doSearch: function () {
+      if (this.text === '') {
+        alert('key word can not be empty!')
+        return
+      }
       this.$emit('doSearch', this.text)
     }
   }
@@ -29,7 +42,7 @@ export default {
 <style>
 .searchDiv {
   width: 30%;
-  min-width: 350px;
+  min-width: 250px;
   text-align: center;
   transition-duration: 0.5s;
   margin: 0 auto;
@@ -37,7 +50,7 @@ export default {
 
 .searchDiv:hover {
   width: 50%;
-  min-width: 350px;
+  min-width: 250px;
   text-align: center;
 }
 

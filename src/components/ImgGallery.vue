@@ -4,7 +4,6 @@
       <div class="bgbox">
         <div style="position:relative;">
           <img :src="img.url">
-          <favor-button @click="test"></favor-button>
         </div>
       </div>
     </a>
@@ -14,7 +13,7 @@
 
 <script>
 import picNotfind from '@/assets/timg.jpg'
-import FavorButton from '@/components/FavorButton.vue'
+
 export default {
   name: 'ImgGallery',
   data () {
@@ -34,9 +33,6 @@ export default {
       type: Array,
       required: true
     }
-  },
-  components: {
-    'favor-button': FavorButton
   }
 }
 </script>
