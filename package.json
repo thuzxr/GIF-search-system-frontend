@@ -109,7 +109,7 @@
     ],
     "coverageDirectory": "<rootDir>/tests/unit/coverage",
     "collectCoverageFrom": [
-      "src/**/*.{js,vue}",
+      "src/views/Search.vue",
       "!src/main.js",
       "!src/router.js",
       "!**/node_modules/**"
