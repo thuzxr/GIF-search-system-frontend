@@ -56,7 +56,7 @@
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    Dio Brando<span class="font-weight-light">, 151</span>
+                                    {{username}}<span class="font-weight-light">, 151</span>
                                 </h3>
                                 <div class="h5 font-weight-300">
                                     <i class="ni location_pin mr-2">birthday: April 4th, 1868</i>
@@ -190,6 +190,7 @@
 </template>
 <script>
 import store from '@/store'
+import {mapState} from 'vuex'
 export default {
   name: 'user-profile',
   data () {
@@ -207,6 +208,9 @@ export default {
       }
     }
   },
+  computed: mapState ({
+      username: state => state.userInfo.username
+  }),
   methods: {
       submit: function() {
           console.log('click submit!')
