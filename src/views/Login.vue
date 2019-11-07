@@ -73,6 +73,7 @@ export default {
         console.log('perm after login:' + this.$store.state.user.perm)
         alert(res.status)
         resetRouter()
+        this.$router.push('/profile')
       }).catch(err => {
         console.log(err)
         alert(err)

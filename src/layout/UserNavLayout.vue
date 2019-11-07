@@ -49,7 +49,7 @@
                         </div>
                     </li>
                     <li class="nav-item align-items-center">
-                        <div class="nav-link nav-link-icon mt-2">
+                        <div class="nav-link nav-link-icon mt-2" @click="logout">
                             <i class="ni ni-single-02"></i>
                             <span class="nav-link-inner--text">logout</span>
                         </div>
@@ -69,6 +69,11 @@ export default {
   data () {
     return {
       navTitle: 'gif-dio-search'
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
     }
   },
   components: {
