@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Search from '@/views/Search'
 
-
 describe('Search', () => {
   // 检查原始组件选项
   it('has a data hook', () => {
