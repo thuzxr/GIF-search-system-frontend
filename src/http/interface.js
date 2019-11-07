@@ -1,4 +1,5 @@
 import axios from './axios'
+import qs from 'qs'
 
 /*
  * 将所有接口统一起来便于维护
@@ -7,18 +8,28 @@ import axios from './axios'
 
 // 单独导出
 export const login = (name, password) => {
-  var realUrl = '/backend_login?user=' + name + '&password=' + password
+  var realUrl = '/backend_login'
   return axios({
     url: realUrl,
-    method: 'get'
+    method: 'post',
+    data: qs.stringify({
+        user: name,
+        password: password
+    })
   })
 }
 
 export const register = (name, password, vericode, captchaId) => {
-  var realUrl = '/backend_register?user=' + name + '&password=' + password + '&vericode=' + vericode + '&captchaId=' + captchaId
+  var realUrl = '/backend_register'
   return axios({
     url: realUrl,
-    method: 'get'
+    method: 'post',
+    data: qs.stringify({
+        user: name,
+        password: password,
+        vericode: vericode,
+        captchaId: captchaId
+    })
   })
 }
 
@@ -43,18 +54,26 @@ export const search = (keyword) => {
 }
 
 export const recommend = (name) => {
-  var realUrl = '/backend_recommend?name=' + name
+  var realUrl = '/backend_recommend'
   return axios({
     url: realUrl,
-    method: 'get'
+    method: 'get',
+    params: {
+        name: name
+    }
   })
 }
 
 export const upload = (keyword, name, title) => {
-  var realUrl = '/backend_upload?keyword=' + keyword + '&name=' + name + '&title=' + title
+  var realUrl = '/backend_upload'
   return axios({
     url: realUrl,
-    method: 'get'
+    method: 'post',
+    data: qs.stringify({
+        keyword: keyword,
+        name: name,
+        title: title
+    })
   })
 }
 
