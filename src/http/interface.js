@@ -7,7 +7,7 @@ import axios from './axios'
 
 // 单独导出
 export const login = (name, password) => {
-  var realUrl = '/backend_login?user=' + name + '&password=' + password
+  var realUrl = '/login?user=' + name + '&password=' + password
   return axios({
     url: realUrl,
     method: 'get'
@@ -15,7 +15,7 @@ export const login = (name, password) => {
 }
 
 export const register = (name, password, vericode, captchaId) => {
-  var realUrl = '/backend_register?user=' + name + '&password=' + password + '&vericode=' + vericode + '&captchaId=' + captchaId
+  var realUrl = '/register?user=' + name + '&password=' + password + '&vericode=' + vericode + '&captchaId=' + captchaId
   return axios({
     url: realUrl,
     method: 'get'
@@ -31,7 +31,7 @@ export const getCaptchaId = () => {
 }
 
 export const search = (keyword) => {
-  var realUrl = '/backend_search'
+  var realUrl = '/search'
   return axios({
     url: realUrl,
     method: 'get',
@@ -43,7 +43,7 @@ export const search = (keyword) => {
 }
 
 export const recommend = (name) => {
-  var realUrl = '/backend_recommend?name=' + name
+  var realUrl = '/recommend?name=' + name
   return axios({
     url: realUrl,
     method: 'get'
@@ -51,7 +51,7 @@ export const recommend = (name) => {
 }
 
 export const upload = (keyword, name, title) => {
-  var realUrl = '/backend_upload?keyword=' + keyword + '&name=' + name + '&title=' + title
+  var realUrl = '/upload?keyword=' + keyword + '&name=' + name + '&title=' + title
   return axios({
     url: realUrl,
     method: 'get'
@@ -59,7 +59,7 @@ export const upload = (keyword, name, title) => {
 }
 
 export const requestPerm = () => {
-  var realUrl = '/backend_userperm'
+  var realUrl = '/userperm'
   return axios({
     url: realUrl,
     method: 'get'

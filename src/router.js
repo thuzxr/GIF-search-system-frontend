@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import NavLayout from '@/layout/NavLayout.vue'
+import NavLayout from '@/layout/NavLayout'
+import UserNavLayout from '@/layout/UserNavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
 import store from '@/store'
 
@@ -35,7 +36,7 @@ export const userRoutes = [
   {
     path: '/',
     redirect: 'search',
-    component: NavLayout,
+    component: UserNavLayout,
     children: [
       {
         path: '/search',
