@@ -59,8 +59,8 @@ export default {
       this.$api.login(this.model.name, this.model.password).then(res => {
         console.log('perm before login:' + this.$store.state.user)
         let user = {
-          name: res.name,
-          perm: res.perm
+          name: res.claims.user_name,
+          perm: res.status
         }
         this.$store.commit('login', user)
         console.log('perm after login:' + this.$store.state.user)
