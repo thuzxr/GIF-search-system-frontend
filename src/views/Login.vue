@@ -44,6 +44,8 @@
 </template>
 <script>
 
+import { resetRouter } from '@/router'
+
 export default {
   name: 'login',
   data () {
@@ -56,6 +58,14 @@ export default {
   },
   methods: {
     login () {
+      if (this.model.name === '') {
+        this.$notify('name can not be empty!', 'warning')
+        return
+      }
+      if (this.model.password === '') {
+        this.$notify('password can not be empty!', 'warning')
+        return
+      }
       this.$api.login(this.model.name, this.model.password).then(res => {
         console.log('perm before login:' + this.$store.state.user)
         let user = {
@@ -65,6 +75,8 @@ export default {
         this.$store.commit('login', user)
         console.log('perm after login:' + this.$store.state.user)
         alert(res.status)
+        resetRouter()
+        this.$router.push('/profile')
       }).catch(err => {
         console.log(err)
         alert(err)

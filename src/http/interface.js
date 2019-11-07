@@ -85,6 +85,14 @@ export const requestPerm = () => {
   })
 }
 
+export const logout = () => {
+  var realUrl = '/backend_logout'
+  return axios({
+    url: realUrl,
+    method: 'get'
+  })
+}
+
 // 默认全部导出
 export default {
   login,
@@ -93,5 +101,6 @@ export default {
   recommend,
   upload,
   getCaptchaId,
-  requestPerm
+  requestPerm,
+  logout
 }

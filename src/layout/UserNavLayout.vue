@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-            <notifications></notifications>
+        <notifications></notifications>
           <base-header class="header d-flex align-items-center"
                  style="min-height: 88px; background-size: cover; background-position: center top;">
                 <span class="mask bg-gradient-success opacity-8"></span>
@@ -36,18 +36,23 @@
                     </div>
                 </div>
                 <!-- Navbar items -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto mt--2">
                     <li class="nav-item">
-                        <router-link class="nav-link nav-link-icon" to="/login">
-                            <i class="ni ni-single-02"></i>
-                            <span class="nav-link-inner--text">Login</span>
-                        </router-link>
+                        <div class="row align-items-center">
+                            <div class="col">
+                            <router-link class="nav-link nav-link-icon" to="/profile">
+                                <span class="avatar avatar-sm rounded-circle">
+                                    <img src="../assets/dio.jpg">
+                                </span>
+                                </router-link>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link nav-link-icon" to="/register">
+                    <li class="nav-item align-items-center">
+                        <div class="nav-link nav-link-icon mt-2" @click="logout">
                             <i class="ni ni-single-02"></i>
-                            <span class="nav-link-inner--text">Register</span>
-                        </router-link>
+                            <span class="nav-link-inner--text">logout</span>
+                        </div>
                     </li>
                 </ul>
             </template>
@@ -64,6 +69,11 @@ export default {
   data () {
     return {
       navTitle: 'gif-dio-search'
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
     }
   },
   components: {

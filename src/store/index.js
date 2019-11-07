@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import apis from '@/http/interface'
+import router, { resetRouter } from '@/router'
 
 Vue.use(Vuex)
 
@@ -52,6 +54,15 @@ export default new Vuex.Store({
       state.userInfo.zipCode = info.zipCode
       state.userInfo.about = info.about
       console.log('username', state.userInfo.username)
+    }
+  },
+  actions: {
+    logout ({ commit }, _data) {
+      apis.logout().then(res => {
+        commit('logout')
+        resetRouter()
+        router.push('/login')
+      })
     }
   }
 })
