@@ -1,5 +1,6 @@
 <template>
   <div class="main-content">
+            <notifications></notifications>
           <base-header class="header d-flex align-items-center"
                  style="min-height: 88px; background-size: cover; background-position: center top;">
                 <span class="mask bg-gradient-success opacity-8"></span>

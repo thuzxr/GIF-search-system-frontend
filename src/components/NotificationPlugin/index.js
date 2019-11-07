@@ -31,19 +31,18 @@ const NotificationStore = {
     notification.timestamp.setMilliseconds(
       notification.timestamp.getMilliseconds() + this.state.length
     )
-    console.log(this.settings)
     notification = Object.assign({}, this.settings, notification)
     this.state.push(notification)
   },
-  notify (notif) {
-    console.log('deep in notify, notif=')
-    this.setType(notif.type)
-    if (Array.isArray(notif)) {
-      notif.forEach(notificationInstance => {
-        this.addNotification(notificationInstance.message)
+  notify (notification, type) {
+    console.log('deep in notify')
+    this.setType(type)
+    if (Array.isArray(notification)) {
+      notification.forEach(notificationInstance => {
+        this.addNotification(notificationInstance)
       })
     } else {
-      this.addNotification(notif.message)
+      this.addNotification(notification)
     }
   }
 }
@@ -55,8 +54,8 @@ const NotificationsPlugin = {
         notificationStore: NotificationStore
       },
       methods: {
-        notify (notification) {
-          this.notificationStore.notify(notification)
+        notify (notification, type) {
+          this.notificationStore.notify(notification, type)
         }
       }
     })
