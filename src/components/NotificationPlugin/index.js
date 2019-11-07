@@ -5,14 +5,17 @@ const NotificationStore = {
   settings: {
     overlap: false,
     verticalAlign: 'top',
-    horizontalAlign: 'right',
-    type: 'info',
-    timeout: 5000,
+    horizontalAlign: 'center',
+    type: 'success',
+    timeout: 1000,
     closeOnClick: true,
     showClose: true
   },
   setOptions (options) {
     this.settings = Object.assign(this.settings, options)
+  },
+  setType (type) {
+    this.settings.type = type
   },
   removeNotification (timestamp) {
     const indexToDelete = this.state.findIndex(n => n.timestamp === timestamp)
@@ -28,16 +31,19 @@ const NotificationStore = {
     notification.timestamp.setMilliseconds(
       notification.timestamp.getMilliseconds() + this.state.length
     )
+    console.log(this.settings)
     notification = Object.assign({}, this.settings, notification)
     this.state.push(notification)
   },
-  notify (notification) {
-    if (Array.isArray(notification)) {
-      notification.forEach(notificationInstance => {
-        this.addNotification(notificationInstance)
+  notify (notif) {
+    console.log('deep in notify, notif=')
+    this.setType(notif.type)
+    if (Array.isArray(notif)) {
+      notif.forEach(notificationInstance => {
+        this.addNotification(notificationInstance.message)
       })
     } else {
-      this.addNotification(notification)
+      this.addNotification(notif.message)
     }
   }
 }

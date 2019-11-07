@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+      <notifications></notifications>
         <div class="row justify-content-center mt-5 pb-5">
             <div class="col-lg-5 col-md-7 col-10">
                 <div class="card bg-secondary shadow border-0">
@@ -44,6 +45,8 @@
 </template>
 <script>
 
+import { resetRouter } from '@/router'
+
 export default {
   name: 'login',
   data () {
@@ -56,15 +59,21 @@ export default {
   },
   methods: {
     login () {
+      if (this.model.name === '' || this.model.password === '') {
+        console.log('in login notify')
+        this.$notify({
+          message: 'can not be empty!',
+          type: 'warning'
+        })
+        return
+      }
       this.$api.login(this.model.name, this.model.password).then(res => {
-        console.log('perm before login:' + this.$store.state.user)
-        let user = {
-          name: res.name,
-          perm: res.perm
-        }
-        this.$store.commit('login', user)
-        console.log('perm after login:' + this.$store.state.user)
+        console.log(res)
+        console.log('perm before login:' + this.$store.state.user.perm)
+        this.$store.commit('setPerm', 1)
+        console.log('perm after login:' + this.$store.state.user.perm)
         alert(res.status)
+        resetRouter()
       }).catch(err => {
         console.log(err)
         alert(err)
