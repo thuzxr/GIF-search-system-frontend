@@ -3,7 +3,7 @@
     <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
       <div class="bgbox">
         <div style="position:relative;">
-          <img :src="img.url">
+          <img :src="img.url" @click="saveName(img.name)">
         </div>
       </div>
     </a>
@@ -13,7 +13,7 @@
 
 <script>
 import picNotfind from '@/assets/timg.jpg'
-
+import store from '@/store'
 export default {
   name: 'ImgGallery',
   data () {
@@ -25,7 +25,12 @@ export default {
   methods: {
     test: function () {
       this.isLike = !this.isLike
-      console.log('here!')
+      //console.log('here!')
+    },
+    saveName: function(name) {
+      store.commit('setName', name)
+      //console.log('im here!')
+      console.log(store.state.lastClick.name)
     }
   },
   props: {

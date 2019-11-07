@@ -32,11 +32,13 @@ export default {
         if (response.status === 'succeed') {
           this.err = false
           var list = response.result
+          //console.log(list[0])
           this.imgList = list.map(function (item) {
             var t = {
               title: item.Title,
               url: item.Oss_url,
-              thumbnail: item.Oss_url
+              thumbnail: item.Oss_url,
+              name: item.Name
             }
             return t
           })

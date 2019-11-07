@@ -7,6 +7,7 @@ const whitelist = ['/register', '/login', '/search', '/404']
 
 /* define router rule of different state && different properties */
 router.beforeEach(async (to, from, next) => {
+  next()/*
   console.log('in before each: ' + from.path + ' ' + to.path)
   apis.requestPerm().then(res => {
     if (res.status === 0 || res.status === -1) {
@@ -27,7 +28,7 @@ router.beforeEach(async (to, from, next) => {
   }).catch(err => {
     console.log(err)
     alert(err)
-  })
+  })*/
 
   // if (true) { // has sessionid
   //   /*

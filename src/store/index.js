@@ -8,6 +8,9 @@ export default new Vuex.Store({
     user: {
       name: '',
       perm: 0
+    },
+    lastClick: {
+      name: ''
     }
   },
   mutations: {
@@ -22,6 +25,10 @@ export default new Vuex.Store({
     logout (state) {
       state.user.name = ''
       state.user.perm = 0
+    },
+    setName (state, name) {
+      state.lastClick.name = name
+      console.log('im herre!!!')
     }
   }
 })
