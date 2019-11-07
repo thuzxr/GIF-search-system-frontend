@@ -11,6 +11,17 @@ export default new Vuex.Store({
     },
     lastClick: {
       name: ''
+    },
+    userInfo: {
+      username: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      country: '',
+      zipCode: '',
+      about: ''
     }
   },
   mutations: {
@@ -29,6 +40,18 @@ export default new Vuex.Store({
     setName (state, name) {
       state.lastClick.name = name
       console.log('im herre!!!')
+    },
+    setUserInfo (state, info) {
+      state.userInfo.username = info.username
+      state.userInfo.email = info.email
+      state.userInfo.firstName = info.firstName
+      state.userInfo.lastName = info.lastName
+      state.userInfo.address = info.address
+      state.userInfo.city = info.city
+      state.userInfo.country = info.country
+      state.userInfo.zipCode = info.zipCode
+      state.userInfo.about = info.about
+      console.log('username', state.userInfo.username)
     }
   }
 })

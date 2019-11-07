@@ -83,7 +83,7 @@
                                     <h3 class="mb-0">My account</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                                    <a href="#!" class="btn btn-sm btn-primary" @click="submit">Settings</a>
                                 </div>
                             </div>
                         </div>
@@ -189,6 +189,7 @@
     </div>
 </template>
 <script>
+import store from '@/store'
 export default {
   name: 'user-profile',
   data () {
@@ -205,6 +206,12 @@ export default {
         about: ''
       }
     }
+  },
+  methods: {
+      submit: function() {
+          console.log('click submit!')
+          store.commit('setUserInfo', this.model)
+      }
   }
 }
 </script>

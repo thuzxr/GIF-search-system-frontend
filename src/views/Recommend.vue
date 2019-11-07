@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     recommend: function () {
-      console.log('123123123123')
+      //console.log('123123123123')
       this.imgName = store.state.lastClick.name
       console.log(this.imgName)
       this.$api.recommend(this.imgName).then(response => {
