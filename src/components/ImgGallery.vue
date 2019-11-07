@@ -25,11 +25,11 @@ export default {
   methods: {
     test: function () {
       this.isLike = !this.isLike
-      //console.log('here!')
+      // console.log('here!')
     },
-    saveName: function(name) {
+    saveName: function (name) {
       store.commit('setName', name)
-      //console.log('im here!')
+      // console.log('im here!')
       console.log(store.state.lastClick.name)
     }
   },

@@ -190,7 +190,7 @@
 </template>
 <script>
 import store from '@/store'
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'user-profile',
   data () {
@@ -208,14 +208,14 @@ export default {
       }
     }
   },
-  computed: mapState ({
-      username: state => state.userInfo.username
+  computed: mapState({
+    username: state => state.userInfo.username
   }),
   methods: {
-      submit: function() {
-          console.log('click submit!')
-          store.commit('setUserInfo', this.model)
-      }
+    submit: function () {
+      console.log('click submit!')
+      store.commit('setUserInfo', this.model)
+    }
   }
 }
 </script>

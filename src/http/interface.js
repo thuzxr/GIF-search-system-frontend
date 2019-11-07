@@ -13,8 +13,8 @@ export const login = (name, password) => {
     url: realUrl,
     method: 'post',
     data: qs.stringify({
-        user: name,
-        password: password
+      user: name,
+      password: password
     })
   })
 }
@@ -25,10 +25,10 @@ export const register = (name, password, vericode, captchaId) => {
     url: realUrl,
     method: 'post',
     data: qs.stringify({
-        user: name,
-        password: password,
-        vericode: vericode,
-        captchaId: captchaId
+      user: name,
+      password: password,
+      vericode: vericode,
+      captchaId: captchaId
     })
   })
 }
@@ -59,7 +59,7 @@ export const recommend = (name) => {
     url: realUrl,
     method: 'get',
     params: {
-        name: name
+      name: name
     }
   })
 }
@@ -70,9 +70,9 @@ export const upload = (keyword, name, title) => {
     url: realUrl,
     method: 'post',
     data: qs.stringify({
-        keyword: keyword,
-        name: name,
-        title: title
+      keyword: keyword,
+      name: name,
+      title: title
     })
   })
 }

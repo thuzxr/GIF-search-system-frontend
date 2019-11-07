@@ -1,5 +1,5 @@
 import router from '@/router'
-import apis from '@/http/interface'
+// import apis from '@/http/interface'
 import store from '@/store'
 
 // free login whitelist
@@ -22,7 +22,7 @@ router.beforeEach(async (to, from, next) => {
     //     }
     //   } else {
     //     store.commit('setPerm', res.status)
-        
+
     //     if (to.path === '/login') {
     //       next('/')
     //     } else {
