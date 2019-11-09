@@ -1,16 +1,16 @@
-import router from '@/router'
-import apis from '@/http/interface'
+import router, { resetRouter } from '@/router'
+import apis from '@/http/fake_interface'
 import store from '@/store'
-import { resetRouter } from '@/router'
 
 // free login whitelist
-// const whitelist = ['/register', '/login', '/search', '/404']
+const whitelist = ['/register', '/login', '/search', '/404']
 
 /* define router rule of different state && different properties */
 router.beforeEach(async (to, from, next) => {
 //   next()
   console.log('in before each: ' + from.path + ' ' + to.path)
   apis.requestPerm().then(res => {
+    console.log('res')
     if (res.status === 0 || res.status === -1) {
       store.commit('logout')
       if (whitelist.indexOf(to.path) !== -1) {
@@ -24,7 +24,7 @@ router.beforeEach(async (to, from, next) => {
       if (to.path === '/login') {
         next('/')
       } else {
-        console.log("fuck!")
+        console.log('fuck!')
         next()
       }
     }

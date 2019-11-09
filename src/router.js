@@ -94,7 +94,7 @@ const createRouter = () => new Router({
 const getRouter = () => {
   var currRouter = defaultRoutes
   if (store.state.user.perm === 1) {
-    console.log("get")
+    console.log('get')
     currRouter = userRoutes
   }
   return new Router({

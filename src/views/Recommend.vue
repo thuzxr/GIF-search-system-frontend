@@ -75,6 +75,8 @@ export default {
             thumbnail: '../assets/timg.jpg'
           }]
         }
+      }).catch(err => {
+        alert(err)
       })
     }
   },
