@@ -7,7 +7,7 @@
                         <div class="text-center text-muted mb-4">
                             Login
                         </div>
-                        <form role="form">
+                        <form role="form" @keyup.enter='login'>
                             <base-input class="input-group-alternative mb-3"
                                         placeholder="Name"
                                         addon-left-icon="ni ni-hat-3"

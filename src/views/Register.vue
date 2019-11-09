@@ -7,7 +7,7 @@
                     <div class="text-center text-muted mb-4">
                         Register
                     </div>
-                    <form role="form">
+                    <form role="form" @keyup.enter='register'>
 
                         <base-input class="input-group-alternative mb-3"
                                     placeholder="Name"
@@ -19,14 +19,14 @@
                                     placeholder="Password"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
-                                    v-model="model.confirm_password">
+                                    v-model="model.password">
                         </base-input>
 
                         <base-input class="input-group-alternative"
                                     placeholder="Confirm Password"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
-                                    v-model="model.password">
+                                    v-model="model.confirm_password">
                         </base-input>
 
                             <base-input class="input-group-alternative"
@@ -35,14 +35,14 @@
                                         addon-left-icon="ni ni-send"
                                         v-model="model.vericode">
                             </base-input>
-                        <div class="row text-center">
+                        <div class="row text-center justify-content-center">
                             <!-- <span @click.stop="getCaptchaImgUrl" class="box-verify"><img id="captchaIdImg" :src="model.captchaImgUrl" /></span> -->
-                            <div class="col-5">
+                            <div class="col-md-4 col-12">
                             <base-button type="primary" class="my-4" @click.stop="getCaptchaImgUrl">刷新验证码</base-button>
                             </div>
 
-                            <div class="col-7">
-                            <img id="captchaIdImg" :src="model.captchaImgUrl"/>
+                            <div class="col-md-8 col-12">
+                            <img id="captchaIdImg" style="width: 100%; height: 100%" :src="model.captchaImgUrl"/>
                             </div>
 
                         </div>
@@ -82,6 +82,7 @@
 </template>
 <script>
 import config from '../http/config'
+import { resetRouter } from '@/router'
 export default {
   name: 'register',
   data () {
@@ -96,13 +97,33 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getCaptchaImgUrl()
+  },
   methods: {
-    register: function () {
-      if (this.model.password != this.model.confirm_password) {
-        alert('两次密码不一致')
+    register () {
+      if (this.model.name === '') {
+        this.$notify('用户名不能为空', 'warning')
+      } else if (this.model.password == '') {
+        this.$notify('请输入密码', 'warning')
+      } else if (this.model.confirm_password == '') {
+        this.$notify('请确认密码', 'warning')
+      } else if (this.model.password != this.model.confirm_password) {
+        this.$notify('两次密码不一致', 'warning')
       } else {
         this.$api.register(this.model.name, this.model.password, this.model.vericode, this.model.captchaId).then(response => {
-          alert(response.status)
+          if (response.status === '验证码错误') {
+            this.$notify(response.status, 'warning')
+            this.getCaptchaImgUrl()
+          } else {
+            this.$notify(response.status, 'info')
+            this.$store.commit('login', {
+              name: this.model.name,
+              perm: 1
+            })
+            resetRouter()
+            this.$router.push('/profile')
+          }
         })
       }
     },

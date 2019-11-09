@@ -77,6 +77,25 @@ export const upload = (keyword, name, title) => {
   })
 }
 
+export const uploadUserInfo = (userInfo) => {
+  var realUrl = 'backend_change_profile'
+  return axios({
+    url: realUrl,
+    method: 'post',
+    data: qs.stringify({
+      username: userInfo.username,
+      email: userInfo.email,
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      address: userInfo.address,
+      city: userInfo.city,
+      country: userInfo.country,
+      zipCode: userInfo.zipCode,
+      about: userInfo.about
+    })
+  })
+}
+
 export const requestPerm = () => {
   var realUrl = '/backend_userperm'
   return axios({
@@ -100,6 +119,7 @@ export default {
   register,
   recommend,
   upload,
+  uploadUserInfo,
   getCaptchaId,
   requestPerm,
   logout
