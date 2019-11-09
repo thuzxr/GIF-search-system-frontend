@@ -7,15 +7,16 @@
     >
       <template slot="links">
         <sidebar-item :link="{name: 'Search', icon: 'ni ni-world text-primary', path: '/search'}"/>
-        <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
+        <!--sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"-->
         <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
-        <sidebar-item :link="{name: 'Favourite', icon: 'ni ni-favourite-28 text-red', path: '/profile'}"/>
+        <!--sidebar-item :link="{name: 'Favourite', icon: 'ni ni-favourite-28 text-red', path: '/profile'}"/-->
         <sidebar-item :link="{name: 'Upload', icon: 'ni ni-cloud-upload-96 text-green', path: '/upload'}"/>
         <sidebar-item :link="{name: 'Recommend', icon: 'ni ni-image text-orange', path: '/recommend'}"/>
 
       </template>
     </side-bar>
     <div class="main-content" :data="sidebarBackground">
+    <notifications></notifications>
       <dashboard-navbar></dashboard-navbar>
 
       <div @click="toggleSidebar">

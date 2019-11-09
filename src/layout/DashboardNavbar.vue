@@ -30,10 +30,10 @@
                       <span>Settings</span>
                     </router-link>
                     <div class="dropdown-divider"></div>
-                    <router-link to="/profile" class="dropdown-item-text">
+                    <div class="dropdown-item-text" @click="logout">
                       <i class="ni ni-user-run"></i>
                       <span>Logout</span>
-                    </router-link>
+                    </div>
                 </base-dropdown>
             </li>
         </ul>
@@ -57,7 +57,10 @@ export default {
     },
     toggleMenu () {
       this.showMenu = !this.showMenu
+    },
+    logout () {
+      this.$store.dispatch('logout')
     }
-  }
+  },
 }
 </script>

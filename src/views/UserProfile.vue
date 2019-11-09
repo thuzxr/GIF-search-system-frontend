@@ -215,7 +215,19 @@ export default {
     submit: function () {
       console.log('click submit!')
       store.commit('setUserInfo', this.model)
+
     }
+  },
+  mounted() {
+    this.model.username = store.state.userInfo.username
+    this.model.email = store.state.userInfo.email
+    this.model.firstName = store.state.userInfo.firstName
+    this.model.lastName = store.state.userInfo.lastName
+    this.model.address = store.state.userInfo.address
+    this.model.city = store.state.userInfo.city
+    this.model.country = store.state.userInfo.country
+    this.model.zipCode = store.state.userInfo.zipCode
+    this.model.about = store.state.userInfo.about
   }
 }
 </script>

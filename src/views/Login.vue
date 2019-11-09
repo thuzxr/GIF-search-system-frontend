@@ -7,7 +7,7 @@
                         <div class="text-center text-muted mb-4">
                             Login
                         </div>
-                        <form role="form">
+                        <form role="form" @keyup.enter='login'>
                             <base-input class="input-group-alternative mb-3"
                                         placeholder="Name"
                                         addon-left-icon="ni ni-hat-3"
@@ -69,7 +69,7 @@ export default {
       this.$api.login(this.model.name, this.model.password).then(res => {
         console.log('perm before login:' + this.$store.state.user)
         let user = {
-          name: res.claims.user_name,
+          name: this.model.name,
           perm: res.status
         }
         this.$store.commit('login', user)
