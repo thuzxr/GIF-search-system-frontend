@@ -49,7 +49,7 @@ export const recommend = (name) => {
   })
 }
 
-export const upload = (keyword, name, title) => {
+export const upload = (keyword, name, title, imgFile) => {
   return new Promise((resolve, reject) => {
     reject(new Error('假的上传接口，请更换成真正的后端进行测试！'))
   })

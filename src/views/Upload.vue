@@ -108,7 +108,6 @@
 
 <script>
 import PictureInput from 'vue-picture-input'
-import OSS from 'ali-oss'
 
 export default {
   name: 'Manage',
@@ -153,20 +152,13 @@ export default {
       if (this.tag2 != '') {
         this.label += ' ' + this.tag2
       }
-
-      let client = new OSS({
-        region: 'oss-cn-beijing',
-        accessKeyId: 'LTAI4FduW6Yf6AZY8ysPGmB9',
-        accessKeySecret: '2eayaXUYwzCzK8HuOv8yrqRvtmsxd9',
-        bucket: 'gif-dio'
-      })
       let name = this.$refs.pictureInput.image.substr(100, 32)
       console.log(name)
-      let result = client.put(name + '.gif', this.$refs.pictureInput.file)
-      console.log(result)
-      name = name.replace('+', '%2B')
-      this.$api.upload(this.label, name, this.title).then(res => {
+
+      this.$api.upload(this.label, name, this.title, this.$refs.pictureInput.file).then(res => {
         alert('上传成功！')
+      }).catch(err => {
+        alert(err)
       })
     }
   }

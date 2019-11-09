@@ -1,5 +1,6 @@
 import axios from './axios'
 import qs from 'qs'
+import OSS from 'ali-oss'
 
 /*
  * 将所有接口统一起来便于维护
@@ -64,7 +65,17 @@ export const recommend = (name) => {
   })
 }
 
-export const upload = (keyword, name, title) => {
+export const upload = (keyword, name, title, imgFile) => {
+  let client = new OSS({
+    region: 'oss-cn-beijing',
+    accessKeyId: 'LTAI4FduW6Yf6AZY8ysPGmB9',
+    accessKeySecret: '2eayaXUYwzCzK8HuOv8yrqRvtmsxd9',
+    bucket: 'gif-dio'
+  })
+
+  let result = client.put(name + '.gif', imgFile)
+  console.log(result)
+
   var realUrl = '/backend_upload'
   return axios({
     url: realUrl,
