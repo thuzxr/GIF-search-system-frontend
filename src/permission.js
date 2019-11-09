@@ -1,40 +1,40 @@
 import router from '@/router'
 // import apis from '@/http/interface'
-import store from '@/store'
+// import store from '@/store'
 
 // free login whitelist
-const whitelist = ['/register', '/login', '/search', '/404']
+// const whitelist = ['/register', '/login', '/search', '/404']
 
 /* define router rule of different state && different properties */
 router.beforeEach(async (to, from, next) => {
   next()
   console.log('in before each: ' + from.path + ' ' + to.path)
-  if (store.state.user.perm === 0 && whitelist.indexOf(to.path) !== -1) {
-    next()
-  } else {
-    // apis.requestPerm().then(res => {
-    //   if (res.status === 0 || res.status === -1) {
-    //     store.commit('logout')
-    //     if (whitelist.indexOf(to.path) !== -1) {
-    //       next()
-    //     } else {
-    //       next(`/login?redirect=${to.path}`)
-    //     }
-    //   } else {
-    //     store.commit('setPerm', res.status)
+  // if (store.state.user.perm === 0 && whitelist.indexOf(to.path) !== -1) {
+  //   next()
+  // } else {
+  // apis.requestPerm().then(res => {
+  //   if (res.status === 0 || res.status === -1) {
+  //     store.commit('logout')
+  //     if (whitelist.indexOf(to.path) !== -1) {
+  //       next()
+  //     } else {
+  //       next(`/login?redirect=${to.path}`)
+  //     }
+  //   } else {
+  //     store.commit('setPerm', res.status)
 
-    //     if (to.path === '/login') {
-    //       next('/')
-    //     } else {
-    //       next()
-    //     }
-    //   }
-    // }).catch(err => {
-    //   console.log(err)
-    //   alert(err)
-    // })
-    next()
-  }
+  //     if (to.path === '/login') {
+  //       next('/')
+  //     } else {
+  //       next()
+  //     }
+  //   }
+  // }).catch(err => {
+  //   console.log(err)
+  //   alert(err)
+  // })
+  // next()
+  // }
 
   // if (true) { // has sessionid
   //   /*

@@ -67,19 +67,17 @@ export default {
         return
       }
       this.$api.login(this.model.name, this.model.password).then(res => {
-        console.log('perm before login:' + this.$store.state.user)
         let user = {
-          name: res.claims.user_name,
+          name: this.model.name,
           perm: res.status
         }
         this.$store.commit('login', user)
-        console.log('perm after login:' + this.$store.state.user)
-        alert(res.status)
+        console.log('login succ, perm: ' + res.status)
         resetRouter()
         this.$router.push('/profile')
       }).catch(err => {
         console.log(err)
-        alert(err)
+        this.$notify(err, 'warning')
       })
     }
   }
