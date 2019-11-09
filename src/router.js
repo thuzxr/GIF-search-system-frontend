@@ -98,7 +98,6 @@ const getRouter = () => {
     currRouter = userRoutes
   }
   return new Router({
-    scrollBehavior: () => ({ y: 0 }),
     mode: 'history',
     linkExactActiveClass: 'active',
     routes: currRouter

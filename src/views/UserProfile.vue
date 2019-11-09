@@ -90,95 +90,89 @@
                         <template>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-center text-muted mb-4">User information</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Username"
-                                                        placeholder="Username"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.username"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Email address"
-                                                        placeholder="jesse@example.com"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.email"
-                                            />
-                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Username"
+                                                    placeholder="Username"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.username"
+                                        />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="First name"
-                                                        placeholder="First name"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.firstName"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Last name"
-                                                        placeholder="Last name"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.lastName"
-                                            />
-                                        </div>
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Email address"
+                                                    placeholder="jesse@example.com"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.email"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row text-white">
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="First name"
+                                                    placeholder="First name"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.firstName"
+                                        />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Last name"
+                                                    placeholder="Last name"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.lastName"
+                                        />
                                     </div>
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Address -->
                                 <h6 class="heading-small text-center text-muted mb-4">Contact information</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <base-input alternative=""
-                                                        label="Address"
-                                                        placeholder="Home Address"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.address"
-                                            />
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <base-input alternative=""
+                                                    label="Address"
+                                                    placeholder="Home Address"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.address"
+                                        />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="City"
-                                                        placeholder="City"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.city"
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Country"
-                                                        placeholder="Country"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.country"
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Postal code"
-                                                        placeholder="Postal code"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.zipCode"
-                                            />
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <base-input alternative=""
+                                                    label="City"
+                                                    placeholder="City"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.city"
+                                        />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <base-input alternative=""
+                                                    label="Country"
+                                                    placeholder="Country"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.country"
+                                        />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <base-input alternative=""
+                                                    label="Postal code"
+                                                    placeholder="Postal code"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.zipCode"
+                                        />
                                     </div>
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Description -->
                                 <h6 class="heading-small text-center text-muted mb-4">About me</h6>
-                                <div class="pl-lg-4">
-                                    <div class="form-group">
-                                        <base-input alternative=""
-                                                    label="About Me">
-                                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
-                                        </base-input>
-                                    </div>
+                                <div class="form-group">
+                                    <base-input alternative=""
+                                                label="About Me">
+                                        <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
+                                    </base-input>
                                 </div>
                             </form>
                         </template>
