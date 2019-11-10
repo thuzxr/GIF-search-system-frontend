@@ -27,7 +27,8 @@ router.beforeEach(async (to, from, next) => {
         store.commit('setPerm', res.status)
         resetRouter()
         if (to.path === '/login') {
-          next('/')
+          console.log('should be the search page.')
+          next('/search')
         } else {
           console.log('fuck!')
           next()

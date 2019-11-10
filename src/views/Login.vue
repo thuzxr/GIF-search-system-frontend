@@ -74,6 +74,7 @@ export default {
         this.$store.commit('login', user)
         console.log('login succ, perm: ' + res.status)
         resetRouter()
+        this.$router.push('/')
       }).catch(err => {
         console.log(err)
         this.$notify(err, 'warning')

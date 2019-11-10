@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <!-- Navbar items -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" v-if="!logined">
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/login">
                             <i class="ni ni-single-02"></i>
@@ -50,6 +50,26 @@
                         </router-link>
                     </li>
                 </ul>
+
+                <ul class="navbar-nav ml-auto mt--2" v-if="logined">
+                    <li class="nav-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                            <router-link class="nav-link nav-link-icon" to="/profile">
+                                <span class="avatar avatar-sm rounded-circle">
+                                    <img src="../assets/dio.jpg">
+                                </span>
+                                </router-link>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item align-items-center">
+                        <div class="nav-link nav-link-icon mt-2" @click="logout">
+                            <i class="ni ni-single-02"></i>
+                            <span class="nav-link-inner--text">logout</span>
+                        </div>
+                    </li>
+                </ul>
             </template>
         </base-nav>
         <!-- Header container -->
@@ -59,6 +79,9 @@
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
+
 export default {
   name: 'NavLayout',
   data () {
@@ -67,7 +90,15 @@ export default {
     }
   },
   components: {
-  }
+  },
+  computed: mapState({
+      logined: state => (!(state.user.name === ''))
+  }),
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+    }
+  },
 }
 
 </script>

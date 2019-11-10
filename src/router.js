@@ -36,7 +36,7 @@ export const userRoutes = [
   {
     path: '/',
     redirect: 'search',
-    component: UserNavLayout,
+    component: NavLayout,
     children: [
       {
         path: '/search',
@@ -94,7 +94,7 @@ const createRouter = () => new Router({
 const getRouter = () => {
   var currRouter = defaultRoutes
   if (store.state.user.perm === 1) {
-    console.log('get')
+    console.log('set into userRoutes')
     currRouter = userRoutes
   }
   return new Router({
