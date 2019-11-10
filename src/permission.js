@@ -20,6 +20,7 @@ router.beforeEach(async (to, from, next) => {
         if (whitelist.indexOf(to.path) !== -1) {
           next()
         } else {
+          console.log('testestest')
           next(`/login?redirect=${to.path}`)
         }
       } else {
@@ -27,9 +28,9 @@ router.beforeEach(async (to, from, next) => {
         resetRouter()
         if (to.path === '/login') {
           console.log('should be the search page.')
-          next('/search')
+          next({ path: '/profile' })
         } else {
-          console.log('fuck!')
+          console.log('fuck! ' + to.path)
           next()
         }
       }
@@ -41,6 +42,7 @@ router.beforeEach(async (to, from, next) => {
     if (whitelist.indexOf(to.path) !== -1) {
       next()
     } else {
+      console.log('testestest')
       next(`/login?redirect=${to.path}`)
     }
   }

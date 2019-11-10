@@ -37,7 +37,7 @@ export default new Vuex.Store({
       console.log('in setPerm' + state.user.perm)
     },
     login (state, userState) {
-      state.user.perm = userState.perm
+      state.user.perm = userState.perm.toString()
       state.user.name = userState.name
       storage.setItem('user', qs.stringify(state.user))
     },

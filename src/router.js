@@ -104,11 +104,13 @@ const getRouter = () => {
   })
 }
 
-const router = createRouter()
+const router = getRouter()
 
 export function resetRouter () {
   const newRouter = getRouter()
   router.matcher = newRouter.matcher // reset router
+  console.log("here2")  
+
 }
 
 export default router
