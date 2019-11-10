@@ -1,6 +1,7 @@
 import router, { resetRouter } from '@/router'
 import apis from '@/http/fake_interface'
 import store from '@/store'
+import qs from 'qs'
 
 // free login whitelist
 const whitelist = ['/register', '/login', '/search', '/404']
@@ -9,29 +10,40 @@ const whitelist = ['/register', '/login', '/search', '/404']
 router.beforeEach(async (to, from, next) => {
 //   next()
   console.log('in before each: ' + from.path + ' ' + to.path)
-  apis.requestPerm().then(res => {
-    console.log('res')
-    if (res.status === 0 || res.status === -1) {
-      store.commit('logout')
-      if (whitelist.indexOf(to.path) !== -1) {
-        next()
+
+  var user = store.state.user
+
+  if (user.name) {
+    apis.requestPerm().then(res => {
+      console.log('res')
+      if (res.status === 0 || res.status === -1) {
+        store.commit('logout')
+        if (whitelist.indexOf(to.path) !== -1) {
+          next()
+        } else {
+          next(`/login?redirect=${to.path}`)
+        }
       } else {
-        next(`/login?redirect=${to.path}`)
+        store.commit('setPerm', res.status)
+        resetRouter()
+        if (to.path === '/login') {
+          next('/')
+        } else {
+          console.log('fuck!')
+          next()
+        }
       }
+    }).catch(err => {
+      console.log(err)
+      alert(err)
+    })
+  } else {
+    if (whitelist.indexOf(to.path) !== -1) {
+      next()
     } else {
-      store.commit('setPerm', res.status)
-      resetRouter()
-      if (to.path === '/login') {
-        next('/')
-      } else {
-        console.log('fuck!')
-        next()
-      }
+      next(`/login?redirect=${to.path}`)
     }
-  }).catch(err => {
-    console.log(err)
-    alert(err)
-  })
+  }
 
   // if (true) { // has sessionid
   //   /*
