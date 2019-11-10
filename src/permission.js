@@ -1,7 +1,6 @@
 import router, { resetRouter } from '@/router'
 import apis from '@/http/fake_interface'
 import store from '@/store'
-import qs from 'qs'
 
 // free login whitelist
 const whitelist = ['/register', '/login', '/search', '/404']

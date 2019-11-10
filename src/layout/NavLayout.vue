@@ -92,13 +92,13 @@ export default {
   components: {
   },
   computed: mapState({
-      logined: state => (!(state.user.name === ''))
+    logined: state => (!(state.user.name === ''))
   }),
   methods: {
     logout () {
       this.$store.dispatch('logout')
     }
-  },
+  }
 }
 
 </script>

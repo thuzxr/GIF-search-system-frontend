@@ -81,7 +81,7 @@
   </div>
 </template>
 <script>
-import config from '../http/config'
+// import config from '../http/config'
 import { resetRouter } from '@/router'
 export default {
   name: 'register',

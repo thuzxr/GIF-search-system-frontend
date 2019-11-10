@@ -10,7 +10,7 @@ const storage = localStorage
 
 export default new Vuex.Store({
   state: {
-    user: storage.getItem('user') ? qs.parse(storage.getItem('user')): {name: '', perm: 0},
+    user: storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' },
     lastClick: {
       name: ''
     },
@@ -27,10 +27,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    getUserFromStorage (state) {
+      state.user = storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' }
+      console.log('getUserFromStorage perm: ' + state.user.perm)
+    },
     setPerm (state, n) {
-      state.user.perm = n
+      state.user.perm = n.toString()
       storage.setItem('user', qs.stringify(state.user))
-      console.log('in store' + state.user.perm)
+      console.log('in setPerm' + state.user.perm)
     },
     login (state, userState) {
       state.user.perm = userState.perm
@@ -39,11 +43,10 @@ export default new Vuex.Store({
     },
     logout (state) {
       state.user.name = ''
-      state.user.perm = 0
+      state.user.perm = '0'
     },
     setImgName (state, name) {
       state.lastClick.name = name
-      console.log('im herre!!!')
     },
     setUserInfo (state, info) {
       state.userInfo.username = info.username

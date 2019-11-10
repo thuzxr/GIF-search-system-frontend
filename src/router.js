@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NavLayout from '@/layout/NavLayout'
-import UserNavLayout from '@/layout/UserNavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
 import store from '@/store'
 
@@ -93,8 +92,9 @@ const createRouter = () => new Router({
 
 const getRouter = () => {
   var currRouter = defaultRoutes
-  if (store.state.user.perm === 1) {
-    console.log('set into userRoutes')
+  console.log('getRouter perm: ' + store.state.user.perm)
+  if (store.state.user.perm === '1') {
+    console.log('succ to change the router')
     currRouter = userRoutes
   }
   return new Router({
