@@ -77,8 +77,7 @@ export default {
         resetRouter()
         this.$router.push('/')
       }).catch(err => {
-        console.log(err)
-        this.$notify(err, 'warning')
+        this.$notify(err.message, 'warning')
       })
     }
   }

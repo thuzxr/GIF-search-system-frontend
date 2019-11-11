@@ -64,7 +64,7 @@ export const requestPerm = () => {
 
 export const logout = () => {
   return new Promise((resolve, reject) => {
-    reject(new Error('假的上传接口，请更换成真正的后端进行测试！'))
+    reject(new Error('假的退出接口，请更换成真正的后端进行测试！'))
   })
 }
 
