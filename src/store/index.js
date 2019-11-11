@@ -66,9 +66,7 @@ export default new Vuex.Store({
       commit('logout')
       localStorage.clear()
       resetRouter()
-      router.push('/').catch(err => {
-        console.log(err)
-      })
+      router.push('/login')
       apis.logout().then(res => {
       }).catch(err => {
         alert(err)

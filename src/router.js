@@ -4,12 +4,6 @@ import NavLayout from '@/layout/NavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
 import store from '@/store'
 
-
-const routerPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(error=> error)
-}
-
 Vue.use(Router)
 
 export const defaultRoutes = [
