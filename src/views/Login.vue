@@ -75,7 +75,7 @@ export default {
         console.log('login succ, perm: ' + res.status)
         console.log('login succ, perm: ' + this.$store.state.user.perm)
         resetRouter()
-        // this.$router.push('/')
+        this.$router.push('/')
       }).catch(err => {
         console.log(err)
         this.$notify(err, 'warning')

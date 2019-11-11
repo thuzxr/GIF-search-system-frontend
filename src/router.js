@@ -83,13 +83,6 @@ export const userRoutes = [
   }
 ]
 
-const createRouter = () => new Router({
-  scrollBehavior: () => ({ y: 0 }),
-  mode: 'history',
-  linkExactActiveClass: 'active',
-  routes: defaultRoutes
-})
-
 const getRouter = () => {
   var currRouter = defaultRoutes
   console.log('getRouter perm: ' + store.state.user.perm)
@@ -109,8 +102,6 @@ const router = getRouter()
 export function resetRouter () {
   const newRouter = getRouter()
   router.matcher = newRouter.matcher // reset router
-  console.log("here2")  
-
 }
 
 export default router

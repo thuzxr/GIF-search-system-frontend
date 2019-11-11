@@ -14,66 +14,32 @@ router.beforeEach(async (to, from, next) => {
 
   if (user.name) {
     apis.requestPerm().then(res => {
-      console.log('res')
       if (res.status === 0 || res.status === -1) {
         store.commit('logout')
         if (whitelist.indexOf(to.path) !== -1) {
           next()
         } else {
-          console.log('testestest')
           next(`/login?redirect=${to.path}`)
         }
       } else {
         store.commit('setPerm', res.status)
         resetRouter()
         if (to.path === '/login') {
-          console.log('should be the search page.')
-          next({ path: '/profile' })
+          next('/search')
         } else {
-          console.log('fuck! ' + to.path)
           next()
         }
       }
     }).catch(err => {
       console.log(err)
+      next(err)
       alert(err)
     })
   } else {
     if (whitelist.indexOf(to.path) !== -1) {
       next()
     } else {
-      console.log('testestest')
       next(`/login?redirect=${to.path}`)
     }
   }
-
-  // if (true) { // has sessionid
-  //   /*
-  //    * check whether sessionid is valid
-  //    * if valid, update router
-  //    * if not , redirect to /login
-  //    */
-  //   var _data = {
-  //     'session-id': sessionid
-  //   }
-  //   store.dispatch('user/info', _data)
-  //     .then(() => {
-  //       // come here, mean not only has sessionid, but also had queryinfo and addroutes
-  //       if (to.path === '/login') {
-  //         // if is logged in, redirect to home page
-  //         next({ path: '/' })
-  //       } else {
-  //         next()
-  //       }
-  //     })
-  // } else {
-  //   // has no sessionid
-  //   if (whitelist.indexOf(to.path) !== -1) {
-  //     next()
-  //   } else {
-  //     next(`/login?redirect=${to.path}`)
-  //   }
-  // }
-
-  // next()
 })
