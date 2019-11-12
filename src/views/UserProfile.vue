@@ -90,24 +90,6 @@
                         <template>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-center text-muted mb-4">User information</h6>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <base-input alternative=""
-                                                    label="Username"
-                                                    placeholder="Username"
-                                                    input-classes="form-control-alternative"
-                                                    v-model="model.username"
-                                        />
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <base-input alternative=""
-                                                    label="Email address"
-                                                    placeholder="jesse@example.com"
-                                                    input-classes="form-control-alternative"
-                                                    v-model="model.email"
-                                        />
-                                    </div>
-                                </div>
                                 <div class="row text-white">
                                     <div class="col-lg-6">
                                         <base-input alternative=""
@@ -136,6 +118,16 @@
                                                     placeholder="Home Address"
                                                     input-classes="form-control-alternative"
                                                     v-model="model.address"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <base-input alternative=""
+                                                    label="Email address"
+                                                    placeholder="jesse@example.com"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.email"
                                         />
                                     </div>
                                 </div>

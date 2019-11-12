@@ -94,15 +94,14 @@ export const uploadUserInfo = (userInfo) => {
     url: realUrl,
     method: 'post',
     data: qs.stringify({
-      username: userInfo.username,
-      email: userInfo.email,
-      firstName: userInfo.firstName,
-      lastName: userInfo.lastName,
-      address: userInfo.address,
-      city: userInfo.city,
-      country: userInfo.country,
-      zipCode: userInfo.zipCode,
-      about: userInfo.about
+      Email: userInfo.email,
+      FirstName: userInfo.firstName,
+      LastName: userInfo.lastName,
+      Addr: userInfo.address,
+      City: userInfo.city,
+      Country: userInfo.country,
+      ZipCode: userInfo.zipCode,
+      About: userInfo.about
     })
   })
 }
