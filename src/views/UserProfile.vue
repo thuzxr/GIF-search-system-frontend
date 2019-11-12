@@ -3,7 +3,7 @@
         <base-header class="header pb-8 pt-7 d-flex align-items-center"
                      style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
-            <span class="mask bg-gradient-success opacity-8"></span>
+            <span class="mask bg-gradient-green opacity-8"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">

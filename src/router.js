@@ -78,6 +78,11 @@ export const userRoutes = [
         path: '/upload',
         name: 'upload',
         component: () => import('@/views/Upload.vue')
+      },
+      {
+        path: '/theme',
+        name: 'theme',
+        component: () => import('@/views/Theme.vue')
       }
     ]
   }

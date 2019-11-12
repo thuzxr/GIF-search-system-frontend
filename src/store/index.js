@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import apis from '@/http/interface'
+import apis from '@/http/fake_interface'
 import router, { resetRouter } from '@/router'
 import qs from 'qs'
 
