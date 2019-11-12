@@ -3,7 +3,7 @@
         <base-header class="header pb-8 pt-7 d-flex align-items-center"
                      style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
-            <span class="mask bg-gradient-green opacity-8"></span>
+            <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
@@ -226,7 +226,8 @@ export default {
     lastName: state => state.userInfo.lastName,
     city: state => state.userInfo.city,
     country: state => state.userInfo.country,
-    about: state => state.userInfo.about
+    about: state => state.userInfo.about,
+    color: state => state.themeColor
   }),
   methods: {
     submit: function () {

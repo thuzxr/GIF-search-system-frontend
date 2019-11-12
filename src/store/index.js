@@ -10,7 +10,7 @@ const storage = localStorage
 
 export default new Vuex.Store({
   state: {
-    themeColor: storage.getItem('themeColor') ? qs.parse(storage.getItem('themeColor')) : 'green',
+    themeColor: storage.getItem('themeColor') ? storage.getItem('themeColor') : 'green',
     user: storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' },
     lastClick: {
       name: ''
@@ -31,7 +31,7 @@ export default new Vuex.Store({
   mutations: {
     setColor (state, color) {
       state.themeColor = color
-      storage.setItem('themeColoe', qs.stringify(state.themeColor))
+      storage.setItem('themeColor', color)
       console.log('color changed to ' + color)
     },
     setPerm (state, n) {

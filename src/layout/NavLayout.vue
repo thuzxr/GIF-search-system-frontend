@@ -3,7 +3,7 @@
             <notifications></notifications>
           <base-header class="header d-flex align-items-center"
                  style="min-height: 88px; background-size: cover; background-position: center top;">
-                <span class="mask bg-gradient-success opacity-8"></span>
+                <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
             <base-nav class="navbar-top navbar-horizontal navbar-dark"
                   :title="navTitle"
                   expand>
@@ -92,7 +92,8 @@ export default {
   components: {
   },
   computed: mapState({
-    logined: state => (!(state.user.name === ''))
+    logined: state => (!(state.user.name === '')),
+    color: state => state.themeColor
   }),
   methods: {
     logout () {

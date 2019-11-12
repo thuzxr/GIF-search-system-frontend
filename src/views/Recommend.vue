@@ -3,7 +3,7 @@
     <base-header class="header pb-md-4 pt-md-6 pt-3 d-flex align-items-center"
         style="background-position: center top;">
         <!-- Mask -->
-        <span class="mask bg-gradient-success opacity-12"></span>
+        <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
         <!-- Header container -->
         <div class="container-fluid">
             <div class="row justify-content-around">
@@ -36,6 +36,7 @@
 <script>
 import ImgGallery from '../components/ImgGallery.vue'
 import store from '@/store'
+
 export default {
   name: 'Recommend',
   data () {
@@ -47,6 +48,9 @@ export default {
   computed: {
     noImg () {
       return (this.err || !this.imgList || this.imgList.length === 0)
+    },
+    color () {
+      return this.$store.state.themeColor
     }
   },
   methods: {

@@ -3,7 +3,7 @@
      <base-header class="header pb-6 pt-6 d-flex align-items-center"
         style="background-position: center top;">
         <!-- Mask -->
-        <span class="mask bg-gradient-success opacity-12"></span>
+        <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
         <!-- Header container -->
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -108,6 +108,7 @@
 
 <script>
 import PictureInput from 'vue-picture-input'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Manage',
@@ -123,6 +124,9 @@ export default {
       label: ''
     }
   },
+  computed: mapState({
+    color: state => state.themeColor
+  }),
   methods: {
     onChange () {
       console.log('New picture selected!')
