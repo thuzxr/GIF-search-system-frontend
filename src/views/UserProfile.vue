@@ -175,14 +175,12 @@
     </div>
 </template>
 <script>
-import store from '@/store'
 import { mapState } from 'vuex'
 export default {
   name: 'user-profile',
   data () {
     return {
       model: {
-        username: '',
         email: '',
         firstName: '',
         lastName: '',
@@ -195,24 +193,29 @@ export default {
     }
   },
   computed: mapState({
-    username: state => state.userInfo.username
+    username: state => state.user.name
   }),
   methods: {
     submit: function () {
       console.log('click submit!')
-      store.commit('setUserInfo', this.model)
+      this.$store.commit('setUserInfo', this.model)
+      this.$api.uploadUserInfo(this.model).then(res => {
+        alert('修改成功！')
+      }).catch(err => {
+        alert(err.message)
+      })
     }
   },
   mounted () {
-    this.model.username = store.state.userInfo.username
-    this.model.email = store.state.userInfo.email
-    this.model.firstName = store.state.userInfo.firstName
-    this.model.lastName = store.state.userInfo.lastName
-    this.model.address = store.state.userInfo.address
-    this.model.city = store.state.userInfo.city
-    this.model.country = store.state.userInfo.country
-    this.model.zipCode = store.state.userInfo.zipCode
-    this.model.about = store.state.userInfo.about
+    var userInfo = this.$store.state.userInfo
+    this.model.email = userInfo.email
+    this.model.firstName = userInfo.firstName
+    this.model.lastName = userInfo.lastName
+    this.model.address = userInfo.address
+    this.model.city = userInfo.city
+    this.model.country = userInfo.country
+    this.model.zipCode = userInfo.zipCode
+    this.model.about = userInfo.about
   }
 }
 </script>

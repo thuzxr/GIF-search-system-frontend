@@ -7,9 +7,9 @@ import store from '@/store'
 // 单独导出
 export const login = (name, password) => {
   return new Promise((resolve, reject) => {
-    if (name == '123' && password == '123') {
+    if (name == 'dio' && password == 'dio') {
       resolve({
-        claims: { user_name: '123' },
+        claims: { user_name: 'dio' },
         status: 1
       })
     } else {
@@ -68,6 +68,12 @@ export const logout = () => {
   })
 }
 
+export const uploadUserInfo = (userInfo) => {
+  return new Promise((resolve, reject) => {
+    reject(new Error('假的上传信息接口，请更换成真正的后端进行测试！'))
+  })
+}
+
 // 默认全部导出
 export default {
   login,
@@ -77,5 +83,6 @@ export default {
   upload,
   getCaptchaId,
   requestPerm,
-  logout
+  logout,
+  uploadUserInfo
 }
