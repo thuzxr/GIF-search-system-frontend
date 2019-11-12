@@ -14,8 +14,7 @@ export default new Vuex.Store({
     lastClick: {
       name: ''
     },
-    userInfo: {
-      username: '',
+    userInfo: storage.getItem('userinfo') ? qs.parse(storage.getItem('userinfo')) : {
       email: '',
       firstName: '',
       lastName: '',
@@ -27,10 +26,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    getUserFromStorage (state) {
-      state.user = storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' }
-      console.log('getUserFromStorage perm: ' + state.user.perm)
-    },
     setPerm (state, n) {
       state.user.perm = n.toString()
       storage.setItem('user', qs.stringify(state.user))
@@ -49,7 +44,6 @@ export default new Vuex.Store({
       state.lastClick.name = name
     },
     setUserInfo (state, info) {
-      state.userInfo.username = info.username
       state.userInfo.email = info.email
       state.userInfo.firstName = info.firstName
       state.userInfo.lastName = info.lastName
@@ -58,7 +52,8 @@ export default new Vuex.Store({
       state.userInfo.country = info.country
       state.userInfo.zipCode = info.zipCode
       state.userInfo.about = info.about
-      console.log('username', state.userInfo.username)
+      storage.setItem('userinfo', qs.stringify(state.userInfo))
+      console.log('succeed to save user info!')
     }
   },
   actions: {
@@ -68,6 +63,7 @@ export default new Vuex.Store({
       resetRouter()
       router.push('/login')
       apis.logout().then(res => {
+        alert('退出成功！')
       }).catch(err => {
         alert(err)
       })
