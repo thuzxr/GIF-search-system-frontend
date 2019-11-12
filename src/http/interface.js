@@ -9,9 +9,8 @@ import OSS from 'ali-oss'
 
 // 单独导出
 export const login = (name, password) => {
-  var realUrl = '/backend_login'
   return axios({
-    url: realUrl,
+    url: '/backend_login',
     method: 'post',
     data: qs.stringify({
       user: name,
@@ -21,9 +20,8 @@ export const login = (name, password) => {
 }
 
 export const register = (name, password, vericode, captchaId) => {
-  var realUrl = '/backend_register'
   return axios({
-    url: realUrl,
+    url: '/backend_register',
     method: 'post',
     data: qs.stringify({
       user: name,
@@ -35,17 +33,15 @@ export const register = (name, password, vericode, captchaId) => {
 }
 
 export const getCaptchaId = () => {
-  var realUrl = '/refresh_veri'
   return axios({
-    url: realUrl,
+    url: '/refresh_veri',
     method: 'get'
   })
 }
 
 export const search = (keyword) => {
-  var realUrl = '/backend_search'
   return axios({
-    url: realUrl,
+    url: '/backend_search',
     method: 'get',
     withCredentials: false,
     params: {
@@ -55,9 +51,8 @@ export const search = (keyword) => {
 }
 
 export const recommend = (name) => {
-  var realUrl = '/backend_recommend'
   return axios({
-    url: realUrl,
+    url: '/backend_recommend',
     method: 'get',
     params: {
       name: name
@@ -73,25 +68,26 @@ export const upload = (keyword, name, title, imgFile) => {
     bucket: 'gif-dio'
   })
 
-  let result = client.put(name + '.gif', imgFile)
-  console.log(result)
-
-  var realUrl = '/backend_upload'
-  return axios({
-    url: realUrl,
-    method: 'post',
-    data: qs.stringify({
-      keyword: keyword,
-      name: name,
-      title: title
+  async function func () {
+    await client.put(name + '.gif', imgFile)
+    console.log('oss succeed!')
+    await axios({
+      url: '/backend_upload',
+      method: 'post',
+      data: qs.stringify({
+        keyword: keyword,
+        name: name,
+        title: title
+      })
     })
-  })
+  }
+  
+  return func()
 }
 
 export const uploadUserInfo = (userInfo) => {
-  var realUrl = 'backend_change_profile'
   return axios({
-    url: realUrl,
+    url: 'backend_change_profile',
     method: 'post',
     data: qs.stringify({
       Email: userInfo.email,
@@ -115,9 +111,8 @@ export const requestPerm = () => {
 }
 
 export const logout = () => {
-  var realUrl = '/backend_logout'
   return axios({
-    url: realUrl,
+    url: '/backend_logout',
     method: 'get'
   })
 }
