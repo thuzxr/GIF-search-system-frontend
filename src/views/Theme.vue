@@ -3,7 +3,7 @@
      <base-header class="header pt-6 d-flex align-items-center"
         style="background-position: center top;">
         <!-- Mask -->
-        <span class="mask bg-gradient-light opacity-8"></span>
+        <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
         <!-- Header container -->
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-red border-0 col-8" @click.stop="change('crimson')">crimson</base-button>
+                                      <base-button type="primary" class="my-4 bg-red border-0 col-8" @click.stop="change('red')">crimson</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
@@ -69,13 +69,11 @@
 </template>
 
 <script>
-import PictureInput from 'vue-picture-input'
+
+import { mapState } from 'vuex'
 
 export default {
-  name: 'Manage',
-  components: {
-    PictureInput
-  },
+  name: 'Theme',
   data () {
     return {
       title: '',
@@ -85,6 +83,9 @@ export default {
       label: ''
     }
   },
+  computed: mapState({
+    color: state => state.themeColor
+  }),
   methods: {
     change: function (color) {
       this.$store.commit('setColor', color)
