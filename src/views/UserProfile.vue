@@ -8,7 +8,7 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-xl-8 text-center">
-                        <h1 class="display-2 text-white">Hello Dio</h1>
+                        <h1 class="display-2 text-white">Hello {{ username }}</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                     </div>
                 </div>
@@ -56,19 +56,23 @@
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    {{username}}<span class="font-weight-light">, 151</span>
+                                    {{ firstName }} {{ lastName }}
                                 </h3>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2">birthday: April 4th, 1868</i>
+                                    <!-- <i class="ni location_pin mr-2">birthday: April 4th, 1868</i> -->
+                                    <i class="ni location_pin mr-2">birthday: {{ birthday }}</i>
                                 </div>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2">height: 6'5" (195 cm)</i>
+                                    <!-- <i class="ni location_pin mr-2">height: 6'5" (195 cm)</i> -->
+                                    <i class="ni location_pin mr-2">height: {{ height }}</i>
                                 </div>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2">London, England -- Cairo, Egypt</i>
+                                    <!-- <i class="ni location_pin mr-2">London, England -- Cairo, Egypt</i> -->
+                                    <i class="ni location_pin mr-2">{{ city }}, {{ country }}</i>
                                 </div>
                                 <hr class="my-4" />
-                                <h4>I'm through with being a mere mortal, jojo!</h4>
+                                    <!-- <h4>I'm through with being a mere mortal, jojo!</h4> -->
+                                    <h4>{{ about }}</h4>
                                 <a href="#">Show more</a>
                             </div>
                         </div>
@@ -105,6 +109,24 @@
                                                     placeholder="Last name"
                                                     input-classes="form-control-alternative"
                                                     v-model="model.lastName"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row text-white">
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Birthday"
+                                                    placeholder="Birthday"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.birthday"
+                                        />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Height"
+                                                    placeholder="Height"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.height"
                                         />
                                     </div>
                                 </div>
@@ -163,7 +185,9 @@
                                 <div class="form-group">
                                     <base-input alternative=""
                                                 label="About Me">
-                                        <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
+                                        <textarea rows="4" class="form-control form-control-alternative" 
+                                                  placeholder="A few words about you ..."
+                                                  v-model="model.about"></textarea>
                                     </base-input>
                                 </div>
                             </form>
@@ -181,6 +205,8 @@ export default {
   data () {
     return {
       model: {
+        birthday: '',
+        height: '',
         email: '',
         firstName: '',
         lastName: '',
@@ -193,7 +219,14 @@ export default {
     }
   },
   computed: mapState({
-    username: state => state.user.name
+    username: state => state.user.name,
+    birthday: state => state.userInfo.birthday,
+    height: state => state.userInfo.height,
+    firstName: state => state.userInfo.firstName,
+    lastName: state => state.userInfo.lastName,
+    city: state => state.userInfo.city,
+    country: state => state.userInfo.country,
+    about: state => state.userInfo.about
   }),
   methods: {
     submit: function () {
@@ -207,15 +240,7 @@ export default {
     }
   },
   mounted () {
-    var userInfo = this.$store.state.userInfo
-    this.model.email = userInfo.email
-    this.model.firstName = userInfo.firstName
-    this.model.lastName = userInfo.lastName
-    this.model.address = userInfo.address
-    this.model.city = userInfo.city
-    this.model.country = userInfo.country
-    this.model.zipCode = userInfo.zipCode
-    this.model.about = userInfo.about
+    Object.assign(this.model, this.$store.state.userInfo)
   }
 }
 </script>

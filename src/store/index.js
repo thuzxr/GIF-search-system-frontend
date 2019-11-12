@@ -15,6 +15,8 @@ export default new Vuex.Store({
       name: ''
     },
     userInfo: storage.getItem('userinfo') ? qs.parse(storage.getItem('userinfo')) : {
+      birthday: '',
+      height: '',
       email: '',
       firstName: '',
       lastName: '',
@@ -44,14 +46,7 @@ export default new Vuex.Store({
       state.lastClick.name = name
     },
     setUserInfo (state, info) {
-      state.userInfo.email = info.email
-      state.userInfo.firstName = info.firstName
-      state.userInfo.lastName = info.lastName
-      state.userInfo.address = info.address
-      state.userInfo.city = info.city
-      state.userInfo.country = info.country
-      state.userInfo.zipCode = info.zipCode
-      state.userInfo.about = info.about
+      Object.assign(state.userInfo, info)
       storage.setItem('userinfo', qs.stringify(state.userInfo))
       console.log('succeed to save user info!')
     }
