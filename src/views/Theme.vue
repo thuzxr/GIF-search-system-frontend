@@ -16,7 +16,7 @@
       </base-header>
       <div class="container-fluid mt-5 mb-5">
           <div class="row justify-content-center">
-              <div class="col-xl-8 col-lg-8 col-md-10 mb-5 mb-xl-0">
+              <div class="col-xl-8 col-lg-10 col-md-10 mb-5 mb-xl-0">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
@@ -30,32 +30,32 @@
                               <div class="row justify-content-around mt-3 mb-3">
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-orange border-0" @click.stop="upload">upload</base-button>
+                                      <base-button type="primary" class="my-4 bg-orange border-0 col-8" @click.stop="change('orange')">orange</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-purple border-0" @click.stop="upload">upload</base-button>
+                                      <base-button type="primary" class="my-4 bg-purple border-0 col-8" @click.stop="change('purple')">purple</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-green border-0" @click.stop="upload">upload</base-button>
+                                      <base-button type="primary" class="my-4 bg-green border-0 col-8" @click.stop="change('green')">green</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-red border-0" @click.stop="upload">upload</base-button>
+                                      <base-button type="primary" class="my-4 bg-red border-0 col-8" @click.stop="change('crimson')">crimson</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-light border-0" @click.stop="upload">upload</base-button>
+                                      <base-button type="primary" class="my-4 bg-light border-0 col-8" @click.stop="change('light')">light</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-dark border-0" @click.stop="upload">upload</base-button>
+                                      <base-button type="primary" class="my-4 bg-dark border-0  col-8" @click.stop="change('dark')">dark</base-button>
                                     </div>
                                 </div>
                               </div>
@@ -86,42 +86,8 @@ export default {
     }
   },
   methods: {
-    onChange () {
-      console.log('New picture selected!')
-      if (this.$refs.pictureInput.image) {
-        console.log('Picture loaded. ??? ' + this.$refs.pictureInput.image.substr(30, 32))
-      } else {
-        console.log('FileReader API not supported: use the <form>, Luke!')
-      }
-    },
-    upload: function () {
-      if (!this.$refs.pictureInput.image) {
-        alert('Please select a gif!')
-        return
-      }
-      if (this.title === '') {
-        alert('Please input the title!')
-        return
-      }
-      if (this.tag === '') {
-        alert('Please input the main tag!')
-        return
-      }
-      this.label = this.tag
-      if (this.tag1 != '') {
-        this.label += ' ' + this.tag1
-      }
-      if (this.tag2 != '') {
-        this.label += ' ' + this.tag2
-      }
-      let name = this.$refs.pictureInput.image.substr(100, 32)
-      console.log(name)
-
-      this.$api.upload(this.label, name, this.title, this.$refs.pictureInput.file).then(res => {
-        alert('上传成功！')
-      }).catch(err => {
-        alert(err)
-      })
+    change: function (color) {
+      this.$store.commit('setColor', color)
     }
   }
 }
