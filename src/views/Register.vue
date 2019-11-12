@@ -81,7 +81,7 @@
   </div>
 </template>
 <script>
-// import config from '../http/config'
+import config from '../http/config'
 import { resetRouter } from '@/router'
 export default {
   name: 'register',
@@ -130,7 +130,7 @@ export default {
     getCaptchaImgUrl () {
       this.$api.getCaptchaId().then(res => {
         this.model.captchaId = res.captchaId
-        // this.model.captchaImgUrl = config.baseURL + '/get_veri/' + res.captchaId + '.png'
+        this.model.captchaImgUrl = config.baseURL + '/get_veri/' + res.captchaId + '.png'
         console.log('captchaId' + this.model.captchaId)
       }).catch(err => {
         console.log(err)

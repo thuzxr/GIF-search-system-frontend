@@ -1,5 +1,5 @@
 import router, { resetRouter } from '@/router'
-import apis from '@/http/fake_interface'
+import apis from '@/http/interface'
 import store from '@/store'
 
 // free login whitelist
