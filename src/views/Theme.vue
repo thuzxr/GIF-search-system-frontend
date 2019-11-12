@@ -1,102 +1,64 @@
 <template>
   <div>
-     <base-header class="header pb-6 pt-6 d-flex align-items-center"
+     <base-header class="header pt-6 d-flex align-items-center"
         style="background-position: center top;">
         <!-- Mask -->
-        <span class="mask bg-gradient-success opacity-12"></span>
+        <span class="mask bg-gradient-light opacity-8"></span>
         <!-- Header container -->
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <h1 class="display-2 text-white">Upload</h1>
-                    <p class="text-white mt-0 mb-5">This is upload page. You can share you favourite gif to others!</p>
+                    <h1 class="display-2 text-white">Theme</h1>
+                    <p class="text-white mt-0 mb-5">This is the theme page. You can change the primary color here!</p>
                 </div>
             </div>
         </div>
       </base-header>
-      <div class="container-fluid mt--7 mb-5">
+      <div class="container-fluid mt-5 mb-5">
           <div class="row justify-content-center">
-              <div class="col-xl-8 mb-5 mb-xl-0">
+              <div class="col-xl-8 col-lg-8 col-md-10 mb-5 mb-xl-0">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-12">
-                                    <h3 class="mb-0">Selected Picture</h3>
+                                    <h3 class="mb-0">Theme Color</h3>
                                 </div>
                             </div>
                         </div>
                         <template>
                             <form @submit.prevent>
-                                <div class="row align-items-center">
-                                  <div class="col-12">
-                                    <picture-input
-                                      ref="pictureInput"
-                                      width="300"
-                                      :crop="false"
-                                      height="200"
-                                      margin="16"
-                                      radius="5"
-                                      accept="image/gif"
-                                      :removable="true"
-                                      size="10"
-                                      button-class="btn"
-                                      remove-button-class="btn"
-
-                                      :custom-strings="{
-                                        upload: '<h1>Bummer!</h1>',
-                                        drag: 'Drag a 😺 GIF or GTFO'
-                                      }"
-                                      @change="onChange">
-                                    </picture-input>
-                                  </div>
-                                </div>
-                                <hr class="my-4" />
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Gif Title"
-                                                        placeholder="title"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="title"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Main Tag"
-                                                        placeholder="main tag"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tag"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Extra Tag 1"
-                                                        placeholder="tag1"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tag1"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Extra Tag 2"
-                                                        placeholder="tag2"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tag2"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-around">
-                                      <div class="col-lg-6">
-                                          <div class="text-center">
-                                            <base-button type="primary" class="my-4" @click.stop="upload">upload</base-button>
-                                          </div>
-                                      </div>
+                              <div class="row justify-content-around mt-3 mb-3">
+                                <div class="col-lg-4 col-6">
+                                    <div class="text-center">
+                                      <base-button type="primary" class="my-4 bg-orange border-0" @click.stop="upload">upload</base-button>
                                     </div>
                                 </div>
-
+                                <div class="col-lg-4 col-6">
+                                    <div class="text-center">
+                                      <base-button type="primary" class="my-4 bg-purple border-0" @click.stop="upload">upload</base-button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-6">
+                                    <div class="text-center">
+                                      <base-button type="primary" class="my-4 bg-green border-0" @click.stop="upload">upload</base-button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-6">
+                                    <div class="text-center">
+                                      <base-button type="primary" class="my-4 bg-red border-0" @click.stop="upload">upload</base-button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-6">
+                                    <div class="text-center">
+                                      <base-button type="primary" class="my-4 bg-light border-0" @click.stop="upload">upload</base-button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-6">
+                                    <div class="text-center">
+                                      <base-button type="primary" class="my-4 bg-dark border-0" @click.stop="upload">upload</base-button>
+                                    </div>
+                                </div>
+                              </div>
                             </form>
                         </template>
                     </card>
