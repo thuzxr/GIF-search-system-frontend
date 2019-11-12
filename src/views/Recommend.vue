@@ -41,7 +41,6 @@ export default {
   data () {
     return {
       imgList: [],
-      imgName: '4fd32a6fae93404a956129260ec0a606',
       err: false
     }
   },
@@ -52,12 +51,12 @@ export default {
   },
   methods: {
     recommend: function () {
-      // console.log('123123123123')
-      this.imgName = store.state.lastClick.name
-      console.log(this.imgName)
-      this.$api.recommend(this.imgName).then(response => {
-        if (response.status === 'succeed') {
+      var imgName = store.state.lastClick.name
+      console.log(imgName)
+      this.$api.recommend(imgName).then(response => {
+        if (response.status === 'succeed' && response.result) {
           this.err = false
+          console.log(response)
           var list = response.result
           this.imgList = list.map(function (item) {
             var t = {
@@ -69,11 +68,6 @@ export default {
           })
         } else {
           this.err = true
-          this.imgList = [{
-            title: 'Oops! 找不到你想要的Gif',
-            url: '../assets/timg.jpg',
-            thumbnail: '../assets/timg.jpg'
-          }]
         }
       }).catch(err => {
         alert(err)

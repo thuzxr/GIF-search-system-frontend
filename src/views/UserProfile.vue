@@ -185,7 +185,7 @@
                                 <div class="form-group">
                                     <base-input alternative=""
                                                 label="About Me">
-                                        <textarea rows="4" class="form-control form-control-alternative" 
+                                        <textarea rows="4" class="form-control form-control-alternative"
                                                   placeholder="A few words about you ..."
                                                   v-model="model.about"></textarea>
                                     </base-input>

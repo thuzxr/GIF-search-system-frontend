@@ -81,7 +81,7 @@ export const upload = (keyword, name, title, imgFile) => {
       })
     })
   }
-  
+
   return func()
 }
 
