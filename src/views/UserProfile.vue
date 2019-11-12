@@ -215,10 +215,9 @@ export default {
     submit: function () {
       console.log('click submit!')
       store.commit('setUserInfo', this.model)
-
     }
   },
-  mounted() {
+  mounted () {
     this.model.username = store.state.userInfo.username
     this.model.email = store.state.userInfo.email
     this.model.firstName = store.state.userInfo.firstName

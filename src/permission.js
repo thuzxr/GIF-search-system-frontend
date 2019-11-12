@@ -1,7 +1,6 @@
 import router from '@/router'
 import apis from '@/http/interface'
 import store from '@/store'
-import { resetRouter } from '@/router'
 
 // free login whitelist
 const whitelist = ['/register', '/login', '/search', '/404']
@@ -24,7 +23,7 @@ router.beforeEach(async (to, from, next) => {
       if (to.path === '/login') {
         next('/')
       } else {
-        console.log("fuck!")
+        console.log('fuck!')
         next()
       }
     }
