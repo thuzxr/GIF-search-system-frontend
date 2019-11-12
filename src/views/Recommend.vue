@@ -15,8 +15,8 @@
         </div>
     </base-header>
     <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-xl-6 col-md-8 col-10 mb-7 mb-xl-9" v-show="noImg">
+    <div class="row justify-content-center mt-xl-9 mt-lg-9 mt-md-7 mt-sm-5 mb-xl-9 mb-lg-9 mb-md-7 mb-sm-5 ">
+      <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
         <div class="card card-profile shadow">
           <div class="card-body pt-0 pt-4">
             <div class="text-center pt-1">
@@ -68,6 +68,7 @@ export default {
           })
         } else {
           this.err = true
+          this.$notify('没有找到相似的图片~', 'info')
         }
       }).catch(err => {
         alert(err)
