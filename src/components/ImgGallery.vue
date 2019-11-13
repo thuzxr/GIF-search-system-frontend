@@ -28,7 +28,7 @@ export default {
       // console.log('here!')
     },
     saveName: function (name) {
-      store.commit('setName', name)
+      store.commit('setImgName', name)
       // console.log('im here!')
       console.log(store.state.lastClick.name)
     }

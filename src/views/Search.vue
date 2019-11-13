@@ -3,9 +3,11 @@
   <div class="row justify-content-around mt-3"
        :class="[noImg ? 'mt-lg-9 mt-md-7 mt-sm-5': 'mt-lg-5 mt-md-4']">
       <search-input @doSearch="search"></search-input>
+  </div>
+  <div class="row justify-content-around mt-3">
       <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
   </div>
-  <img-gallery v-bind:imgList="imgList"></img-gallery>
+  <img-gallery v-bind:imgList="imgList" v-if="!err"></img-gallery>
   </div>
 </template>
 <script>

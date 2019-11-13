@@ -131,7 +131,7 @@ export default {
       this.$api.getCaptchaId().then(res => {
         this.model.captchaId = res.captchaId
         this.model.captchaImgUrl = config.baseURL + '/get_veri/' + res.captchaId + '.png'
-        console.log(this.model.captchaId)
+        console.log('captchaId' + this.model.captchaId)
       }).catch(err => {
         console.log(err)
       })

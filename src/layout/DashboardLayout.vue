@@ -12,6 +12,7 @@
         <!--sidebar-item :link="{name: 'Favourite', icon: 'ni ni-favourite-28 text-red', path: '/profile'}"/-->
         <sidebar-item :link="{name: 'Upload', icon: 'ni ni-cloud-upload-96 text-green', path: '/upload'}"/>
         <sidebar-item :link="{name: 'Recommend', icon: 'ni ni-image text-orange', path: '/recommend'}"/>
+        <sidebar-item :link="{name: 'Theme', icon: 'ni ni-atom text-purple', path: '/theme'}"/>
 
       </template>
     </side-bar>

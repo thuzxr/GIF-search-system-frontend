@@ -3,12 +3,12 @@
         <base-header class="header pb-8 pt-7 d-flex align-items-center"
                      style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
-            <span class="mask bg-gradient-success opacity-8"></span>
+            <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-xl-8 text-center">
-                        <h1 class="display-2 text-white">Hello Dio</h1>
+                        <h1 class="display-2 text-white">Hello {{ username }}</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                     </div>
                 </div>
@@ -56,19 +56,23 @@
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    {{username}}<span class="font-weight-light">, 151</span>
+                                    {{ firstName }} {{ lastName }}
                                 </h3>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2">birthday: April 4th, 1868</i>
+                                    <!-- <i class="ni location_pin mr-2">birthday: April 4th, 1868</i> -->
+                                    <i class="ni location_pin mr-2">birthday: {{ birthday }}</i>
                                 </div>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2">height: 6'5" (195 cm)</i>
+                                    <!-- <i class="ni location_pin mr-2">height: 6'5" (195 cm)</i> -->
+                                    <i class="ni location_pin mr-2">height: {{ height }}</i>
                                 </div>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2">London, England -- Cairo, Egypt</i>
+                                    <!-- <i class="ni location_pin mr-2">London, England -- Cairo, Egypt</i> -->
+                                    <i class="ni location_pin mr-2">{{ city }}, {{ country }}</i>
                                 </div>
                                 <hr class="my-4" />
-                                <h4>I'm through with being a mere mortal, jojo!</h4>
+                                    <!-- <h4>I'm through with being a mere mortal, jojo!</h4> -->
+                                    <h4>{{ about }}</h4>
                                 <a href="#">Show more</a>
                             </div>
                         </div>
@@ -90,95 +94,101 @@
                         <template>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-center text-muted mb-4">User information</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Username"
-                                                        placeholder="Username"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.username"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Email address"
-                                                        placeholder="jesse@example.com"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.email"
-                                            />
-                                        </div>
+                                <div class="row text-white">
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="First name"
+                                                    placeholder="First name"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.firstName"
+                                        />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="First name"
-                                                        placeholder="First name"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.firstName"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Last name"
-                                                        placeholder="Last name"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.lastName"
-                                            />
-                                        </div>
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Last name"
+                                                    placeholder="Last name"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.lastName"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row text-white">
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Birthday"
+                                                    placeholder="Birthday"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.birthday"
+                                        />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <base-input alternative=""
+                                                    label="Height"
+                                                    placeholder="Height"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.height"
+                                        />
                                     </div>
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Address -->
                                 <h6 class="heading-small text-center text-muted mb-4">Contact information</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <base-input alternative=""
-                                                        label="Address"
-                                                        placeholder="Home Address"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.address"
-                                            />
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <base-input alternative=""
+                                                    label="Address"
+                                                    placeholder="Home Address"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.address"
+                                        />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="City"
-                                                        placeholder="City"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.city"
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Country"
-                                                        placeholder="Country"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.country"
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Postal code"
-                                                        placeholder="Postal code"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.zipCode"
-                                            />
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <base-input alternative=""
+                                                    label="Email address"
+                                                    placeholder="jesse@example.com"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.email"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <base-input alternative=""
+                                                    label="City"
+                                                    placeholder="City"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.city"
+                                        />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <base-input alternative=""
+                                                    label="Country"
+                                                    placeholder="Country"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.country"
+                                        />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <base-input alternative=""
+                                                    label="Postal code"
+                                                    placeholder="Postal code"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.zipCode"
+                                        />
                                     </div>
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Description -->
                                 <h6 class="heading-small text-center text-muted mb-4">About me</h6>
-                                <div class="pl-lg-4">
-                                    <div class="form-group">
-                                        <base-input alternative=""
-                                                    label="About Me">
-                                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
-                                        </base-input>
-                                    </div>
+                                <div class="form-group">
+                                    <base-input alternative=""
+                                                label="About Me">
+                                        <textarea rows="4" class="form-control form-control-alternative"
+                                                  placeholder="A few words about you ..."
+                                                  v-model="model.about"></textarea>
+                                    </base-input>
                                 </div>
                             </form>
                         </template>
@@ -189,14 +199,14 @@
     </div>
 </template>
 <script>
-import store from '@/store'
 import { mapState } from 'vuex'
 export default {
   name: 'user-profile',
   data () {
     return {
       model: {
-        username: '',
+        birthday: '',
+        height: '',
         email: '',
         firstName: '',
         lastName: '',
@@ -209,24 +219,29 @@ export default {
     }
   },
   computed: mapState({
-    username: state => state.userInfo.username
+    username: state => state.user.name,
+    birthday: state => state.userInfo.birthday,
+    height: state => state.userInfo.height,
+    firstName: state => state.userInfo.firstName,
+    lastName: state => state.userInfo.lastName,
+    city: state => state.userInfo.city,
+    country: state => state.userInfo.country,
+    about: state => state.userInfo.about,
+    color: state => state.themeColor
   }),
   methods: {
     submit: function () {
       console.log('click submit!')
-      store.commit('setUserInfo', this.model)
+      this.$store.commit('setUserInfo', this.model)
+      this.$api.uploadUserInfo(this.model).then(res => {
+        alert('修改成功！')
+      }).catch(err => {
+        alert(err.message)
+      })
     }
   },
   mounted () {
-    this.model.username = store.state.userInfo.username
-    this.model.email = store.state.userInfo.email
-    this.model.firstName = store.state.userInfo.firstName
-    this.model.lastName = store.state.userInfo.lastName
-    this.model.address = store.state.userInfo.address
-    this.model.city = store.state.userInfo.city
-    this.model.country = store.state.userInfo.country
-    this.model.zipCode = store.state.userInfo.zipCode
-    this.model.about = store.state.userInfo.about
+    Object.assign(this.model, this.$store.state.userInfo)
   }
 }
 </script>

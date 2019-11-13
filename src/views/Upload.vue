@@ -3,7 +3,7 @@
      <base-header class="header pb-6 pt-6 d-flex align-items-center"
         style="background-position: center top;">
         <!-- Mask -->
-        <span class="mask bg-gradient-success opacity-12"></span>
+        <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
         <!-- Header container -->
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -108,7 +108,7 @@
 
 <script>
 import PictureInput from 'vue-picture-input'
-import OSS from 'ali-oss'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Manage',
@@ -124,6 +124,9 @@ export default {
       label: ''
     }
   },
+  computed: mapState({
+    color: state => state.themeColor
+  }),
   methods: {
     onChange () {
       console.log('New picture selected!')
@@ -153,20 +156,13 @@ export default {
       if (this.tag2 != '') {
         this.label += ' ' + this.tag2
       }
-
-      let client = new OSS({
-        region: 'oss-cn-beijing',
-        accessKeyId: 'LTAI4FduW6Yf6AZY8ysPGmB9',
-        accessKeySecret: '2eayaXUYwzCzK8HuOv8yrqRvtmsxd9',
-        bucket: 'gif-dio'
-      })
       let name = this.$refs.pictureInput.image.substr(100, 32)
       console.log(name)
-      let result = client.put(name + '.gif', this.$refs.pictureInput.file)
-      console.log(result)
-      name = name.replace('+', '%2B')
-      this.$api.upload(this.label, name, this.title).then(res => {
+
+      this.$api.upload(this.label, name, this.title, this.$refs.pictureInput.file).then(res => {
         alert('上传成功！')
+      }).catch(err => {
+        alert(err)
       })
     }
   }

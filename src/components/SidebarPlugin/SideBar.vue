@@ -28,7 +28,7 @@
                           <i class="ni ni-single-02"></i>
                           <span>My profile</span>
                         </router-link>
-                        <router-link to="/profile" class="dropdown-item-text">
+                        <router-link to="/theme" class="dropdown-item-text">
                           <i class="ni ni-settings-gear-65"></i>
                           <span>Settings</span>
                         </router-link>

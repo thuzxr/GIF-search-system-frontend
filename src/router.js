@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NavLayout from '@/layout/NavLayout'
-import UserNavLayout from '@/layout/UserNavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
 import store from '@/store'
 
@@ -37,7 +36,7 @@ export const userRoutes = [
   {
     path: '/',
     redirect: 'search',
-    component: UserNavLayout,
+    component: NavLayout,
     children: [
       {
         path: '/search',
@@ -80,33 +79,31 @@ export const userRoutes = [
         path: '/upload',
         name: 'upload',
         component: () => import('@/views/Upload.vue')
+      },
+      {
+        path: '/theme',
+        name: 'theme',
+        component: () => import('@/views/Theme.vue')
       }
     ]
   }
 ]
 
-const createRouter = () => new Router({
-  scrollBehavior: () => ({ y: 0 }),
-  mode: 'history',
-  linkExactActiveClass: 'active',
-  routes: defaultRoutes
-})
-
 const getRouter = () => {
   var currRouter = defaultRoutes
-  if (store.state.user.perm === 1) {
-    console.log('get')
+  console.log('getRouter perm: ' + store.state.user.perm)
+  if (store.state.user.perm === '1') {
+    console.log('succ to change the router')
     currRouter = userRoutes
   }
   return new Router({
-    scrollBehavior: () => ({ y: 0 }),
     mode: 'history',
     linkExactActiveClass: 'active',
     routes: currRouter
   })
 }
 
-const router = createRouter()
+const router = getRouter()
 
 export function resetRouter () {
   const newRouter = getRouter()

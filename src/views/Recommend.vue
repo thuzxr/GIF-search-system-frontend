@@ -3,7 +3,7 @@
     <base-header class="header pb-md-4 pt-md-6 pt-3 d-flex align-items-center"
         style="background-position: center top;">
         <!-- Mask -->
-        <span class="mask bg-gradient-success opacity-12"></span>
+        <span :class="'mask bg-gradient-' + color +' opacity-8'"></span>
         <!-- Header container -->
         <div class="container-fluid">
             <div class="row justify-content-around">
@@ -15,8 +15,8 @@
         </div>
     </base-header>
     <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-xl-6 col-md-8 col-10 mb-7 mb-xl-9" v-show="noImg">
+    <div class="row justify-content-center mt-xl-9 mt-lg-9 mt-md-7 mt-sm-5 mb-xl-9 mb-lg-9 mb-md-7 mb-sm-5 ">
+      <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
         <div class="card card-profile shadow">
           <div class="card-body pt-0 pt-4">
             <div class="text-center pt-1">
@@ -36,28 +36,31 @@
 <script>
 import ImgGallery from '../components/ImgGallery.vue'
 import store from '@/store'
+
 export default {
   name: 'Recommend',
   data () {
     return {
       imgList: [],
-      imgName: '4fd32a6fae93404a956129260ec0a606',
       err: false
     }
   },
   computed: {
     noImg () {
       return (this.err || !this.imgList || this.imgList.length === 0)
+    },
+    color () {
+      return this.$store.state.themeColor
     }
   },
   methods: {
     recommend: function () {
-      // console.log('123123123123')
-      this.imgName = store.state.lastClick.name
-      console.log(this.imgName)
-      this.$api.recommend(this.imgName).then(response => {
-        if (response.status === 'succeed') {
+      var imgName = store.state.lastClick.name
+      console.log(imgName)
+      this.$api.recommend(imgName).then(response => {
+        if (response.status === 'succeed' && response.result) {
           this.err = false
+          console.log(response)
           var list = response.result
           this.imgList = list.map(function (item) {
             var t = {
@@ -69,12 +72,10 @@ export default {
           })
         } else {
           this.err = true
-          this.imgList = [{
-            title: 'Oops! 找不到你想要的Gif',
-            url: '../assets/timg.jpg',
-            thumbnail: '../assets/timg.jpg'
-          }]
+          this.$notify('没有找到相似的图片~', 'info')
         }
+      }).catch(err => {
+        alert(err)
       })
     }
   },
