@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Search from '@/views/Search'
 import { shallowMount } from '@vue/test-utils'
-
+import SearchInput from '@/components/SearchInput.vue'
 // import { ImgGallery } from '@/components/ImgGallery.vue'
 // const factory = (values = {}) => {
 //   return shallowMount(Search), {
@@ -19,12 +19,14 @@ describe('Search', () => {
   it('has a data hook', () => {
     // const wrapper = factory()
     const wrapper = shallowMount(Search)
-    // const wrapper = mount(Search)
     expect(typeof Search.data).toBe('function')
     var data = Search.data()
     expect(data.err).toBe(false)
+  })
+
+  it('has correct html', () => {
+    const wrapper = shallowMount(Search)
     expect(wrapper.contains('img-gallery'))
-    // expect(wrapper.classes(''))
   })
 
   it('correctly sets the message when created', () => {
@@ -39,8 +41,15 @@ describe('Search', () => {
         err: false
       }
     })
-
-    expect(wrapper.contains('h2')).toBe(true)
+    wrapper.setData({err: false});
+    // 组件状态wrapper.setProps({})
+    expect(wrapper.contains('h2')).toBe(true)// ???
     expect(wrapper.html()).toContain('Oops! 找不到你想要的Gif')
+  })
+
+  it('test search function', () => {
+    const wrapper = shallowMount(Search)
+    wrapper.find(SearchInput).vm.$emit('doSearch')
+    //test?
   })
 })
