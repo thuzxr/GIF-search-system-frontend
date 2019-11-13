@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-  name: 'SearchInput',
+  name: 'search-input',
   data () {
     return {
       'text': ''

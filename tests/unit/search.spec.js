@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Search from '@/views/Search'
-import { shallowMount } from '@vue/test-utils'
-import SearchInput from '@/components/SearchInput.vue'
+import { shallowMount, mount } from '@vue/test-utils'
+import SearchInput from '@/components/SearchInput'
 // import { ImgGallery } from '@/components/ImgGallery.vue'
 // const factory = (values = {}) => {
 //   return shallowMount(Search), {
@@ -25,7 +25,7 @@ describe('Search', () => {
   })
 
   it('has correct html', () => {
-    const wrapper = shallowMount(Search)
+    const wrapper = mount(Search)
     expect(wrapper.contains('img-gallery'))
   })
 
@@ -36,7 +36,7 @@ describe('Search', () => {
   })
 
   it('renders an error when there is no return gif', () => {
-    const wrapper = shallowMount(Search, {
+    const wrapper = mount(Search, {
       data: {
         err: false
       }
@@ -47,9 +47,13 @@ describe('Search', () => {
     expect(wrapper.html()).toContain('Oops! 找不到你想要的Gif')
   })
 
-  it('test search function', () => {
-    const wrapper = shallowMount(Search)
+  it('test search function, fetches async when clicked', () => {
+    const wrapper = mount(Search)
     wrapper.find(SearchInput).vm.$emit('doSearch')
     //test?
+    // wrapper.vm.$nextTick(() => {
+    //   expect(wrapper.vm.imgList).toEqual([])
+    //   //done()
+    // })
   })
 })

@@ -15,7 +15,7 @@
 import picNotfind from '@/assets/timg.jpg'
 import store from '@/store'
 export default {
-  name: 'ImgGallery',
+  name: 'img-gallery',
   data () {
     return {
       imgLike: picNotfind,
