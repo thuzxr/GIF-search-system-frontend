@@ -12,7 +12,7 @@
   </v-gallery>
   <modal :show="modalShow" @update:show="showModal">
     <h1 slot="header">{{ currImg.title }}</h1>
-    <img :src="currImg.url" />
+    <img :src="currImg.url" style="max-height:300px;">
   </modal>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
       console.log(store.state.lastClick.name)
     },
     showModal: function (visibility) {
-      this.showModal = visibility
+      this.modalShow = visibility
     },
     popModal (img) {
       this.currImg = img

@@ -7,7 +7,7 @@
   <div class="row justify-content-around mt-3">
       <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
   </div>
-  <img-gallery v-bind:imgList="imgList" v-if="!err" :pop="true"></img-gallery>
+  <img-gallery v-bind:imgList="imgList" v-if="!err" :pop="logined"></img-gallery>
   </div>
 </template>
 <script>
@@ -25,6 +25,9 @@ export default {
   computed: {
     noImg () {
       return (this.err || !this.imgList || this.imgList.length === 0)
+    },
+    logined () {
+      return this.$store.state.user.perm !== '0'
     }
   },
   methods: {
@@ -48,6 +51,7 @@ export default {
         } else {
           this.err = true
           this.imgList = []
+          this.$notify('Oops! 找不到你想要的Gif', 'info')
         }
       }).catch(res => {
         alert(res)
