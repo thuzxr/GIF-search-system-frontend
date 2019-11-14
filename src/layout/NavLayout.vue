@@ -100,7 +100,7 @@ export default {
   computed: mapState({
     logined: state => (!(state.user.perm === '0')),
     isAdmin: state => (state.user.perm === '2'),
-    color: state => (state.user.perm === '2' ? 'purple': state.themeColor)
+    color: state => (state.user.perm === '2' ? 'purple' : state.themeColor)
   }),
   methods: {
     logout () {
