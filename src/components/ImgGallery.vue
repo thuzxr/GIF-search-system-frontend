@@ -9,8 +9,9 @@
       </div>
     </a>
   </v-gallery>
-  <base-button class="btn btn-primary btn-lg" @click="modal">开始演示模态框</base-button>
-  <modal :show="showModal" value=""></modal>
+  <modal :show="modalShow" @update:show="modal">
+    <h1 slot="header">一个标题</h1>
+  </modal>
   </div>
 </template>
 
@@ -23,26 +24,15 @@ export default {
     return {
       imgLike: picNotfind,
       isLike: false,
-      showModal: false
-    }
-  },
-  props: {
-    pop: {
-      type: Boolean,
-      default: true
+      modalShow: false
     }
   },
   methods: {
-    test: function () {
-      this.isLike = !this.isLike
-      // console.log('here!')
-    },
     saveName: function (name) {
       store.commit('setImgName', name)
-      // console.log('im here!')
       console.log(store.state.lastClick.name)
     },
-    modal: function () {
+    modal: function (data) {
       this.showModal = !this.showModal
     }
   },
@@ -50,6 +40,10 @@ export default {
     imgList: {
       type: Array,
       required: true
+    },
+    pop: {
+      type: Boolean,
+      default: true
     }
   }
 }
