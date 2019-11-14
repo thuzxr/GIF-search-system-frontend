@@ -42,25 +42,13 @@ export default {
   name: 'Manage',
   data () {
     return {
-      title: '',
-      tag: '',
-      tag1: '',
-      tag2: '',
-      label: ''
+      imgList: []
     }
   },
   computed: mapState({
     color: state => 'purple'
   }),
   methods: {
-    onChange () {
-      console.log('New picture selected!')
-      if (this.$refs.pictureInput.image) {
-        console.log('Picture loaded. ??? ' + this.$refs.pictureInput.image.substr(30, 32))
-      } else {
-        console.log('FileReader API not supported: use the <form>, Luke!')
-      }
-    },
   },
   components: {
     'img-gallery': ImgGallery
