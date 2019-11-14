@@ -52,7 +52,7 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto mt--2" v-if="logined">
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="!isAdmin">
                         <div class="row align-items-center">
                             <div class="col">
                             <router-link class="nav-link nav-link-icon" to="/profile">
@@ -62,6 +62,12 @@
                                 </router-link>
                             </div>
                         </div>
+                    </li>
+                    <li class="nav-item align-items-center" v-if="isAdmin">
+                        <router-link class="nav-link nav-link-icon  mt-2" to="/manage">
+                            <i class="ni ni-chart-bar-32"></i>
+                            <span class="nav-link-inner--text">Dashboard</span>
+                        </router-link>
                     </li>
                     <li class="nav-item align-items-center">
                         <div class="nav-link nav-link-icon mt-2" @click="logout">
@@ -92,8 +98,9 @@ export default {
   components: {
   },
   computed: mapState({
-    logined: state => (!(state.user.name === '')),
-    color: state => state.themeColor
+    logined: state => (!(state.user.perm === '0')),
+    isAdmin: state => (state.user.perm === '2'),
+    color: state => (state.user.perm === '2' ? 'purple': state.themeColor)
   }),
   methods: {
     logout () {

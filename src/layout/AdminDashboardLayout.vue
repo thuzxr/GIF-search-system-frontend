@@ -7,7 +7,7 @@
     >
       <template slot="links">
         <sidebar-item :link="{name: 'Search', icon: 'ni ni-world text-primary', path: '/search'}"/>
-        <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
+        <sidebar-item :link="{name: 'Manage', icon: 'ni ni-image text-purple', path: '/manage'}"/>
       </template>
     </side-bar>
     <div class="main-content" :data="sidebarBackground">

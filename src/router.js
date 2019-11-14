@@ -113,9 +113,14 @@ export const adminRoutes = [
     component: AdminDashboardLayout,
     children: [
       {
-        path: '/profile',
-        name: 'profile',
+        path: '/manage',
+        name: 'manage',
         component: () => import('./views/Manage.vue')
+      },
+      {
+        path: '/icons',
+        name: 'icons',
+        component: () => import('./views/Icons.vue')
       }
     ]
   }

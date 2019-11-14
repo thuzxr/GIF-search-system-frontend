@@ -125,7 +125,7 @@ export default {
     }
   },
   computed: mapState({
-    color: state => state.themeColor
+    color: state => 'purple'
   }),
   methods: {
     onChange () {
