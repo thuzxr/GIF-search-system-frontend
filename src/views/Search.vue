@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     search: function (text) {
+      console.log(text)
       this.$api.search(text).then(response => {
         console.log(response.result)
         if (response.status === 'succeed') {

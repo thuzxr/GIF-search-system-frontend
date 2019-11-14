@@ -91,11 +91,11 @@ export const userRoutes = [
 
 const getRouter = () => {
   var currRouter = defaultRoutes
-  console.log('getRouter perm: ' + store.state.user.perm)
-  if (store.state.user.perm === '1') {
-    console.log('succ to change the router')
-    currRouter = userRoutes
-  }
+  // console.log('getRouter perm: ' + store.state.user.perm)
+  // if (store.state.user.perm === '1') {
+  //   console.log('succ to change the router')
+  //   currRouter = userRoutes
+  // }
   return new Router({
     mode: 'history',
     linkExactActiveClass: 'active',
