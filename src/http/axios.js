@@ -92,8 +92,14 @@ export default function $axios (options) {
             case 404:
               err.message = `请求地址出错: ${err.response.config.url}`
               break
+            case 406:
+                err.message = `用户名密码错误`
+                break
             case 408:
               err.message = '请求超时'
+              break
+            case 412:
+              err.message = `已登录`
               break
             case 500:
               err.message = '服务器内部错误'

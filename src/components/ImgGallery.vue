@@ -1,4 +1,5 @@
 <template>
+  <div>
   <v-gallery :images="imgList" class="image-box">
     <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
       <div class="bgbox">
@@ -7,8 +8,10 @@
         </div>
       </div>
     </a>
-
   </v-gallery>
+  <base-button class="btn btn-primary btn-lg" @click="modal">开始演示模态框</base-button>
+  <modal :show="showModal" value=""></modal>
+  </div>
 </template>
 
 <script>
@@ -19,7 +22,14 @@ export default {
   data () {
     return {
       imgLike: picNotfind,
-      isLike: false
+      isLike: false,
+      showModal: false
+    }
+  },
+  props: {
+    pop: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -31,6 +41,9 @@ export default {
       store.commit('setImgName', name)
       // console.log('im here!')
       console.log(store.state.lastClick.name)
+    },
+    modal: function () {
+      this.showModal = !this.showModal
     }
   },
   props: {
