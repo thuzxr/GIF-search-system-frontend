@@ -4,27 +4,31 @@
     <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
       <div class="bgbox">
         <div style="position:relative;">
-          <img :src="img.url" @click="saveName(img.name)">
+          <img :src="img.url" @click="saveName(img.name)" v-if="!pop">
+          <img :src="img.url" @click.stop="popModal(img)" v-if="pop">
         </div>
       </div>
     </a>
   </v-gallery>
-  <modal :show="modalShow" @update:show="modal">
-    <h1 slot="header">一个标题</h1>
+  <modal :show="modalShow" @update:show="showModal">
+    <h1 slot="header">{{ currImg.title }}</h1>
+    <img :src="currImg.url" />
   </modal>
   </div>
 </template>
 
 <script>
-import picNotfind from '@/assets/timg.jpg'
 import store from '@/store'
 export default {
   name: 'ImgGallery',
   data () {
     return {
-      imgLike: picNotfind,
-      isLike: false,
-      modalShow: false
+      modalShow: false,
+      currImg: {
+        name: '',
+        url: '',
+        title: ''
+      }
     }
   },
   methods: {
@@ -32,8 +36,12 @@ export default {
       store.commit('setImgName', name)
       console.log(store.state.lastClick.name)
     },
-    modal: function (data) {
-      this.showModal = !this.showModal
+    showModal: function (visibility) {
+      this.showModal = visibility
+    },
+    popModal (img) {
+      this.currImg = img
+      this.showModal(true)
     }
   },
   props: {

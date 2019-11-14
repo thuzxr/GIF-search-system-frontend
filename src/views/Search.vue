@@ -7,7 +7,7 @@
   <div class="row justify-content-around mt-3">
       <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
   </div>
-  <img-gallery v-bind:imgList="imgList" v-if="!err"></img-gallery>
+  <img-gallery v-bind:imgList="imgList" v-if="!err" :pop="true"></img-gallery>
   </div>
 </template>
 <script>
