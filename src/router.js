@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NavLayout from '@/layout/NavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
+import AdminDashboardLayout from '@/layout/AdminDashboardLayout'
 import store from '@/store'
 
 Vue.use(Router)
@@ -109,7 +110,7 @@ export const adminRoutes = [
   {
     path: '/dash',
     redirect: 'dashboard',
-    component: DashboardLayout,
+    component: AdminDashboardLayout,
     children: [
       {
         path: '/profile',
