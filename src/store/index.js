@@ -60,7 +60,8 @@ export default new Vuex.Store({
   actions: {
     logout ({ commit }, _data) {
       commit('logout')
-      localStorage.clear()
+      storage.removeItem('user')
+      storage.removeItem('userinfo')
       resetRouter()
       router.push('/login')
       apis.logout().then(res => {

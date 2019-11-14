@@ -88,6 +88,63 @@ export const userRoutes = [
   }
 ]
 
+export const adminRoutes = [
+  {
+    path: '/',
+    redirect: 'search',
+    component: NavLayout,
+    children: [
+      {
+        path: '/search',
+        name: 'search',
+        component: () => import('@/views/Search.vue')
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Login.vue')
+      },
+      {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/Register.vue')
+      }
+    ]
+  },
+  {
+    path: '/dash',
+    redirect: 'dashboard',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '/icons',
+        name: 'icons',
+        component: () => import('./views/Icons.vue')
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('./views/UserProfile.vue')
+      },
+      {
+        path: '/recommend',
+        name: 'recommend',
+        component: () => import('@/views/Recommend.vue')
+      },
+      {
+        path: '/upload',
+        name: 'upload',
+        component: () => import('@/views/Upload.vue')
+      },
+      {
+        path: '/theme',
+        name: 'theme',
+        component: () => import('@/views/Theme.vue')
+      }
+    ]
+  }
+]
+
 const getRouter = () => {
   var currRouter = defaultRoutes
   console.log('getRouter perm: ' + store.state.user.perm)

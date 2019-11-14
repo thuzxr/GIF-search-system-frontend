@@ -1,3 +1,3 @@
-import apis from './interface'
+import apis from './fake_interface'
 
 export default apis

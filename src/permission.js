@@ -24,7 +24,7 @@ router.beforeEach(async (to, from, next) => {
       } else {
         store.commit('setPerm', res.status)
         resetRouter()
-        if (to.path === '/login') {
+        if (to.path === '/login' || to.path === '/register') {
           next('/search')
         } else {
           next()
