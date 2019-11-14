@@ -60,11 +60,6 @@ export const userRoutes = [
     component: DashboardLayout,
     children: [
       {
-        path: '/icons',
-        name: 'icons',
-        component: () => import('./views/Icons.vue')
-      },
-      {
         path: '/profile',
         name: 'profile',
         component: () => import('./views/UserProfile.vue')
@@ -117,29 +112,9 @@ export const adminRoutes = [
     component: DashboardLayout,
     children: [
       {
-        path: '/icons',
-        name: 'icons',
-        component: () => import('./views/Icons.vue')
-      },
-      {
         path: '/profile',
         name: 'profile',
-        component: () => import('./views/UserProfile.vue')
-      },
-      {
-        path: '/recommend',
-        name: 'recommend',
-        component: () => import('@/views/Recommend.vue')
-      },
-      {
-        path: '/upload',
-        name: 'upload',
-        component: () => import('@/views/Upload.vue')
-      },
-      {
-        path: '/theme',
-        name: 'theme',
-        component: () => import('@/views/Theme.vue')
+        component: () => import('./views/Manage.vue')
       }
     ]
   }
@@ -149,8 +124,11 @@ const getRouter = () => {
   var currRouter = defaultRoutes
   console.log('getRouter perm: ' + store.state.user.perm)
   if (store.state.user.perm === '1') {
-    console.log('succ to change the router')
+    console.log('succ to change to user router')
     currRouter = userRoutes
+  } else if (store.state.user.perm === '2') {
+    console.log('succ to change to admin router')
+    currRouter = adminRoutes
   }
   return new Router({
     mode: 'history',

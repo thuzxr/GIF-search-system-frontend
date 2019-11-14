@@ -12,6 +12,11 @@ export const login = (name, password) => {
         claims: { user_name: 'dio' },
         status: 1
       })
+    } else if (name == 'admin' && password == '233') {
+      resolve({
+        claims: { user_name: 'admin' },
+        status: 2
+      })
     } else {
       reject(new Error('用户名或密码错误!'))
     }
