@@ -10,9 +10,42 @@
       </div>
     </a>
   </v-gallery>
+
   <modal :show="modalShow" @update:show="showModal">
-    <h1 slot="header">{{ currImg.title }}</h1>
-    <img :src="currImg.url" style="max-height:300px;">
+    <h4 slot="header">{{ currImg.title }}</h4>
+
+    <div>
+      <div class="row justify-content-center">
+        <img :src="currImg.url" style="max-height:300px;">
+      </div>
+      <hr class="my-4" />
+      <div class="row mt-3 align-items-center justify-content-between">
+        <div class="col-6">
+          <div class="media align-items-center" slot="title">
+            <span class="avatar avatar-sm rounded-circle">
+              <img src="../assets/dio.jpg">
+            </span>
+            <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-4">
+              <i class="ni ni-satisfied dropdown-item-text text-red"></i>
+            </div>
+            <div class="col-4">
+              <i class="ni ni-favourite-28 dropdown-item-text text-red"></i>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-2 dropdown-item-text pull-right">
+          <i class="ni ni-favourite-28"></i>
+        </div> -->
+        <!-- <div class="col-1 dropdown-item-text pull-right">
+
+        </div> -->
+      </div>
+    </div>
   </modal>
   </div>
 </template>
