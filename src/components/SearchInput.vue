@@ -30,7 +30,7 @@ export default {
   methods: {
     doSearch: function () {
       if (this.text === '') {
-        alert('key word can not be empty!')
+        this.$notify('key word can not be empty!', 'warning')
         return
       }
       this.$emit('doSearch', this.text)
