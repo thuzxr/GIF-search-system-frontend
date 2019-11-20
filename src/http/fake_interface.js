@@ -44,7 +44,18 @@ export const getCaptchaId = () => {
 
 export const search = (keyword) => {
   return new Promise((resolve, reject) => {
-    reject(new Error('假的搜索接口，请更换成真正的后端进行测试！'))
+    // if (keyword === 'dio') {
+    //   resolve({
+    //     result: [{
+    //       Title: 'dio brando',
+    //       url: 'D:/test/go-proj/gif-dio/src/assets/dio.jpg',
+    //       name: 'a meaningless name'
+    //     }],
+    //     status: 'succeed'
+    //   })
+    // } else {
+      reject(new Error('假的搜索接口，请更换成真正的后端进行测试！'))
+    // }
   })
 }
 

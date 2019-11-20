@@ -7,14 +7,18 @@
   <div class="row justify-content-around mt-3">
       <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
   </div>
+  <div class="row justify-content-around mt-3">
+      <img src="../assets/dio.jpg" @click.stop="clickImg({name:'dio brando', url:'../assets/dio.jpg', title: 'dio brando'})">
+  </div>
   <img-gallery v-bind:imgList="imgList" v-if="!err" :pop="logined" @clickImg="clickImg"></img-gallery>
 
-    <modal :show="modalImg" @update:show="showModal">
+    <modal :show="modalShow" @update:show="showModal">
     <h4 slot="header">{{ modalImg.title }}</h4>
 
     <div>
       <div class="row justify-content-center">
-        <img :src="modalImg.url" style="max-height:300px;">
+        <!-- <img :src="modalImg.url" style="max-height:300px;"> -->
+        <img src="../assets/start.jpg" style="max-height:300px; max-width: 300px;">
       </div>
       <hr class="my-4" />
       <div class="row mt-3 align-items-center justify-content-between">
@@ -69,6 +73,7 @@ export default {
   },
   methods: {
     clickImg: function (img) {
+      console.log('logined: ', this.logined)
       this.modalImg = img
       this.showModal(true)
     },
@@ -81,6 +86,7 @@ export default {
         if (response.status === 'succeed') {
           this.err = false
           var list = response.result
+          console.log(list)
           this.imgList = list.map(function (item) {
             var t = {
               title: item.Title,
