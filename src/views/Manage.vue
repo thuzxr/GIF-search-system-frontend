@@ -14,21 +14,50 @@
             </div>
         </div>
       </base-header>
-      <div class="container">
-      <div class="row justify-content-center mt-xl-9 mt-lg-9 mt-md-7 mt-sm-5 mb-xl-9 mb-lg-9 mb-md-7 mb-sm-5 ">
-        <div class="col-xl-6 col-md-8 col-10">
+    <div class="container">
+      <div class="row justify-content-end" v-show="!noImg">
+        <div class="col-4">
+            <div class="text-center">
+              <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click="clear">clear</base-button>
+            </div>
+        </div>
+      </div>
+      <div class="row justify-content-center"
+          :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-3' ]">
+        <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
           <div class="card card-profile shadow">
             <div class="card-body pt-0 pt-4">
               <div class="text-center pt-1">
-                <h4>You dont have any recommend gif yet~ </h4>
-                <div class="text-center">
-                  <base-button type="vue" class="my-0" @click.stop="recommend">get some</base-button>
-                </div>
+                <h4>You have not favoured any gif yet~ </h4>
               </div>
             </div>
           </div>
         </div>
-        <img-gallery v-bind:imgList="imgList"></img-gallery>
+        <img-gallery v-bind:imgList="imgList" :pop="true" @clickImg="clickImg" v-show="!noImg"></img-gallery>
+          <modal :show="modalShow" @update:show="showModal">
+            <h4 slot="header">{{ modalImg.title }}</h4>
+
+                <div>
+        <div class="row justify-content-center">
+          <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
+          <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
+        </div>
+        <hr class="my-4" />
+        <div class="row mt-3 align-items-center justify-content-between">
+          <div class="col-6">
+            <div class="media align-items-center" slot="title">
+              <span class="avatar">
+                <img src="../assets/dio.jpg">
+              </span>
+              <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove'>remove</base-button>
+          </div>
+        </div>
+      </div>
+      </modal>
       </div>
     </div>
   </div>
@@ -42,13 +71,61 @@ export default {
   name: 'Manage',
   data () {
     return {
-      imgList: []
+      imgList: [],
+      err: false,
+      modalShow: false,
+      modalImg: {
+        name: '',
+        url: '',
+        title: ''
+      }
     }
   },
-  computed: mapState({
-    color: state => 'purple'
-  }),
+  computed: {
+    noImg () {
+      return (this.err || !this.imgList || this.imgList.length === 0)
+    },
+    color () {
+      return 'purple'
+    }
+  },
   methods: {
+    clickImg: function (img) {
+      this.modalImg = img
+      this.showModal(true)
+    },
+    showModal: function (visibility) {
+      this.modalShow = visibility
+    },
+    clear: function () {
+      let namelist = ''
+      for (let img of this.imgList) {
+        namelist += img.name + ' '
+      }
+      this.imgList = []
+      this.$api.deleteVerify(namelist).then(res => {
+        this.$notify('denied all favour gifs!', 'success')
+      }).catch(err => {
+        alert(err)
+        console.log(err)
+      })
+    },
+    remove: function () {
+      var i = 0
+      for (i = 0; i < this.imgList.length; i++) {
+        if (this.imgList[i].name === this.modalImg.name) {
+          break
+        }
+      }
+      this.imgList.splice(i, 1)
+      this.$api.deleteVerify(this.modalImg.name).then(res => {
+        this.$notify('success to remove the gif!', 'success')
+      }).catch(err => {
+        alert(err)
+        console.log(err)
+      })
+      this.showModal(false)
+    }
   },
   components: {
     'img-gallery': ImgGallery

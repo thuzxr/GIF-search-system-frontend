@@ -15,50 +15,50 @@
         </div>
     </base-header>
     <div class="container">
-    <div class="row justify-content-end" v-show="!noImg">
-      <div class="col-4">
-          <div class="text-center">
-            <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click="clear">clear</base-button>
-          </div>
+      <div class="row justify-content-end" v-show="!noImg">
+        <div class="col-4">
+            <div class="text-center">
+              <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click="clear">clear</base-button>
+            </div>
+        </div>
       </div>
-    </div>
-    <div class="row justify-content-center"
-         :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-3' ]">
-      <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
-        <div class="card card-profile shadow">
-          <div class="card-body pt-0 pt-4">
-            <div class="text-center pt-1">
-              <h4>You have not favoured any gif yet~ </h4>
+      <div class="row justify-content-center"
+          :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-3' ]">
+        <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
+          <div class="card card-profile shadow">
+            <div class="card-body pt-0 pt-4">
+              <div class="text-center pt-1">
+                <h4>You have not favoured any gif yet~ </h4>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <img-gallery v-bind:imgList="imgList" :pop="true" @clickImg="clickImg" v-show="!noImg"></img-gallery>
-        <modal :show="modalShow" @update:show="showModal">
-          <h4 slot="header">{{ modalImg.title }}</h4>
+        <img-gallery v-bind:imgList="imgList" :pop="true" @clickImg="clickImg" v-show="!noImg"></img-gallery>
+          <modal :show="modalShow" @update:show="showModal">
+            <h4 slot="header">{{ modalImg.title }}</h4>
 
-              <div>
-      <div class="row justify-content-center">
-        <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
-        <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
-      </div>
-      <hr class="my-4" />
-      <div class="row mt-3 align-items-center justify-content-between">
-        <div class="col-6">
-          <div class="media align-items-center" slot="title">
-            <span class="avatar">
-              <img src="../assets/dio.jpg">
-            </span>
-            <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
+                <div>
+        <div class="row justify-content-center">
+          <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
+          <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
+        </div>
+        <hr class="my-4" />
+        <div class="row mt-3 align-items-center justify-content-between">
+          <div class="col-6">
+            <div class="media align-items-center" slot="title">
+              <span class="avatar">
+                <img src="../assets/dio.jpg">
+              </span>
+              <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove'>remove</base-button>
           </div>
         </div>
-        <div class="col-6">
-          <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove'>remove</base-button>
-        </div>
       </div>
-    </div>
-        </modal>
-    </div>
+      </modal>
+      </div>
     </div>
   </div>
 </template>
@@ -67,7 +67,7 @@ import ImgGallery from '../components/ImgGallery.vue'
 // import store from '@/store'
 
 export default {
-  name: 'Recommend',
+  name: 'Favourites',
   data () {
     return {
       imgList: [],
@@ -111,10 +111,10 @@ export default {
       })
     },
     remove: function () {
-      var i = 0;
+      var i = 0
       for (i = 0; i < this.imgList.length; i++) {
         if (this.imgList[i].name === this.modalImg.name) {
-          break;
+          break
         }
       }
       this.imgList.splice(i, 1)

@@ -143,6 +143,33 @@ export const deleteFavour = (GifId) => {
   })
 }
 
+export const addVerify = (GifId) => {
+  return axios({
+    url: '/backend_insert_favour',
+    method: 'post',
+    data: qs.stringify({
+      GifId: GifId
+    })
+  })
+}
+
+export const getVerifyList = () => {
+  return axios({
+    url: '/backend_favour',
+    method: 'get'
+  })
+}
+
+export const deleteVerify = (GifId) => {
+  return axios({
+    url: '/backend_delete_favour',
+    method: 'post',
+    data: qs.stringify({
+      GifId: GifId
+    })
+  })
+}
+
 // 默认全部导出
 export default {
   login,

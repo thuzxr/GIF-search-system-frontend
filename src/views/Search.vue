@@ -107,7 +107,7 @@ export default {
           this.err = false
           var list = response.result
           for (let item of list) {
-              item.Oss_url = item.Oss_url.slice(0,4) + 's' + item.Oss_url.slice(4);
+            item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
           }
           this.imgList = list.map(function (item) {
             var t = {
