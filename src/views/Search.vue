@@ -33,9 +33,10 @@ export default {
       this.$api.search(text).then(response => {
         console.log(response.result)
         if (response.status === 'succeed') {
+          console.log(response)
           this.err = false
           var list = response.result
-          // console.log(list[0])
+          console.log(list[0])
           this.imgList = list.map(function (item) {
             var t = {
               title: item.Title,

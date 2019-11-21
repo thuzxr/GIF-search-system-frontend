@@ -39,6 +39,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "mockjs": "^1.1.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
@@ -118,6 +119,7 @@
     "coverageDirectory": "<rootDir>/tests/unit/coverage",
     "collectCoverageFrom": [
       "src/views/Search.vue",
+      "src/views/Recommend.vue",
       "!src/main.js",
       "!src/router.js",
       "!**/node_modules/**"
