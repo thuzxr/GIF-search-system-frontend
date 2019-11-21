@@ -15,20 +15,29 @@
         </div>
       </base-header>
     <div class="container">
-      <div class="row justify-content-end" v-show="!noImg">
+      <div class="row justify-content-between" v-show="!noImg">
         <div class="col-4">
+          <div class="row justify-content-start ml-2">
             <div class="text-center">
-              <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click="clear">clear</base-button>
+              <base-button type="white" class="mt-2 btn shadow-0" @click="clear(true)">approve all</base-button>
             </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row justify-content-end mr-2">
+            <div class="text-center">
+              <base-button type="white" class="mt-2 btn shadow-0" @click="clear(false)">deny all</base-button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center"
-          :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-3' ]">
+          :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-5' ]">
         <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
           <div class="card card-profile shadow">
             <div class="card-body pt-0 pt-4">
               <div class="text-center pt-1">
-                <h4>You have not favoured any gif yet~ </h4>
+                <h4>no verifying gifs yet~ </h4>
               </div>
             </div>
           </div>
@@ -45,15 +54,10 @@
         <hr class="my-4" />
         <div class="row mt-3 align-items-center justify-content-between">
           <div class="col-6">
-            <div class="media align-items-center" slot="title">
-              <span class="avatar">
-                <img src="../assets/dio.jpg">
-              </span>
-              <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
-            </div>
+            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove(true)'>approve</base-button>
           </div>
           <div class="col-6">
-            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove'>remove</base-button>
+            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove(false)'>deny</base-button>
           </div>
         </div>
       </div>
@@ -97,20 +101,29 @@ export default {
     showModal: function (visibility) {
       this.modalShow = visibility
     },
-    clear: function () {
+    clear: function (approve) {
       let namelist = ''
       for (let img of this.imgList) {
         namelist += img.name + ' '
       }
       this.imgList = []
-      this.$api.deleteVerify(namelist).then(res => {
-        this.$notify('denied all favour gifs!', 'success')
-      }).catch(err => {
-        alert(err)
-        console.log(err)
-      })
+      if (!approve) {
+        this.$api.deleteVerify(namelist).then(res => {
+          this.$notify('denied all gifs!', 'success')
+        }).catch(err => {
+          alert(err)
+          console.log(err)
+        })
+      } else {
+        this.$api.addVerify(namelist).then(res => {
+          this.$notify('approved all gifs!', 'success')
+        }).catch(err => {
+          alert(err)
+          console.log(err)
+        })
+      }
     },
-    remove: function () {
+    remove: function (approve) {
       var i = 0
       for (i = 0; i < this.imgList.length; i++) {
         if (this.imgList[i].name === this.modalImg.name) {
@@ -118,17 +131,52 @@ export default {
         }
       }
       this.imgList.splice(i, 1)
-      this.$api.deleteVerify(this.modalImg.name).then(res => {
-        this.$notify('success to remove the gif!', 'success')
-      }).catch(err => {
-        alert(err)
-        console.log(err)
-      })
+      if (approve) {
+        this.$api.deleteVerify(this.modalImg.name).then(res => {
+          this.$notify('success to remove the gif!', 'success')
+        }).catch(err => {
+          alert(err)
+          console.log(err)
+        })
+      } else {
+        this.$api.addVerify(this.modalImg.name).then(res => {
+          this.$notify('success to remove the gif!', 'success')
+        }).catch(err => {
+          alert(err)
+          console.log(err)
+        })
+      }
       this.showModal(false)
     }
   },
   components: {
     'img-gallery': ImgGallery
+  },
+  created: function () {
+    this.$api.getVerifyList().then(res => {
+      console.log('in manage: ', res)
+      if (res.result && res.result.length != 0) {
+        this.err = false
+        var list = response.result
+        for (let item of list) {
+          item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
+        }
+        this.imgList = list.map(function (item) {
+          var t = {
+            title: item.TITLE,
+            url: item.OSSURL,
+            thumbnail: item.OSSURL,
+            name: item.GifId
+          }
+          return t
+        })
+        console.log('in get verify: ', this.imgList[0])
+      } else {
+        this.err = true
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
 

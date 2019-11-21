@@ -65,7 +65,7 @@ export const upload = (keyword, name, title, imgFile) => {
     region: 'oss-cn-beijing',
     accessKeyId: 'LTAI4FduW6Yf6AZY8ysPGmB9',
     accessKeySecret: '2eayaXUYwzCzK8HuOv8yrqRvtmsxd9',
-    bucket: 'gif-dio'
+    bucket: 'gif-pre'
   })
 
   async function func () {
@@ -145,27 +145,27 @@ export const deleteFavour = (GifId) => {
 
 export const addVerify = (GifId) => {
   return axios({
-    url: '/backend_insert_favour',
+    url: '/backend_verify',
     method: 'post',
     data: qs.stringify({
-      GifId: GifId
+      name: GifId
     })
   })
 }
 
 export const getVerifyList = () => {
   return axios({
-    url: '/backend_favour',
+    url: '/backend_toBeVerify',
     method: 'get'
   })
 }
 
 export const deleteVerify = (GifId) => {
   return axios({
-    url: '/backend_delete_favour',
+    url: '/backend_remove_verify',
     method: 'post',
     data: qs.stringify({
-      GifId: GifId
+      name: GifId
     })
   })
 }
@@ -183,5 +183,8 @@ export default {
   logout,
   addFavour,
   getFavourList,
-  deleteFavour
+  deleteFavour,
+  addVerify,
+  getVerifyList,
+  deleteVerify
 }

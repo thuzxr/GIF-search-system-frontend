@@ -134,9 +134,13 @@ export default {
   created: function () {
     this.$api.getFavourList().then(res => {
       console.log('in favourite: ', res)
-      if (res.result) {
+      if (res.result && res.result.length != 0) {
         this.err = false
-        this.imgList = res.result.map(function (item) {
+        var list = response.result
+        for (let item of list) {
+          item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
+        }
+        this.imgList = list.map(function (item) {
           var t = {
             title: item.Title,
             url: item.Oss_url,
