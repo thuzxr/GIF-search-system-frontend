@@ -17,26 +17,30 @@
 
     <div>
       <div class="row justify-content-center">
-        <!-- <img :src="modalImg.url" style="max-height:300px;"> -->
-        <img src="../assets/start.jpg" style="max-height:300px; max-width: 300px;">
+        <!-- <img :src="modalImg.url" style="max-height:300px; max-width: 90%"> -->
+        <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;">
       </div>
       <hr class="my-4" />
       <div class="row mt-3 align-items-center justify-content-between">
         <div class="col-6">
           <div class="media align-items-center" slot="title">
-            <span class="avatar avatar-sm rounded-circle">
+            <span class="avatar">
               <img src="../assets/dio.jpg">
             </span>
             <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3 col-4">
           <div class="row">
             <div class="col-4">
-              <i class="ni ni-satisfied dropdown-item-text text-red"></i>
+              <i class="ni ni-satisfied dropdown-item-text"
+                :class="[isliked ? 'text-red': 'text-blue']"
+                @click.stop="like"></i>
             </div>
             <div class="col-4">
-              <i class="ni ni-favourite-28 dropdown-item-text text-red"></i>
+              <i class="ni ni-favourite-28 dropdown-item-text"
+                :class="[isliked ? 'text-red': 'text-blue']"
+                @click.stop="favour"></i>
             </div>
           </div>
         </div>
@@ -64,6 +68,12 @@ export default {
     }
   },
   computed: {
+    isliked() {
+      return false
+    },
+    isfavoured() {
+      return false
+    },
     noImg () {
       return (this.err || !this.imgList || this.imgList.length === 0)
     },
@@ -73,7 +83,6 @@ export default {
   },
   methods: {
     clickImg: function (img) {
-      console.log('logined: ', this.logined)
       this.modalImg = img
       this.showModal(true)
     },
