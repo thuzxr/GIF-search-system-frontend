@@ -123,9 +123,9 @@ export const adminRoutes = [
         component: () => import('./views/Manage.vue')
       },
       {
-        path: '/icons',
-        name: 'icons',
-        component: () => import('./views/Icons.vue')
+        path: '/stats',
+        name: 'stats',
+        component: () => import('./views/Dashboard.vue')
       }
     ]
   }
