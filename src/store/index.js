@@ -47,6 +47,9 @@ export default new Vuex.Store({
         state.favourList = new Set()
       }
     },
+    removeFavour(state, name) {
+      state.favourList.delete(name)
+    },
     setColor (state, color) {
       state.themeColor = color
       storage.setItem('themeColor', color)

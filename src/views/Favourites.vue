@@ -22,7 +22,8 @@
           </div>
       </div>
     </div>
-    <div class="row justify-content-center mt-xl-9 mt-lg-9 mt-md-7 mt-sm-5 mt-3 mb-xl-9 mb-lg-9 mb-md-7 mb-sm-5 mt-3">
+    <div class="row justify-content-center"
+         :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-3' ]">
       <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
         <div class="card card-profile shadow">
           <div class="card-body pt-0 pt-4">
@@ -51,8 +52,8 @@
             <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
           </div>
         </div>
-        <div class="col-3">
-          <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0">remove</base-button>
+        <div class="col-6">
+          <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove'>remove</base-button>
         </div>
       </div>
     </div>
@@ -108,6 +109,23 @@ export default {
         alert(err)
         console.log(err)
       })
+    },
+    remove: function () {
+      var i = 0;
+      for (i = 0; i < this.imgList.length; i++) {
+        if (this.imgList[i].name === this.modalImg.name) {
+          break;
+        }
+      }
+      this.imgList.splice(i, 1)
+      this.$store.commit('removeFavour', this.modalImg.name)
+      this.$api.deleteFavour(this.modalImg.name).then(res => {
+        this.$notify('success to remove the gif!', 'success')
+      }).catch(err => {
+        alert(err)
+        console.log(err)
+      })
+      this.showModal(false)
     }
   },
   components: {
