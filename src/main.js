@@ -17,7 +17,7 @@ Vue.use(ArgonDashboard)
 Vue.use(api)
 
 Vue.config.productionTip = false
-
+require('./mock.js')
 new Vue({
   router,
   store,
