@@ -37,7 +37,7 @@ export default new Vuex.Store({
     favourImg (state, name) {
       state.favourList.has(name) ? state.favourList.delete(name) : state.favourList.add(name)
     },
-    clearFavourImg (state) {
+    clearFavourList (state) {
       state.favourList.clear()
     },
     setFavourList (state, favours) {

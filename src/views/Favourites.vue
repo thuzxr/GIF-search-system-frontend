@@ -15,7 +15,14 @@
         </div>
     </base-header>
     <div class="container">
-    <div class="row justify-content-center mt-xl-9 mt-lg-9 mt-md-7 mt-sm-5 mb-xl-9 mb-lg-9 mb-md-7 mb-sm-5 ">
+    <div class="row justify-content-end" v-show="!noImg">
+      <div class="col-4">
+          <div class="text-center">
+            <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0">clear</base-button>
+          </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-xl-9 mt-lg-9 mt-md-7 mt-sm-5 mt-3 mb-xl-9 mb-lg-9 mb-md-7 mb-sm-5 mt-3">
       <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
         <div class="card card-profile shadow">
           <div class="card-body pt-0 pt-4">
@@ -25,13 +32,30 @@
           </div>
         </div>
       </div>
-      <img-gallery v-bind:imgList="imgList" :pop="true" @clickImg="clickImg"></img-gallery>
+      <img-gallery v-bind:imgList="imgList" :pop="true" @clickImg="clickImg" v-show="!noImg"></img-gallery>
         <modal :show="modalShow" @update:show="showModal">
           <h4 slot="header">{{ modalImg.title }}</h4>
 
-          <div>
-
+              <div>
+      <div class="row justify-content-center">
+        <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
+        <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
+      </div>
+      <hr class="my-4" />
+      <div class="row mt-3 align-items-center justify-content-between">
+        <div class="col-6">
+          <div class="media align-items-center" slot="title">
+            <span class="avatar">
+              <img src="../assets/dio.jpg">
+            </span>
+            <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
           </div>
+        </div>
+        <div class="col-3">
+          <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0">remove</base-button>
+        </div>
+      </div>
+    </div>
         </modal>
     </div>
     </div>

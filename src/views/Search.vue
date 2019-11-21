@@ -94,7 +94,7 @@ export default {
     clickImg: function (img) {
       this.modalImg = img
       this.isliked = this.$store.state.likeList.has(img.name)
-      this.isfavoured =this.$store.state.favourList.has(img.name)
+      this.isfavoured = this.$store.state.favourList.has(img.name)
       this.showModal(true)
     },
     showModal: function (visibility) {
