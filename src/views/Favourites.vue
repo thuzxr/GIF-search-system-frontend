@@ -136,7 +136,7 @@ export default {
       console.log('in favourite: ', res)
       if (res.result && res.result.length != 0) {
         this.err = false
-        var list = response.result
+        var list = res.result
         for (let item of list) {
           item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
         }

@@ -4,7 +4,7 @@
     <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
       <div class="bgbox">
         <div style="position:relative;">
-          <img :src="img.url" @click="saveName(img.name)" v-if="!pop">
+          <img :src="img.url" v-if="!pop">
           <img :src="img.url" @click.stop="clickImg(img)" v-if="pop">
         </div>
       </div>
@@ -18,11 +18,8 @@ import store from '@/store'
 export default {
   name: 'ImgGallery',
   methods: {
-    saveName: function (name) {
-      store.commit('setImgName', name)
-      console.log(store.state.lastClick.name)
-    },
     clickImg (img) {
+      store.commit('setImgName', name)
       this.$emit('clickImg', img)
     }
   },
