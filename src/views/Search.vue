@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @keyup.esc="showModal(false)">
   <div class="row justify-content-around mt-3"
        :class="[noImg ? 'mt-lg-9 mt-md-7 mt-sm-5': 'mt-lg-5 mt-md-4']">
       <search-input @doSearch="search"></search-input>
@@ -94,11 +94,11 @@ export default {
     clickImg: function (img) {
       this.modalImg = img
       this.isliked = this.$store.state.likeList.has(img.name)
-      console.log('click img: ', this.$store.favourList)
-      this.isfavoured = this.$store.state.favourList.has(img.name)
+      this.isfavoured =this.$store.state.favourList.has(img.name)
       this.showModal(true)
     },
     showModal: function (visibility) {
+      console.log('in showmodal')
       this.modalShow = visibility
     },
     search: function (text) {
