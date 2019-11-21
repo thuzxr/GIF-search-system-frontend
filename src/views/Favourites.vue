@@ -39,14 +39,20 @@
 </template>
 <script>
 import ImgGallery from '../components/ImgGallery.vue'
-import store from '@/store'
+// import store from '@/store'
 
 export default {
   name: 'Recommend',
   data () {
     return {
       imgList: [],
-      err: false
+      err: false,
+      modalShow: false,
+      modalImg: {
+        name: '',
+        url: '',
+        title: ''
+      }
     }
   },
   computed: {
@@ -58,9 +64,19 @@ export default {
     }
   },
   methods: {
+    clickImg: function (img) {
+      this.modalImg = img
+      this.showModal(true)
+    },
+    showModal: function (visibility) {
+      this.modalShow = visibility
+    }
   },
   components: {
     'img-gallery': ImgGallery
+  },
+  created: function () {
+
   }
 }
 

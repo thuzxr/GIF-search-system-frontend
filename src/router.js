@@ -79,6 +79,11 @@ export const userRoutes = [
         path: '/theme',
         name: 'theme',
         component: () => import('@/views/Theme.vue')
+      },
+      {
+        path: '/favourites',
+        name: 'favourites',
+        component: () => import('@/views/Favourites.vue')
       }
     ]
   }

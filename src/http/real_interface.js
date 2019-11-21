@@ -103,9 +103,8 @@ export const uploadUserInfo = (userInfo) => {
 }
 
 export const requestPerm = () => {
-  var realUrl = '/backend_userperm'
   return axios({
-    url: realUrl,
+    url: '/backend_userperm',
     method: 'get'
   })
 }
@@ -117,7 +116,7 @@ export const logout = () => {
   })
 }
 
-export const add_favour = (GifId) => {
+export const addFavour = (GifId) => {
   return axios({
     url: '/insert_favour',
     method: 'post',
@@ -127,12 +126,19 @@ export const add_favour = (GifId) => {
   })
 }
 
-export const delete_favour = (GifIds) => {
+export const getFavourList = () => {
+  return axios({
+    url: '/favour',
+    method: 'get'
+  })
+}
+
+export const deleteFavour = (GifId) => {
   return axios({
     url: '/delete_favour',
     method: 'post',
     data: qs.stringify({
-      GifIds: GifIds
+      GifId: GifId
     })
   })
 }
