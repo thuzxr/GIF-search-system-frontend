@@ -12,7 +12,7 @@
   </div> -->
   <img-gallery v-bind:imgList="imgList" v-if="!err" :pop="logined" @clickImg="clickImg"></img-gallery>
 
-    <modal :show="modalShow" @update:show="showModal">
+  <modal :show="modalShow" @update:show="showModal">
     <h4 slot="header">{{ modalImg.title }}</h4>
 
     <div>
@@ -84,10 +84,17 @@ export default {
     favour: function () {
       this.isfavoured = !this.isfavoured
       this.$store.commit('favourImg', this.modalImg.name)
+      this.$api.addFavour(this.modalImg.name).then(res => {
+        this.$notify(res.status, 'success')
+      }).catch(err => {
+        alert(err)
+        console.log(err)
+      })
     },
     clickImg: function (img) {
       this.modalImg = img
       this.isliked = this.$store.state.likeList.has(img.name)
+      console.log('click img: ', this.$store.favourList)
       this.isfavoured = this.$store.state.favourList.has(img.name)
       this.showModal(true)
     },
@@ -110,7 +117,6 @@ export default {
             }
             return t
           })
-          console.log(list[0])
         } else {
           this.err = true
           this.imgList = []

@@ -76,7 +76,27 @@ export default {
     'img-gallery': ImgGallery
   },
   created: function () {
-
+    this.$api.getFavourList().then(res => {
+      console.log('in favourite: ', res)
+      if (res.result) {
+        this.err = false
+        this.imgList = res.result.map(function (item) {
+          var t = {
+            title: item.Title,
+            url: item.Oss_url,
+            thumbnail: item.Oss_url,
+            name: item.Name
+          }
+          return t
+        })
+        console.log('in get favour: ', this.imgList[0])
+      } else {
+        this.err = true
+        this.$store.commit('clearFavourList')
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
 

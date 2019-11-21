@@ -118,7 +118,7 @@ export const logout = () => {
 
 export const addFavour = (GifId) => {
   return axios({
-    url: '/insert_favour',
+    url: '/backend_insert_favour',
     method: 'post',
     data: qs.stringify({
       GifId: GifId
@@ -128,14 +128,14 @@ export const addFavour = (GifId) => {
 
 export const getFavourList = () => {
   return axios({
-    url: '/favour',
+    url: '/backend_favour',
     method: 'get'
   })
 }
 
 export const deleteFavour = (GifId) => {
   return axios({
-    url: '/delete_favour',
+    url: '/backend_delete_favour',
     method: 'post',
     data: qs.stringify({
       GifId: GifId
@@ -153,5 +153,8 @@ export default {
   uploadUserInfo,
   getCaptchaId,
   requestPerm,
-  logout
+  logout,
+  addFavour,
+  getFavourList,
+  deleteFavour
 }

@@ -27,15 +27,26 @@ export default new Vuex.Store({
       zipCode: '',
       about: ''
     },
-    favourList: new Set(),
-    likeList: new Set()
+    favourList: {},
+    likeList: {}
   },
   mutations: {
     likeImg (state, name) {
-      state.likeList.has(name) ? state.likeList.delete(name) : state.likeList.add(name)
+      if (state.likeList.name) {
+        delete state.likeList.name
+      } else {
+        state.likeList[name] = name
+      }
     },
     favourImg (state, name) {
-      state.favourList.has(name) ? state.favourList.delete(name) : state.favourList.add(name)
+      if (state.favourList.name) {
+        delete state.favourList.name
+      } else {
+        state.favourList[name] = name
+      }
+    },
+    clearFavourImg (state) {
+      state.favourList.clear()
     },
     setColor (state, color) {
       state.themeColor = color
