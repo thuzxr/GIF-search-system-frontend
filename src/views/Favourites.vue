@@ -18,7 +18,7 @@
     <div class="row justify-content-end" v-show="!noImg">
       <div class="col-4">
           <div class="text-center">
-            <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0">clear</base-button>
+            <base-button type="white" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click="clear">clear</base-button>
           </div>
       </div>
     </div>
@@ -94,6 +94,20 @@ export default {
     },
     showModal: function (visibility) {
       this.modalShow = visibility
+    },
+    clear: function () {
+      let namelist = ''
+      for (let img of this.imgList) {
+        namelist += img.name + ' '
+      }
+      this.imgList = []
+      this.$store.commit('clearFavourList')
+      this.$api.deleteFavour(namelist).then(res => {
+        this.$notify('cleared all favour gifs!', 'success')
+      }).catch(err => {
+        alert(err)
+        console.log(err)
+      })
     }
   },
   components: {
