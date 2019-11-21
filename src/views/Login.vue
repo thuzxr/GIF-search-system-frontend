@@ -67,13 +67,25 @@ export default {
         return
       }
       this.$api.login(this.model.name, this.model.password).then(res => {
-        let user = {
+        console.log(res)
+        this.$store.commit('setUserInfo', {
+          birthday: res.Birthday,
+          height: res.Height,
+          email: res.Email,
+          firstName: res.FirstName,
+          lastName: res.LastName,
+          address: res.Addr,
+          city: res.City,
+          country: res.Country,
+          zipCode: res.ZipCode,
+          about: res.About
+        })
+        this.$store.commit('setFavourList', res.favor)
+        this.$store.commit('login', {
           name: this.model.name,
           perm: res.status
-        }
-        this.$store.commit('login', user)
+        })
         console.log('login succ, perm: ' + res.status)
-        console.log('login succ, perm: ' + this.$store.state.user.perm)
         resetRouter()
         this.$router.push('/')
       }).catch(err => {

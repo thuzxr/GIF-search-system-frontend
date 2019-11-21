@@ -94,7 +94,6 @@ export default {
   },
   methods: {
     closeModal () {
-      console.log('close modal')
       this.$emit('update:show', false)
       this.$emit('close')
     }

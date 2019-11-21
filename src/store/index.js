@@ -40,6 +40,13 @@ export default new Vuex.Store({
     clearFavourImg (state) {
       state.favourList.clear()
     },
+    setFavourList (state, favours) {
+      if (favours) {
+        state.favourList = new Set(favours)
+      } else {
+        state.favourList = new Set()
+      }
+    },
     setColor (state, color) {
       state.themeColor = color
       storage.setItem('themeColor', color)

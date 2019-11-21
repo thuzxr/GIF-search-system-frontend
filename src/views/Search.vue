@@ -98,7 +98,6 @@ export default {
       this.showModal(true)
     },
     showModal: function (visibility) {
-      console.log('in showmodal')
       this.modalShow = visibility
     },
     search: function (text) {
