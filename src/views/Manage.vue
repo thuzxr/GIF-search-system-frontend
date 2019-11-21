@@ -43,10 +43,9 @@
           </div>
         </div>
         <img-gallery v-bind:imgList="imgList" :pop="true" @clickImg="clickImg" v-show="!noImg"></img-gallery>
-          <modal :show="modalShow" @update:show="showModal">
+      <modal :show="modalShow" @update:show="showModal">
             <h4 slot="header">{{ modalImg.title }}</h4>
-
-                <div>
+      <div>
         <div class="row justify-content-center">
           <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
           <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
@@ -68,7 +67,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import ImgGallery from '../components/ImgGallery.vue'
 
 export default {
