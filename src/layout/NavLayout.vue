@@ -105,6 +105,7 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('logout')
+      this.$notify('退出成功！', 'success')
     }
   }
 }

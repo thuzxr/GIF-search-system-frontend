@@ -117,6 +117,26 @@ export const logout = () => {
   })
 }
 
+export const add_favour = (GifId) => {
+  return axios({
+    url: '/insert_favour',
+    method: 'post',
+    data: qs.stringify({
+      GifId: GifId
+    })
+  })
+}
+
+export const delete_favour = (GifIds) => {
+  return axios({
+    url: '/delete_favour',
+    method: 'post',
+    data: qs.stringify({
+      GifIds: GifIds
+    })
+  })
+}
+
 // 默认全部导出
 export default {
   login,
