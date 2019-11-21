@@ -7,9 +7,9 @@
   <div class="row justify-content-around mt-3">
       <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
   </div>
-  <div class="row justify-content-around mt-3">
+  <!-- <div class="row justify-content-around mt-3">
       <img src="../assets/dio.jpg" @click.stop="clickImg({name:'dio brando', url:'../assets/dio.jpg', title: 'dio brando'})">
-  </div>
+  </div> -->
   <img-gallery v-bind:imgList="imgList" v-if="!err" :pop="logined" @clickImg="clickImg"></img-gallery>
 
     <modal :show="modalShow" @update:show="showModal">
@@ -17,8 +17,8 @@
 
     <div>
       <div class="row justify-content-center">
-        <!-- <img :src="modalImg.url" style="max-height:300px; max-width: 90%"> -->
-        <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;">
+        <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
+        <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
       </div>
       <hr class="my-4" />
       <div class="row mt-3 align-items-center justify-content-between">
@@ -30,17 +30,17 @@
             <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
           </div>
         </div>
-        <div class="col-md-3 col-4">
+        <div class="col-3">
           <div class="row">
-            <div class="col-4">
-              <i class="ni ni-satisfied dropdown-item-text"
+            <div class="col-6">
+              <i class="ni ni-satisfied text"
                 :class="[isliked ? 'text-red': 'text-blue']"
                 @click.stop="like"></i>
             </div>
-            <div class="col-4">
-              <i class="ni ni-favourite-28 dropdown-item-text"
-                :class="[isliked ? 'text-red': 'text-blue']"
-                @click.stop="favour"></i>
+            <div class="col-6">
+              <i class="ni ni-favourite-28 text"
+                :class="[isfavoured ? 'text-red': 'text-blue']"
+                @click="favour"></i>
             </div>
           </div>
         </div>
@@ -52,6 +52,7 @@
 <script>
 import SearchInput from '../components/SearchInput.vue'
 import ImgGallery from '../components/ImgGallery.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Search',
@@ -64,26 +65,30 @@ export default {
         name: '',
         url: '',
         title: ''
-      }
+      },
+      isliked: false,
+      isfavoured: false
     }
   },
-  computed: {
-    isliked() {
-      return false
-    },
-    isfavoured() {
-      return false
-    },
-    noImg () {
+  computed: mapState({
+    noImg (state) {
       return (this.err || !this.imgList || this.imgList.length === 0)
     },
-    logined () {
-      return this.$store.state.user.perm !== '0'
-    }
-  },
+    logined: state => (state.user.perm !== '0')
+  }),
   methods: {
+    like: function () {
+      this.isliked = !this.isliked
+      this.$store.commit('likeImg', this.modalImg.name)
+    },
+    favour: function () {
+      this.isfavoured = !this.isfavoured
+      this.$store.commit('favourImg', this.modalImg.name)
+    },
     clickImg: function (img) {
       this.modalImg = img
+      this.isliked = this.$store.state.likeList.has(img.name)
+      this.isfavoured = this.$store.state.favourList.has(img.name)
       this.showModal(true)
     },
     showModal: function (visibility) {
