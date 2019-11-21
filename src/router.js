@@ -121,11 +121,6 @@ export const adminRoutes = [
         path: '/manage',
         name: 'manage',
         component: () => import('./views/Manage.vue')
-      },
-      {
-        path: '/stats',
-        name: 'stats',
-        component: () => import('./views/Dashboard.vue')
       }
     ]
   }
