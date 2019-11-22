@@ -14,7 +14,7 @@
                       <img src="../assets/dio.jpg">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                      <span class="mb-0 text-sm  font-weight-bold">dio brando</span>
+                      <span class="mb-0 text-sm  font-weight-bold">{{username}}</span>
                     </div>
                   </div>
 
@@ -40,6 +40,9 @@
     </base-nav>
 </template>
 <script>
+
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -48,6 +51,9 @@ export default {
       searchQuery: ''
     }
   },
+  computed: mapState({
+    username: state => state.user.name
+  }),
   methods: {
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)

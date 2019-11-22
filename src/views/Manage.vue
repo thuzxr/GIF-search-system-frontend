@@ -152,7 +152,6 @@ export default {
   },
   created: function () {
     this.$api.getVerifyList().then(res => {
-      console.log('in manage: ', res)
       if (res.result && res.result.length != 0) {
         this.err = false
         var list = res.result
@@ -168,7 +167,6 @@ export default {
           }
           return t
         })
-        console.log('in get verify: ', this.imgList[0])
       } else {
         this.err = true
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="container" @keyup.esc="showModal(false)">
   <div class="row justify-content-around mt-3"
-       :class="[noImg ? 'mt-lg-9 mt-md-7 mt-sm-5': 'mt-lg-5 mt-md-4']">
+       :class="[noImg ? 'mt-lg-9 mt-md-7 mt-9': 'mt-lg-5 mt-md-4']">
       <search-input @doSearch="search"></search-input>
   </div>
   <div class="row justify-content-around mt-3">
@@ -88,7 +88,6 @@ export default {
         this.$notify(res.status, 'success')
       }).catch(err => {
         alert(err)
-        console.log(err)
       })
     },
     clickImg: function (img) {
@@ -102,7 +101,6 @@ export default {
     },
     search: function (text) {
       this.$api.search(text).then(response => {
-        console.log(response.result)
         if (response.status === 'succeed') {
           this.err = false
           var list = response.result
@@ -123,8 +121,8 @@ export default {
           this.imgList = []
           this.$notify('Oops! 找不到你想要的Gif', 'info')
         }
-      }).catch(res => {
-        alert(res)
+      }).catch(err => {
+        this.$notify(err.message, 'warning')
       })
     }
   },

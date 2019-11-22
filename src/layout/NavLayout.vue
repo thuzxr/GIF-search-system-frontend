@@ -18,11 +18,6 @@
                 <!-- Collapse header -->
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <router-link to="/">
-                                <img src="../assets/start.jpg">
-                            </router-link>
-                        </div>
                         <div class="col-6 collapse-close">
                             <button type="button"
                                     @click="closeMenu"

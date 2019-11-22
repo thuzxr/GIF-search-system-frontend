@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <h1 class="display-2 text-white">Upload</h1>
-                    <p class="text-white mt-0 mb-5">This is upload page. You can share you favourite gif to others!</p>
+                    <p class="text-white mt-0 mb-5">This is upload page. You can share your favourite gifs to other people!</p>
                 </div>
             </div>
         </div>
@@ -129,12 +129,6 @@ export default {
   }),
   methods: {
     onChange () {
-      console.log('New picture selected!')
-      if (this.$refs.pictureInput.image) {
-        console.log('Picture loaded. ??? ' + this.$refs.pictureInput.image.substr(30, 32))
-      } else {
-        console.log('FileReader API not supported: use the <form>, Luke!')
-      }
     },
     upload: function () {
       if (!this.$refs.pictureInput.image) {
@@ -157,10 +151,8 @@ export default {
         this.label += ' ' + this.tag2
       }
       let name = this.$refs.pictureInput.image.substr(100, 32)
-      console.log(name)
-
       this.$api.upload(this.label, name, this.title, this.$refs.pictureInput.file).then(res => {
-        alert('上传成功！')
+        this.$notify('gif uploaded ~', 'success')
       }).catch(err => {
         alert(err)
       })

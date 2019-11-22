@@ -10,7 +10,7 @@ const storage = localStorage
 
 export default new Vuex.Store({
   state: {
-    themeColor: storage.getItem('themeColor') ? storage.getItem('themeColor') : 'green',
+    themeColor: storage.getItem('themeColor') ? storage.getItem('themeColor') : 'red',
     user: storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' },
     lastClick: {
       name: ''
@@ -53,12 +53,10 @@ export default new Vuex.Store({
     setColor (state, color) {
       state.themeColor = color
       storage.setItem('themeColor', color)
-      console.log('color changed to ' + color)
     },
     setPerm (state, n) {
       state.user.perm = n.toString()
       storage.setItem('user', qs.stringify(state.user))
-      console.log('in setPerm' + state.user.perm)
     },
     login (state, userState) {
       state.user.perm = userState.perm.toString()
@@ -75,7 +73,6 @@ export default new Vuex.Store({
     setUserInfo (state, info) {
       Object.assign(state.userInfo, info)
       storage.setItem('userinfo', qs.stringify(state.userInfo))
-      console.log('succeed to save user info!')
     }
   },
   actions: {

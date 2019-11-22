@@ -35,7 +35,6 @@ const NotificationStore = {
     this.state.push(notification)
   },
   notify (notification, type) {
-    console.log('deep in notify')
     this.setType(type)
     if (Array.isArray(notification)) {
       notification.forEach(notificationInstance => {

@@ -63,8 +63,8 @@ export const recommend = (name) => {
 export const upload = (keyword, name, title, imgFile) => {
   let client = new OSS({
     region: 'oss-cn-beijing',
-    accessKeyId: 'LTAI4FduW6Yf6AZY8ysPGmB9',
-    accessKeySecret: '2eayaXUYwzCzK8HuOv8yrqRvtmsxd9',
+    accessKeyId: 'LTAI4FwPnSuLys8DVZwNYnZg',
+    accessKeySecret: 'cSxZT1giVcXkTnMBcj9c1gsSwZHEuo',
     bucket: 'gif-pre'
   })
 

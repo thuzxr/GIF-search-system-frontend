@@ -19,7 +19,7 @@ export default {
   name: 'ImgGallery',
   methods: {
     clickImg (img) {
-      store.commit('setImgName', name)
+      store.commit('setImgName', img.name)
       this.$emit('clickImg', img)
     }
   },

@@ -128,12 +128,9 @@ export const adminRoutes = [
 
 const getRouter = () => {
   var currRouter = defaultRoutes
-  console.log('getRouter perm: ' + store.state.user.perm)
   if (store.state.user.perm === '1') {
-    console.log('succ to change to user router')
     currRouter = userRoutes
   } else if (store.state.user.perm === '2') {
-    console.log('succ to change to admin router')
     currRouter = adminRoutes
   }
   return new Router({

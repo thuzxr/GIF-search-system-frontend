@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-xl-8 text-center">
                         <h1 class="display-2 text-white">Hello {{ username }}</h1>
-                        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+                        <p class="text-white mt-0 mb-5">This is your profile page. Try to add some basic information to your profile card~</p>
                     </div>
                 </div>
             </div>
@@ -18,21 +18,18 @@
         <div class="container-fluid mt--7 mb-5">
             <div class="row">
                 <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-
                     <div class="card card-profile shadow">
                         <div class="row justify-content-center">
                             <div class="col-lg-3 order-lg-2">
-                                <div class="card-profile-image">
-                                    <a href="#">
-                                        <img src="../assets/dio.jpg" class="rounded-circle">
-                                    </a>
+                                <div class="card-profile-image" @click="ComingSoon">
+                                    <img src="../assets/dio.jpg" class="rounded-circle">
                                 </div>
                             </div>
                         </div>
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                             <div class="d-flex justify-content-between">
-                                <base-button size="sm" type="info" class="mr-4">Connect</base-button>
-                                <base-button size="sm" type="default" class="float-right">Message</base-button>
+                                <base-button size="sm" type="info" class="mr-4" @click="ComingSoon">Connect</base-button>
+                                <base-button size="sm" type="default" class="float-right" @click="ComingSoon">Message</base-button>
                             </div>
                         </div>
                         <div class="card-body pt-0 pt-md-4">
@@ -40,40 +37,43 @@
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                         <div>
-                                            <h3 class="mb-0">22</h3>
+                                            <h3 class="mb-0">0</h3>
                                             <span class="description">Friends</span>
                                         </div>
                                         <div>
-                                            <h3 class="mb-0">10</h3>
+                                            <h3 class="mb-0">0</h3>
                                             <span class="description">Photos</span>
                                         </div>
                                         <div>
-                                            <h3 class="mb-0">89</h3>
+                                            <h3 class="mb-0">0</h3>
                                             <span class="description">Comments</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h3>
+                                <h3 v-show="firstName !== ''">
                                     {{ firstName }} {{ lastName }}
                                 </h3>
-                                <div class="h5 font-weight-300">
+                                <h3 v-show="firstName === ''">
+                                    {{ username }}
+                                </h3>
+                                <div class="h5 font-weight-300" v-show="birthday !== ''">
                                     <!-- <i class="ni location_pin mr-2">birthday: April 4th, 1868</i> -->
                                     <i class="ni location_pin mr-2">birthday: {{ birthday }}</i>
                                 </div>
-                                <div class="h5 font-weight-300">
+                                <div class="h5 font-weight-300" v-show="height !== ''">
                                     <!-- <i class="ni location_pin mr-2">height: 6'5" (195 cm)</i> -->
                                     <i class="ni location_pin mr-2">height: {{ height }}</i>
                                 </div>
-                                <div class="h5 font-weight-300">
+                                <div class="h5 font-weight-300" v-show="city !== ''">
                                     <!-- <i class="ni location_pin mr-2">London, England -- Cairo, Egypt</i> -->
                                     <i class="ni location_pin mr-2">{{ city }}, {{ country }}</i>
                                 </div>
-                                <hr class="my-4" />
+                                <hr class="my-4" v-show="about !== ''"/>
                                     <!-- <h4>I'm through with being a mere mortal, jojo!</h4> -->
                                     <h4>{{ about }}</h4>
-                                <a href="#">Show more</a>
+                                <h3 @click="ComingSoon"><u>Show more</u></h3>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                     <h3 class="mb-0">My account</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary" @click="submit">Settings</a>
+                                    <a href="#!" class="btn btn-sm btn-primary" @click="submit">submit</a>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                     <div class="col-md-12">
                                         <base-input alternative=""
                                                     label="Email address"
-                                                    placeholder="jesse@example.com"
+                                                    placeholder="dio@jojo.com"
                                                     input-classes="form-control-alternative"
                                                     v-model="model.email"
                                         />
@@ -231,13 +231,15 @@ export default {
   }),
   methods: {
     submit: function () {
-      console.log('click submit!')
-      this.$store.commit('setUserInfo', this.model)
       this.$api.uploadUserInfo(this.model).then(res => {
-        alert('修改成功！')
+        this.$notify('uploaded ~', 'success')
+        this.$store.commit('setUserInfo', this.model)
       }).catch(err => {
         alert(err.message)
       })
+    },
+    ComingSoon: function () {
+        this.$notify('coming soon ~', 'info')
     }
   },
   mounted () {

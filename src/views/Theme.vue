@@ -30,32 +30,32 @@
                               <div class="row justify-content-around mt-3 mb-3">
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-orange border-0 col-8" @click.stop="change('orange')">orange</base-button>
+                                      <base-button type="primary" class="my-4 bg-orange border-0 col-md-8 col-10" @click.stop="change('orange')">orange</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-purple border-0 col-8" @click.stop="change('purple')">purple</base-button>
+                                      <base-button type="primary" class="my-4 bg-purple border-0 col-md-8 col-10" @click.stop="change('purple')">purple</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-green border-0 col-8" @click.stop="change('green')">green</base-button>
+                                      <base-button type="primary" class="my-4 bg-green border-0 col-md-8 col-10" @click.stop="change('green')">green</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-red border-0 col-8" @click.stop="change('red')">crimson</base-button>
+                                      <base-button type="primary" class="my-4 bg-red border-0 col-md-8 col-10" @click.stop="change('red')">crimson</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-light border-0 col-8" @click.stop="change('light')">light</base-button>
+                                      <base-button type="primary" class="my-4 bg-light border-0 col-md-8 col-10" @click.stop="change('light')">light</base-button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="text-center">
-                                      <base-button type="primary" class="my-4 bg-dark border-0  col-8" @click.stop="change('dark')">dark</base-button>
+                                      <base-button type="primary" class="my-4 bg-dark border-0 col-md-8 col-10" @click.stop="change('dark')">dark</base-button>
                                     </div>
                                 </div>
                               </div>

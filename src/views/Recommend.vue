@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <img-gallery v-bind:imgList="imgList" v-if="!noImg" :pop="true" @clickImg="clickImg"></img-gallery>
+      <img-gallery v-bind:imgList="imgList" v-if="!noImg" :pop="false"></img-gallery>
 
         <modal :show="modalShow" @update:show="showModal">
     <h4 slot="header">{{ modalImg.title }}</h4>
@@ -115,6 +115,7 @@ export default {
     },
     clickImg: function (img) {
       this.modalImg = img
+      console.log('in recommand click: ' + img.title)
       this.isliked = this.$store.state.likeList.has(img.name)
       this.isfavoured = this.$store.state.favourList.has(img.name)
       this.showModal(true)
@@ -124,11 +125,9 @@ export default {
     },
     recommend: function () {
       var imgName = store.state.lastClick.name
-      console.log(imgName)
       this.$api.recommend(imgName).then(response => {
         if (response.status === 'succeed' && response.result) {
           this.err = false
-          console.log(response)
           var list = response.result
           for (let item of list) {
             item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)

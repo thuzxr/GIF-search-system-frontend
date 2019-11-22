@@ -103,16 +103,16 @@ export default {
   methods: {
     register () {
       if (this.model.name === '') {
-        this.$notify('用户名不能为空', 'warning')
+        this.$notify('name cannot be empty', 'warning')
       } else if (this.model.password == '') {
-        this.$notify('请输入密码', 'warning')
+        this.$notify('password cannot be empty', 'warning')
       } else if (this.model.confirm_password == '') {
-        this.$notify('请确认密码', 'warning')
+        this.$notify('please confirm your password', 'warning')
       } else if (this.model.password != this.model.confirm_password) {
-        this.$notify('两次密码不一致', 'warning')
+        this.$notify('two passwords are different', 'warning')
       } else {
         this.$api.register(this.model.name, this.model.password, this.model.vericode, this.model.captchaId).then(response => {
-          if (response.status === '验证码错误') {
+          if (response.status === 'wrong verification code') {
             this.$notify(response.status, 'warning')
             this.getCaptchaImgUrl()
           } else {
@@ -131,7 +131,6 @@ export default {
       this.$api.getCaptchaId().then(res => {
         this.model.captchaId = res.captchaId
         this.model.captchaImgUrl = config.baseURL + '/get_veri/' + res.captchaId + '.png'
-        console.log('captchaId' + this.model.captchaId)
       }).catch(err => {
         console.log(err)
       })
