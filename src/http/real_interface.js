@@ -1,6 +1,7 @@
 import axios from './axios'
 import qs from 'qs'
 import OSS from 'ali-oss'
+import store from '@/store'
 
 /*
  * 将所有接口统一起来便于维护
@@ -45,7 +46,10 @@ export const search = (keyword) => {
     method: 'get',
     withCredentials: false,
     params: {
-      key: keyword
+      key: keyword,
+      edge: store.state.filterThreshold,
+      type: store.state.searchType,
+      rank_type: store.state.rankType
     }
   })
 }

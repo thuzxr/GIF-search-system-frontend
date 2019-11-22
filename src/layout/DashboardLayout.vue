@@ -11,7 +11,7 @@
         <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
         <sidebar-item :link="{name: 'Upload', icon: 'ni ni-cloud-upload-96 text-green', path: '/upload'}"/>
         <sidebar-item :link="{name: 'Recommend', icon: 'ni ni-image text-orange', path: '/recommend'}"/>
-        <sidebar-item :link="{name: 'Theme', icon: 'ni ni-atom text-purple', path: '/theme'}"/>
+        <sidebar-item :link="{name: 'Settings', icon: 'ni ni-atom text-purple', path: '/setting'}"/>
         <sidebar-item :link="{name: 'Favourites', icon: 'ni ni-favourite-28 text-red', path: '/favourites'}"/>
 
       </template>
@@ -32,13 +32,13 @@
 </template>
 <script>
 import DashboardNavbar from './DashboardNavbar.vue'
-import ContentFooter from './ContentFooter.vue'
+// import ContentFooter from './ContentFooter.vue'
 import { FadeTransition } from 'vue2-transitions'
 
 export default {
   components: {
     DashboardNavbar,
-    ContentFooter,
+    // ContentFooter,
     FadeTransition
   },
   data () {

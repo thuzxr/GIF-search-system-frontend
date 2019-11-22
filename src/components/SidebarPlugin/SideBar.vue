@@ -7,7 +7,7 @@
                 <span class="navbar-toggler-icon"></span>
             </navbar-toggle-button>
             <router-link class="navbar-brand-img" to="/">
-                <h1>gif-dio</h1>
+                <h1>gifxiv</h1>
             </router-link>
 
             <slot name="mobile-right">
@@ -28,7 +28,7 @@
                           <i class="ni ni-single-02"></i>
                           <span>My profile</span>
                         </router-link>
-                        <router-link to="/theme" class="dropdown-item-text">
+                        <router-link to="/setting" class="dropdown-item-text">
                           <i class="ni ni-settings-gear-65"></i>
                           <span>Settings</span>
                         </router-link>
@@ -46,9 +46,7 @@
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                            <router-link to="/">
-                                <img :src="logo">
-                            </router-link>
+                            <h1> gifxiv </h1>
                         </div>
                         <div class="col-6 collapse-close">
                             <navbar-toggle-button @click.native="closeSidebar"></navbar-toggle-button>

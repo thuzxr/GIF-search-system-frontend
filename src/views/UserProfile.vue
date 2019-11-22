@@ -239,7 +239,7 @@ export default {
       })
     },
     ComingSoon: function () {
-        this.$notify('coming soon ~', 'info')
+      this.$notify('coming soon ~', 'info')
     }
   },
   mounted () {

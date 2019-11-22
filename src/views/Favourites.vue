@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="row justify-content-center"
-          :class="[noImg ? ' my-xl-9 my-lg-9 my-md-7 my-sm-5 my-3' : 'my-3' ]">
+          :class="[noImg ? ' my-md-7 my-sm-5 my-3' : 'my-3' ]">
         <div class="col-xl-6 col-md-8 col-10" v-show="noImg">
           <div class="card card-profile shadow">
             <div class="card-body pt-0 pt-4">

@@ -10,6 +10,9 @@ const storage = localStorage
 
 export default new Vuex.Store({
   state: {
+    filterThreshold: 5,
+    searchType: 'L',
+    rankType: 'Sim',
     themeColor: storage.getItem('themeColor') ? storage.getItem('themeColor') : 'red',
     user: storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' },
     lastClick: {
@@ -31,6 +34,16 @@ export default new Vuex.Store({
     likeList: new Set()
   },
   mutations: {
+    setRankType (state, type) {
+      state.rankType = type
+    },
+    setSearchType (state, type) {
+      state.searchType = type
+    },
+    setFilterThreshold (state, value) {
+      let val = parseInt(value * 10)
+      state.filterThreshold = val
+    },
     likeImg (state, name) {
       state.likeList.has(name) ? state.likeList.delete(name) : state.likeList.add(name)
     },

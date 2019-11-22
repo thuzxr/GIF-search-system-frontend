@@ -18,7 +18,6 @@ Vue.use(api)
 
 Vue.config.productionTip = false
 
-
 const on = Vue.prototype.$on
 
 // 点击事件防抖

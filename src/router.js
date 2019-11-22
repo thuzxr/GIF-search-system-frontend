@@ -76,8 +76,8 @@ export const userRoutes = [
         component: () => import('@/views/Upload.vue')
       },
       {
-        path: '/theme',
-        name: 'theme',
+        path: '/setting',
+        name: 'setting',
         component: () => import('@/views/Theme.vue')
       },
       {
