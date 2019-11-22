@@ -67,7 +67,6 @@ export default {
         return
       }
       this.$api.login(this.model.name, this.model.password).then(res => {
-        console.log(res)
         this.$store.commit('setUserInfo', {
           birthday: res.Birthday,
           height: res.Height,
@@ -85,7 +84,6 @@ export default {
           name: this.model.name,
           perm: res.status
         })
-        console.log('login succ, perm: ' + res.status)
         resetRouter()
         this.$router.push('/')
       }).catch(err => {

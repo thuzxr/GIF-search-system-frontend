@@ -104,6 +104,7 @@ export default {
         if (response.status === 'succeed') {
           this.err = false
           var list = response.result
+          console.log('result num: ', list.length)
           for (let item of list) {
             item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
           }
