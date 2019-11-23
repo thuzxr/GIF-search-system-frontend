@@ -6,7 +6,14 @@ const mockAxios = {//= >(option)//
       // if (option.name == "get")
       return Promise.resolve({ 
         status: 'succeed',
-        result: []
+        result: [
+          {
+            Oss_url: ""
+          },
+          {
+            Oss_url: ""
+          }
+        ]
       })
       // return (option) => {
       //   console.log("read option")
