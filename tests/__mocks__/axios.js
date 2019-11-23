@@ -4,14 +4,14 @@ const mockAxios = {//= >(option)//
       // console.log('in mockAxios')
       // console.log(option)
       // if (option.name == "get")
-      return Promise.resolve({ 
+      return Promise.resolve({
         status: 'succeed',
         result: [
           {
-            Oss_url: ""
+            Oss_url: ''
           },
           {
-            Oss_url: ""
+            Oss_url: ''
           }
         ]
       })
