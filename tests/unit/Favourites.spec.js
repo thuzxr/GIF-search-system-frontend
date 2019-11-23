@@ -4,7 +4,6 @@ import ImgGallery from '@/components/ImgGallery.vue'
 import Vuex from 'vuex'
 import api from '@/http/index'
 
-
 const fakeStore = new Vuex.Store({
   state: {
 
@@ -44,7 +43,6 @@ describe('Favourites', () => {
   it('clear should be called', () => {
     window.alert = jest.fn()
     wrapper.vm.clear()
-
   })
   it('remove should be called', () => {
     wrapper.vm.remove()
