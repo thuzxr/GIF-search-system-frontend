@@ -2,7 +2,8 @@ import Register from '@/views/Register'
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import api from '@/http/index'
-import axios from 'axios'
+//import axios from 'axios'
+import ArgonDashboard from '@/plugins/argon-dashboard'
 
 const fakeStore = new Vuex.Store({
   state: {},
@@ -13,7 +14,7 @@ const fakeStore = new Vuex.Store({
 const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(api)
-
+localVue.use(ArgonDashboard)
 describe('Register', () => {
   let wrapper
   beforeEach(() => {
