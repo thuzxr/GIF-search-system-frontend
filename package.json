@@ -122,6 +122,7 @@
       "src/views/Search.vue",
       "src/views/Recommend.vue",
       "src/views/Register.vue",
+      "src/views/Favourites.vue",
       "!src/router.js",
       "!**/node_modules/**"
     ]

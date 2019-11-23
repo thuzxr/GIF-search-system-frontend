@@ -1,4 +1,4 @@
-const mockAxios = {//= >(option)//
+const axios = {//= >(option)//
   create: jest.fn(() =>
     (option) => {
       // console.log('in mockAxios')
@@ -30,7 +30,7 @@ const mockAxios = {//= >(option)//
   //   console.log("in mockAxios.get: "+str+strr)
   // })
 }
-export default mockAxios
+export default axios
 
 // export default {
 //   //get: jest.fn(() => Promise.resolve({data: {}}))
