@@ -40,6 +40,7 @@ export const getCaptchaId = () => {
 }
 
 export const search = (keyword) => {
+  console.log('in http.real_interface.search')
   return axios({
     url: '/backend_search',
     method: 'get',

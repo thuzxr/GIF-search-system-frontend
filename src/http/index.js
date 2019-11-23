@@ -1,5 +1,5 @@
 // 导入所有接口
-//import apis from './fake_interface'
+// import apis from './fake_interface'
 import apis from './real_interface'
 
 const install = Vue => {
@@ -11,6 +11,7 @@ const install = Vue => {
     // 注意，此处挂载在 Vue 原型的 $api 对象上
     $api: {
       get () {
+        console.log('in http.index.js')
         return apis
       }
     }

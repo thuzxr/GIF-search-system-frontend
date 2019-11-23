@@ -5,7 +5,6 @@ import DashboardLayout from '@/layout/DashboardLayout'
 import store from '@/store'
 
 Vue.use(Router)
-                                                                              
 
 export const defaultRoutes = [
   {

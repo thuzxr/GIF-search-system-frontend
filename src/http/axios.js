@@ -2,7 +2,7 @@ import axios from 'axios'
 import config from './config'
 
 export default function $axios (options) {
-  console.log("in http.axios.js")
+  console.log('in http.axios.js')
   return new Promise((resolve, reject) => {
     const instance = axios.create({
       baseURL: config.baseURL,
@@ -91,50 +91,51 @@ export default function $axios (options) {
 
     // 请求处理
     instance(options).then(res => {
-      console.log("in axios.js:before resolve")
+      console.log('in axios.js:before resolve')
       resolve(res)
       return false
     }).catch(error => {
-      console.log("in axios.js: before reject")
+      reject(error)
+      console.log('in axios.js: before reject')
       if (error && error.response) {
-        switch (err.response.status) {
+        switch (error.response.status) {
           case 400:
-            err.message = '请求错误'
+            error.message = '请求错误'
             break
           case 401:
-            err.message = '未授权，请登录'
+            error.message = '未授权，请登录'
             break
           case 403:
-            err.message = '拒绝访问'
+            error.message = '拒绝访问'
             break
           case 404:
-            err.message = `请求地址出错: ${err.response.config.url}`
+            error.message = `请求地址出错: ${error.response.config.url}`
             break
           case 408:
-            err.message = '请求超时'
+            error.message = '请求超时'
             break
           case 500:
-            err.message = '服务器内部错误'
+            error.message = '服务器内部错误'
             break
           case 501:
-            err.message = '服务未实现'
+            error.message = '服务未实现'
             break
           case 502:
-            err.message = '网关错误'
+            error.message = '网关错误'
             break
           case 503:
-            err.message = '服务不可用'
+            error.message = '服务不可用'
             break
           case 504:
-            err.message = '网关超时'
+            error.message = '网关超时'
             break
           case 505:
-            err.message = 'HTTP版本不受支持'
+            error.message = 'HTTP版本不受支持'
             break
           default:
         }
-        console.error(err)
-        return Promise.reject(err) // 返回接口返回的错误信息
+        console.error(error)
+        return Promise.reject(error) // 返回接口返回的错误信息
       } else {
         console.log('request:', error)
         // 1. 判断请求超时
@@ -154,7 +155,6 @@ export default function $axios (options) {
         // }
         return Promise.reject(error) // 在调用的那边可以拿到(catch)你想返回的错误信息
       }
-      reject(error)
     })
   })
 }

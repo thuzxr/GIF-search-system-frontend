@@ -13,7 +13,7 @@
 <script>
 import SearchInput from '../components/SearchInput.vue'
 import ImgGallery from '../components/ImgGallery.vue'
-
+// import axios from 'axios'
 export default {
   name: 'Search',
   data () {
@@ -29,9 +29,17 @@ export default {
   },
   methods: {
     search: function (text) {
-      console.log(text)
+      console.log('in search.vue: ' + text)
+      // this.gettext = text
+      // this.err = false
+      // axios.get('https://www.baidu.com').then()
+      // this.$api.search(text)
+      // axios.get("123")("321")
+      // var x= axios.get("123")
+      // x("222222")
       this.$api.search(text).then(response => {
         console.log(response.result)
+        console.log('here')
         if (response.status === 'succeed') {
           console.log(response)
           this.err = false

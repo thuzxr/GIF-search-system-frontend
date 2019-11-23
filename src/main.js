@@ -4,7 +4,7 @@ import router from './router'
 
 import '@/permission'
 
-////import vGallery from 'v-gallery'
+/// /import vGallery from 'v-gallery'
 
 import ArgonDashboard from './plugins/argon-dashboard'
 
@@ -12,7 +12,7 @@ import api from './http/index'
 
 import store from '@/store'
 
-//Vue.use(vGallery)
+// Vue.use(vGallery)
 Vue.use(ArgonDashboard)
 Vue.use(api)
 
