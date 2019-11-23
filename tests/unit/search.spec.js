@@ -5,35 +5,7 @@ import SearchInput from '@/components/SearchInput'
 import Vuex from 'vuex'
 import api from '@/http/index'
 
-jest.mock('axios', () => {
-  get: jest.fn(() => Promise.resolve({
-    status: 'succeed',
-    result: []
-  }))
-})
 
-
-jest.mock('axios', () => ({
-  // get: jest.fn(() => Promise.resolve({
-  //   status: 'succeed',
-  //   result: []
-  // }))
-  create: jest.fn().mockReturnValue({
-    default: {},
-    get: jest.fn(() => Promise.resolve({
-      status: 'succeed'
-    }))
-  }),
-  // create: jest.fn(() => jest.fn(() => ({
-  //   get: jest.fn(() => Promise.resolve({
-  //     status: 'succeed'
-  //   }))
-  // })
-  // )),
-  get: jest.fn(() => Promise.resolve({
-    status: 'succeed'
-  }))
-}))
 import axios from 'axios'
 
 // import mockAxios from '../__mocks__/axios'
