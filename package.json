@@ -123,6 +123,7 @@
       "src/views/Recommend.vue",
       "src/views/Register.vue",
       "src/views/Favourites.vue",
+      "src/views/Login.vue",
       "!src/router.js",
       "!**/node_modules/**"
     ]
