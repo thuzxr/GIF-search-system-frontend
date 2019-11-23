@@ -1,10 +1,13 @@
 const mockAxios = {//= >(option)//
   create: jest.fn(() =>
     (option) => {
-      console.log('in mockAxios')
-      console.log(option)
+      // console.log('in mockAxios')
+      // console.log(option)
       // if (option.name == "get")
-      return Promise.resolve({ status: 'succeed' })
+      return Promise.resolve({ 
+        status: 'succeed',
+        result: []
+      })
       // return (option) => {
       //   console.log("read option")
       // }

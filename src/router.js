@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import NavLayout from '@/layout/NavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
 import AdminDashboardLayout from '@/layout/AdminDashboardLayout'
-import store from '@/store'
+// import store from '@/store'
 
 Vue.use(Router)
 
@@ -128,11 +128,11 @@ export const adminRoutes = [
 
 const getRouter = () => {
   var currRouter = defaultRoutes
-  if (store.state.user.perm === '1') {
-    currRouter = userRoutes
-  } else if (store.state.user.perm === '2') {
-    currRouter = adminRoutes
-  }
+  // if (store.state.user.perm === '1') {
+  //   currRouter = userRoutes
+  // } else if (store.state.user.perm === '2') {
+  //   currRouter = adminRoutes
+  // }
   return new Router({
     mode: 'history',
     linkExactActiveClass: 'active',

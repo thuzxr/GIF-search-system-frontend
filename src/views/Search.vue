@@ -80,7 +80,7 @@ export default {
     noImg (state) {
       return (this.err || !this.imgList || this.imgList.length === 0)
     },
-    logined: state => (state.user.perm !== '0')
+    //logined: state => (state.user.perm !== '0')
   }),
   methods: {
     like: function () {

@@ -2,7 +2,6 @@ import axios from 'axios'
 import config from './config'
 
 export default function $axios (options) {
-  console.log('in http.axios.js')
   return new Promise((resolve, reject) => {
     const instance = axios.create({
       baseURL: config.baseURL,
@@ -91,12 +90,12 @@ export default function $axios (options) {
 
     // 请求处理
     instance(options).then(res => {
-      console.log('in axios.js:before resolve')
+      // console.log('in axios.js:before resolve')
       resolve(res)
       return false
     }).catch(error => {
       reject(error)
-      console.log('in axios.js: before reject')
+      // console.log('in axios.js: before reject')
       if (error && error.response) {
         switch (error.response.status) {
           case 400:
