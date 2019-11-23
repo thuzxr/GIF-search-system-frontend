@@ -31,41 +31,6 @@
       </div>
       <img-gallery v-bind:imgList="imgList" v-if="!noImg" :pop="false"></img-gallery>
 
-        <modal :show="modalShow" @update:show="showModal">
-    <h4 slot="header">{{ modalImg.title }}</h4>
-
-    <div>
-      <div class="row justify-content-center">
-        <img :src="modalImg.url" style="max-height:300px; max-width: 90%">
-        <!-- <img src="../assets/start.jpg" style="max-height:300px; max-width: 90%;"> -->
-      </div>
-      <hr class="my-4" />
-      <div class="row mt-3 align-items-center justify-content-between">
-        <div class="col-6">
-          <div class="media align-items-center" slot="title">
-            <span class="avatar">
-              <img src="../assets/dio.jpg">
-            </span>
-            <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="row">
-            <div class="col-6">
-              <i class="ni ni-satisfied text"
-                :class="[isliked ? 'text-red': 'text-blue']"
-                @click.stop="like"></i>
-            </div>
-            <div class="col-6">
-              <i class="ni ni-favourite-28 text"
-                :class="[isfavoured ? 'text-red': 'text-blue']"
-                @click="favour"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </modal>
     </div>
     </div>
   </div>
@@ -99,30 +64,6 @@ export default {
     }
   },
   methods: {
-    like: function () {
-      this.isliked = !this.isliked
-      this.$store.commit('likeImg', this.modalImg.name)
-    },
-    favour: function () {
-      this.isfavoured = !this.isfavoured
-      this.$store.commit('favourImg', this.modalImg.name)
-      this.$api.addFavour(this.modalImg.name).then(res => {
-        this.$notify(res.status, 'success')
-      }).catch(err => {
-        alert(err)
-        console.log(err)
-      })
-    },
-    clickImg: function (img) {
-      this.modalImg = img
-      console.log('in recommand click: ' + img.title)
-      this.isliked = this.$store.state.likeList.has(img.name)
-      this.isfavoured = this.$store.state.favourList.has(img.name)
-      this.showModal(true)
-    },
-    showModal: function (visibility) {
-      this.modalShow = visibility
-    },
     recommend: function () {
       var imgName = store.state.lastClick.name
       this.$api.recommend(imgName).then(response => {

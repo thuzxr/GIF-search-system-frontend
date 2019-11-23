@@ -82,10 +82,6 @@ export default {
     logined: state => (state.user.perm !== '0')
   }),
   methods: {
-    like: function () {
-      this.isliked = !this.isliked
-      this.$store.commit('likeImg', this.modalImg.name)
-    },
     favour: function () {
       this.isfavoured = !this.isfavoured
       this.$store.commit('favourImg', this.modalImg.name)
@@ -94,6 +90,10 @@ export default {
       }).catch(err => {
         alert(err)
       })
+    },
+    like: function () {
+      this.isliked = !this.isliked
+      this.$store.commit('likeImg', this.modalImg.name)
     },
     clickImg: function (img) {
       this.modalImg = img
