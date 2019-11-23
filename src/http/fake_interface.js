@@ -12,6 +12,11 @@ export const login = (name, password) => {
         claims: { user_name: 'dio' },
         status: 1
       })
+    } else if (name == 'admin' && password == '233') {
+      resolve({
+        claims: { user_name: 'admin' },
+        status: 2
+      })
     } else {
       reject(new Error('用户名或密码错误!'))
     }
@@ -74,6 +79,25 @@ export const uploadUserInfo = (userInfo) => {
   })
 }
 
+export const addFavour = (GifId) => {
+  return new Promise((resolve, reject) => {
+    resolve({ status: '收藏成功' })
+  })
+}
+
+export const getFavourList = () => {
+  return new Promise((resolve, reject) => {
+    resolve({ result: null })
+  })
+}
+
+export const deleteFavour = (GifId) => {
+  return new Promise((resolve, reject) => {
+    console.log('fake delete favour: ' + GifId)
+    resolve({ result: '删除成功' })
+  })
+}
+
 // 默认全部导出
 export default {
   login,
@@ -84,5 +108,8 @@ export default {
   getCaptchaId,
   requestPerm,
   logout,
-  uploadUserInfo
+  uploadUserInfo,
+  addFavour,
+  getFavourList,
+  deleteFavour
 }

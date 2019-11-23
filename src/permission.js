@@ -7,9 +7,6 @@ const whitelist = ['/register', '/login', '/search', '/404']
 
 /* define router rule of different state && different properties */
 router.beforeEach(async (to, from, next) => {
-//   next()
-  console.log('in before each: ' + from.path + ' ' + to.path)
-
   var user = store.state.user
 
   if (user.name) {
@@ -24,7 +21,7 @@ router.beforeEach(async (to, from, next) => {
       } else {
         store.commit('setPerm', res.status)
         resetRouter()
-        if (to.path === '/login') {
+        if (to.path === '/login' || to.path === '/register') {
           next('/search')
         } else {
           next()

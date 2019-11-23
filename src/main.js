@@ -17,7 +17,25 @@ Vue.use(ArgonDashboard)
 Vue.use(api)
 
 Vue.config.productionTip = false
-require('./mock.js')
+
+const on = Vue.prototype.$on
+
+// 点击事件防抖
+Vue.prototype.$on = function (event, func) {
+  let previous = 0
+  let newFunc = func
+  if (event === 'click') {
+    newFunc = function () {
+      const now = new Date().getTime()
+      if (previous + 1000 <= now) {
+        func.apply(this, arguments)
+        previous = now
+      }
+    }
+  }
+  on.call(this, event, newFunc)
+}
+
 new Vue({
   router,
   store,

@@ -1,6 +1,7 @@
 import axios from './axios'
 import qs from 'qs'
 import OSS from 'ali-oss'
+import store from '@/store'
 
 /*
  * 将所有接口统一起来便于维护
@@ -46,7 +47,10 @@ export const search = (keyword) => {
     method: 'get',
     withCredentials: false,
     params: {
-      key: keyword
+      key: keyword,
+      edge: store.state.filterThreshold,
+      type: store.state.searchType,
+      rank_type: store.state.rankType
     }
   })
 }
@@ -64,9 +68,9 @@ export const recommend = (name) => {
 export const upload = (keyword, name, title, imgFile) => {
   let client = new OSS({
     region: 'oss-cn-beijing',
-    accessKeyId: 'LTAI4FduW6Yf6AZY8ysPGmB9',
-    accessKeySecret: '2eayaXUYwzCzK8HuOv8yrqRvtmsxd9',
-    bucket: 'gif-dio'
+    accessKeyId: 'LTAI4FwPnSuLys8DVZwNYnZg',
+    accessKeySecret: 'cSxZT1giVcXkTnMBcj9c1gsSwZHEuo',
+    bucket: 'gif-pre'
   })
 
   async function func () {
@@ -98,15 +102,16 @@ export const uploadUserInfo = (userInfo) => {
       City: userInfo.city,
       Country: userInfo.country,
       ZipCode: userInfo.zipCode,
-      About: userInfo.about
+      About: userInfo.about,
+      Birthday: userInfo.birthday,
+      Height: userInfo.height
     })
   })
 }
 
 export const requestPerm = () => {
-  var realUrl = '/backend_userperm'
   return axios({
-    url: realUrl,
+    url: '/backend_userperm',
     method: 'get'
   })
 }
@@ -115,6 +120,60 @@ export const logout = () => {
   return axios({
     url: '/backend_logout',
     method: 'get'
+  })
+}
+
+export const addFavour = (GifId) => {
+  return axios({
+    url: '/backend_insert_favour',
+    method: 'post',
+    data: qs.stringify({
+      GifId: GifId
+    })
+  })
+}
+
+export const getFavourList = () => {
+  return axios({
+    url: '/backend_favour',
+    method: 'get'
+  })
+}
+
+export const deleteFavour = (GifId) => {
+  return axios({
+    url: '/backend_delete_favour',
+    method: 'post',
+    data: qs.stringify({
+      GifId: GifId
+    })
+  })
+}
+
+export const addVerify = (GifId) => {
+  return axios({
+    url: '/backend_verify',
+    method: 'post',
+    data: qs.stringify({
+      name: GifId
+    })
+  })
+}
+
+export const getVerifyList = () => {
+  return axios({
+    url: '/backend_toBeVerify',
+    method: 'get'
+  })
+}
+
+export const deleteVerify = (GifId) => {
+  return axios({
+    url: '/backend_remove_verify',
+    method: 'post',
+    data: qs.stringify({
+      name: GifId
+    })
   })
 }
 
@@ -128,5 +187,11 @@ export default {
   uploadUserInfo,
   getCaptchaId,
   requestPerm,
-  logout
+  logout,
+  addFavour,
+  getFavourList,
+  deleteFavour,
+  addVerify,
+  getVerifyList,
+  deleteVerify
 }

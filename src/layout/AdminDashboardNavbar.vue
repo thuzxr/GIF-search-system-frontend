@@ -14,7 +14,7 @@
                       <img src="../assets/dio.jpg">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                      <span class="mb-0 text-sm  font-weight-bold">{{username}}</span>
+                      <span class="mb-0 text-sm  font-weight-bold">dio brando</span>
                     </div>
                   </div>
 
@@ -25,7 +25,7 @@
                       <i class="ni ni-single-02"></i>
                       <span>My profile</span>
                     </router-link>
-                    <router-link to="/setting" class="dropdown-item-text">
+                    <router-link to="/theme" class="dropdown-item-text">
                       <i class="ni ni-settings-gear-65"></i>
                       <span>Settings</span>
                     </router-link>
@@ -40,9 +40,6 @@
     </base-nav>
 </template>
 <script>
-
-import { mapState } from 'vuex'
-
 export default {
   data () {
     return {
@@ -51,9 +48,6 @@ export default {
       searchQuery: ''
     }
   },
-  computed: mapState({
-    username: state => state.user.name
-  }),
   methods: {
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)

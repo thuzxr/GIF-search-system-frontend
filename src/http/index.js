@@ -1,6 +1,5 @@
 // 导入所有接口
-// import apis from './fake_interface'
-import apis from './real_interface'
+import apis from './interface'
 
 const install = Vue => {
   if (install.installed) { return }

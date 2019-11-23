@@ -11,18 +11,13 @@
                 <img src="../assets/start.gif"/>
             </router-link>
             <router-link slot="brand" class="navbar-brand" to="/">
-                <h1 class="text-white"> gif-dio </h1>
+                <h1 class="text-white"> gifxiv </h1>
             </router-link>
 
             <template v-slot="{closeMenu}">
                 <!-- Collapse header -->
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <router-link to="/">
-                                <img src="../assets/start.jpg">
-                            </router-link>
-                        </div>
                         <div class="col-6 collapse-close">
                             <button type="button"
                                     @click="closeMenu"
@@ -52,7 +47,7 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto mt--2" v-if="logined">
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="!isAdmin">
                         <div class="row align-items-center">
                             <div class="col">
                             <router-link class="nav-link nav-link-icon" to="/profile">
@@ -62,6 +57,12 @@
                                 </router-link>
                             </div>
                         </div>
+                    </li>
+                    <li class="nav-item align-items-center" v-if="isAdmin">
+                        <router-link class="nav-link nav-link-icon  mt-2" to="/manage">
+                            <i class="ni ni-chart-bar-32"></i>
+                            <span class="nav-link-inner--text">Dashboard</span>
+                        </router-link>
                     </li>
                     <li class="nav-item align-items-center">
                         <div class="nav-link nav-link-icon mt-2" @click="logout">
@@ -92,12 +93,14 @@ export default {
   components: {
   },
   computed: mapState({
-    logined: state => (!(state.user.name === '')),
-    color: state => state.themeColor
+    logined: state => (!(state.user.perm === '0')),
+    isAdmin: state => (state.user.perm === '2'),
+    color: state => (state.user.perm === '2' ? 'purple' : state.themeColor)
   }),
   methods: {
     logout () {
       this.$store.dispatch('logout')
+      this.$notify('退出成功！', 'success')
     }
   }
 }

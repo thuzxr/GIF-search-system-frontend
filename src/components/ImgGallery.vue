@@ -1,42 +1,36 @@
 <template>
+  <div>
   <v-gallery :images="imgList" class="image-box">
     <a href="javascript:void(0);" :data-image="img.url" :title="img.title" v-for="img in imgList" :key="img.title">
       <div class="bgbox">
         <div style="position:relative;">
-          <img :src="img.url" @click="saveName(img.name)">
+          <img :src="img.url" v-if="!pop">
+          <img :src="img.url" @click.stop="clickImg(img)" v-if="pop">
         </div>
       </div>
     </a>
-
   </v-gallery>
+  </div>
 </template>
 
 <script>
-import picNotfind from '@/assets/timg.jpg'
 import store from '@/store'
 export default {
-  name: 'img-gallery',
-  data () {
-    return {
-      imgLike: picNotfind,
-      isLike: false
-    }
-  },
+  name: 'ImgGallery',
   methods: {
-    test: function () {
-      this.isLike = !this.isLike
-      // console.log('here!')
-    },
-    saveName: function (name) {
-      store.commit('setImgName', name)
-      // console.log('im here!')
-      console.log(store.state.lastClick.name)
+    clickImg (img) {
+      store.commit('setImgName', img.name)
+      this.$emit('clickImg', img)
     }
   },
   props: {
     imgList: {
       type: Array,
       required: true
+    },
+    pop: {
+      type: Boolean,
+      default: true
     }
   }
 }

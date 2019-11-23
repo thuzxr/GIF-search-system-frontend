@@ -10,7 +10,10 @@ const storage = localStorage
 
 export default new Vuex.Store({
   state: {
-    themeColor: storage.getItem('themeColor') ? storage.getItem('themeColor') : 'green',
+    filterThreshold: 5,
+    searchType: 'L',
+    rankType: 'Sim',
+    themeColor: storage.getItem('themeColor') ? storage.getItem('themeColor') : 'red',
     user: storage.getItem('user') ? qs.parse(storage.getItem('user')) : { name: '', perm: '0' },
     lastClick: {
       name: ''
@@ -26,18 +29,47 @@ export default new Vuex.Store({
       country: '',
       zipCode: '',
       about: ''
-    }
+    },
+    favourList: new Set(),
+    likeList: new Set()
   },
   mutations: {
+    setRankType (state, type) {
+      state.rankType = type
+    },
+    setSearchType (state, type) {
+      state.searchType = type
+    },
+    setFilterThreshold (state, value) {
+      let val = parseInt(value * 10)
+      state.filterThreshold = val
+    },
+    likeImg (state, name) {
+      state.likeList.has(name) ? state.likeList.delete(name) : state.likeList.add(name)
+    },
+    favourImg (state, name) {
+      state.favourList.has(name) ? state.favourList.delete(name) : state.favourList.add(name)
+    },
+    clearFavourList (state) {
+      state.favourList.clear()
+    },
+    setFavourList (state, favours) {
+      if (favours) {
+        state.favourList = new Set(favours)
+      } else {
+        state.favourList = new Set()
+      }
+    },
+    removeFavour (state, name) {
+      state.favourList.delete(name)
+    },
     setColor (state, color) {
       state.themeColor = color
       storage.setItem('themeColor', color)
-      console.log('color changed to ' + color)
     },
     setPerm (state, n) {
       state.user.perm = n.toString()
       storage.setItem('user', qs.stringify(state.user))
-      console.log('in setPerm' + state.user.perm)
     },
     login (state, userState) {
       state.user.perm = userState.perm.toString()
@@ -54,17 +86,16 @@ export default new Vuex.Store({
     setUserInfo (state, info) {
       Object.assign(state.userInfo, info)
       storage.setItem('userinfo', qs.stringify(state.userInfo))
-      console.log('succeed to save user info!')
     }
   },
   actions: {
     logout ({ commit }, _data) {
       commit('logout')
-      localStorage.clear()
+      storage.removeItem('user')
+      storage.removeItem('userinfo')
       resetRouter()
       router.push('/login')
       apis.logout().then(res => {
-        alert('退出成功！')
       }).catch(err => {
         alert(err)
       })

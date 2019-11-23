@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NavLayout from '@/layout/NavLayout'
 import DashboardLayout from '@/layout/DashboardLayout'
+import AdminDashboardLayout from '@/layout/AdminDashboardLayout'
 import store from '@/store'
 
 Vue.use(Router)
@@ -60,11 +61,6 @@ export const userRoutes = [
     component: DashboardLayout,
     children: [
       {
-        path: '/icons',
-        name: 'icons',
-        component: () => import('./views/Icons.vue')
-      },
-      {
         path: '/profile',
         name: 'profile',
         component: () => import('./views/UserProfile.vue')
@@ -80,9 +76,51 @@ export const userRoutes = [
         component: () => import('@/views/Upload.vue')
       },
       {
-        path: '/theme',
-        name: 'theme',
+        path: '/setting',
+        name: 'setting',
         component: () => import('@/views/Theme.vue')
+      },
+      {
+        path: '/favourites',
+        name: 'favourites',
+        component: () => import('@/views/Favourites.vue')
+      }
+    ]
+  }
+]
+
+export const adminRoutes = [
+  {
+    path: '/',
+    redirect: 'search',
+    component: NavLayout,
+    children: [
+      {
+        path: '/search',
+        name: 'search',
+        component: () => import('@/views/Search.vue')
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Login.vue')
+      },
+      {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/Register.vue')
+      }
+    ]
+  },
+  {
+    path: '/dash',
+    redirect: 'dashboard',
+    component: AdminDashboardLayout,
+    children: [
+      {
+        path: '/manage',
+        name: 'manage',
+        component: () => import('./views/Manage.vue')
       }
     ]
   }
@@ -90,11 +128,11 @@ export const userRoutes = [
 
 const getRouter = () => {
   var currRouter = defaultRoutes
-  // console.log('getRouter perm: ' + store.state.user.perm)
-  // if (store.state.user.perm === '1') {
-  //   console.log('succ to change the router')
-  //   currRouter = userRoutes
-  // }
+  if (store.state.user.perm === '1') {
+    currRouter = userRoutes
+  } else if (store.state.user.perm === '2') {
+    currRouter = adminRoutes
+  }
   return new Router({
     mode: 'history',
     linkExactActiveClass: 'active',
