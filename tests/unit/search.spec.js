@@ -6,11 +6,18 @@ import ImgGallery from '@/components/ImgGallery.vue'
 import Vuex from 'vuex'
 import api from '@/http/index'
 
-import axios from 'axios'
+//import axios from 'axios'
 
 // import mockAxios from '../__mocks__/axios'
 const fakeStore = new Vuex.Store({
-  state: {},
+  state: {
+    likeList: {
+      has: jest.fn(() => {})
+    }, 
+    favourList: {
+      has: jest.fn(() => {})
+    }
+  },
   actions: {
     actionClick: jest.fn()
   }
@@ -40,7 +47,7 @@ describe('Search', () => {
 
     wrapper.find(SearchInput).vm.$emit('doSearch', 'haha')
     // expect(axios.create).toBeCalledWith('')
-    expect(axios.create).toHaveBeenCalled()
+    //expect(axios.create).toHaveBeenCalled()
     // expect(axios.get).toBeCalledWith('https://www.baidu.com')
   })
   it('like should be called', () => {
@@ -56,6 +63,10 @@ describe('Search', () => {
   })
   it('clickImg should be called', () => {
     //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    const mockFn = jest.fn()
+    wrapper.setMethods({
+      'showModal': mockFn
+    })
     let tmp = {name: ''}
     wrapper.find(ImgGallery).vm.$emit('clickImg', tmp)
     expect(wrapper.vm.modalImg).toBe(tmp)
