@@ -2,6 +2,7 @@
 import Search from '@/views/Search'
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import SearchInput from '@/components/SearchInput'
+import ImgGallery from '@/components/ImgGallery.vue'
 import Vuex from 'vuex'
 import api from '@/http/index'
 
@@ -20,29 +21,47 @@ localVue.use(Vuex)
 localVue.use(api)
 
 describe('Search', () => {
-  // beforeEach(() => {
-  //   axios.get.mockClear()
-  // })
+  let wrapper
+  beforeEach(() => {
+    // axios.get.mockClear()
+    wrapper = shallowMount(Search, { store: fakeStore, localVue })
+  })
   // 检查原始组件选项
   it('has a data hook', () => {
-    // const wrapper = factory()
-    const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
     expect(typeof Search.data).toBe('function')
     var data = Search.data()
-    // expect(data.err).toBe(false)
     expect(data.imgList.length).toBe(0)
     expect(wrapper.vm.err).toBe(false)
   })
-  it('axios.get Fn should be called', () => {
+  it('search should be called', () => {
     window.alert = jest.fn()
-    const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
 
     wrapper.find(SearchInput).vm.$emit('doSearch', 'haha')
     // expect(axios.create).toBeCalledWith('')
     expect(axios.create).toHaveBeenCalled()
-    // expect(axios.create().get).toBeCalledWith('')
     // expect(axios.get).toBeCalledWith('https://www.baidu.com')
-    // expect(axios_.search).toBeCalledWith("")
+  })
+  it('like should be called', () => {
+    //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    wrapper.vm.like()
+    //expect()
+    expect(true).toBe(true)
+  })
+  it('favour should be called', () => {
+    //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    wrapper.vm.favour()
+    
+  })
+  it('clickImg should be called', () => {
+    //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    let tmp = {name: ''}
+    wrapper.find(ImgGallery).vm.$emit('clickImg', tmp)
+    expect(wrapper.vm.modalImg).toBe(tmp)
+  })
+  it('showModal should be called', () => {
+    wrapper.vm.showModal()
   })
   // it("calls get promise result", () => {
   //   const wrapper = shallowMount(Search, { store: fakeStore, localVue })
@@ -53,7 +72,7 @@ describe('Search', () => {
   it('test search function, fetches async when clicked', done => {
     // Vue.config.errorHandler = done
     window.alert = jest.fn()
-    const wrapper = shallowMount(Search, { store: fakeStore, localVue })
+    //const wrapper = shallowMount(Search, { store: fakeStore, localVue })
 
     // const mockFn = jest.fn()
     // wrapper.setMethods({
@@ -67,7 +86,6 @@ describe('Search', () => {
     // expect(wrapper.vm.gettext).toBe('haha')
     // expect(wrapper.vm.$data.gettext).toBe('123')
     // expect(Search.data().gettext).toBe('')
-    // test?
     // wrapper.vm.$nextTick(() => {
     //   expect(wrapper.vm.gettext).toBe('haha')
     //   //expect(Search.data().gettext).toBe('')
@@ -82,7 +100,7 @@ describe('Search', () => {
   })
 
   it('has correct html', () => {
-    const wrapper = mount(Search)
+    //const wrapper = mount(Search, { store: fakeStore, localVue })
     expect(wrapper.contains('img-gallery'))
   })
 
