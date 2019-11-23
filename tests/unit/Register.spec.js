@@ -1,8 +1,8 @@
 import Register from '@/views/Register'
-import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import api from '@/http/index'
-//import axios from 'axios'
+// import axios from 'axios'
 import ArgonDashboard from '@/plugins/argon-dashboard'
 
 const fakeStore = new Vuex.Store({
@@ -22,7 +22,7 @@ describe('Register', () => {
     wrapper = shallowMount(Register, { store: fakeStore, localVue })
   })
   it('check initialization', () => {
-    //const wrapper = shallowMount(Register, { store: fakeStore, localVue })
+    // const wrapper = shallowMount(Register, { store: fakeStore, localVue })
     var data = Register.data()
     expect(data.model.name).toBe('')
   })
@@ -31,8 +31,8 @@ describe('Register', () => {
       model: {
         name: 'jojo',
         password: 'jojo',
-        confirm_password: 'jojo',
-        
+        confirm_password: 'jojo'
+
       }
     })
     wrapper.vm.register()
@@ -40,7 +40,7 @@ describe('Register', () => {
   it('register empty name', () => {
     wrapper.setData({
       model: {
-        name: '',
+        name: ''
       }
     })
     wrapper.vm.register()
@@ -48,8 +48,8 @@ describe('Register', () => {
   it('register empty password', () => {
     wrapper.setData({
       model: {
-        name:'jojo',
-        password: '',
+        name: 'jojo',
+        password: ''
       }
     })
     wrapper.vm.register()

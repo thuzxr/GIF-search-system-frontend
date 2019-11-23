@@ -79,8 +79,8 @@ export default {
   computed: mapState({
     noImg (state) {
       return (this.err || !this.imgList || this.imgList.length === 0)
-    },
-    //logined: state => (state.user.perm !== '0')
+    }
+    // logined: state => (state.user.perm !== '0')
   }),
   methods: {
     favour: function () {
@@ -110,12 +110,12 @@ export default {
       if (this.lastTime + 1000 <= now) {
         this.lastTime = now
         // this.gettext = text
-      // this.err = false
-      // axios.get('https://www.baidu.com').then()
-      // this.$api.search(text)
-      // axios.get("123")("321")
-      // var x= axios.get("123")
-      // x("222222")
+        // this.err = false
+        // axios.get('https://www.baidu.com').then()
+        // this.$api.search(text)
+        // axios.get("123")("321")
+        // var x= axios.get("123")
+        // x("222222")
         this.$api.search(text).then(response => {
           console.log('in search: ', response.time)
           this.costTime = response.time / 10000000
