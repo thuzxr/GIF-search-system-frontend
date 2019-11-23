@@ -97,7 +97,7 @@ export default new Vuex.Store({
       router.push('/login')
       apis.logout().then(res => {
       }).catch(err => {
-        alert(err)
+        console.log(err)
       })
     }
   }

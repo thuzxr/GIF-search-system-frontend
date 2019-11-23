@@ -30,7 +30,6 @@ router.beforeEach(async (to, from, next) => {
     }).catch(err => {
       console.log(err)
       next(err)
-      alert(err)
     })
   } else {
     if (whitelist.indexOf(to.path) !== -1) {

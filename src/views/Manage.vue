@@ -123,7 +123,7 @@ export default {
     },
     remove: function (approve) {
       var i = 0
-      for (i = 0; i < this.imgList.length; i++) {
+      for (; i < this.imgList.length; i++) {
         if (this.imgList[i].name === this.modalImg.name) {
           break
         }

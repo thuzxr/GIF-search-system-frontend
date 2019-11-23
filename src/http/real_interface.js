@@ -1,4 +1,4 @@
-import axios from './axios'
+import axios from './$axios'
 import qs from 'qs'
 import OSS from 'ali-oss'
 import store from '@/store'
