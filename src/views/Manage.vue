@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <h1 class="display-2 text-white">Manage</h1>
-                    <p class="text-white mt-0 mb-5">This is upload page. You can share you favourite gif to others!</p>
+                    <p class="text-white mt-0 mb-5">approve or deny the gifs uploaded by users.</p>
                 </div>
             </div>
         </div>
@@ -53,10 +53,10 @@
         <hr class="my-4" />
         <div class="row mt-3 align-items-center justify-content-between">
           <div class="col-6">
-            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove(true)'>approve</base-button>
+            <base-button type="vue" class="mt-2 btn shadow-0" @click.stop='remove(true)'>approve</base-button>
           </div>
           <div class="col-6">
-            <base-button type="vue" class="mt-2 ml-md-6 ml-lg-8 btn shadow-0" @click.stop='remove(false)'>deny</base-button>
+            <base-button type="vue" class="mt-2 btn shadow-0" @click.stop='remove(false)'>deny</base-button>
           </div>
         </div>
       </div>
@@ -129,7 +129,7 @@ export default {
         }
       }
       this.imgList.splice(i, 1)
-      if (approve) {
+      if (!approve) {
         this.$api.deleteVerify(this.modalImg.name).then(res => {
           this.$notify('success to remove the gif!', 'success')
         }).catch(err => {
@@ -138,7 +138,7 @@ export default {
         })
       } else {
         this.$api.addVerify(this.modalImg.name).then(res => {
-          this.$notify('success to remove the gif!', 'success')
+          this.$notify('success to approve the gif!', 'success')
         }).catch(err => {
           alert(err)
           console.log(err)

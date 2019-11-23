@@ -11,7 +11,7 @@
                 <img src="../assets/start.gif"/>
             </router-link>
             <router-link slot="brand" class="navbar-brand" to="/">
-                <h1 class="text-white"> gif-dio </h1>
+                <h1 class="text-white"> gifxiv </h1>
             </router-link>
 
             <template v-slot="{closeMenu}">

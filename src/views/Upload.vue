@@ -132,15 +132,15 @@ export default {
     },
     upload: function () {
       if (!this.$refs.pictureInput.image) {
-        alert('Please select a gif!')
+        this.$notify('Please select a gif!', 'warning')
         return
       }
       if (this.title === '') {
-        alert('Please input the title!')
+        this.$notify('Please input the title!', 'warning')
         return
       }
       if (this.tag === '') {
-        alert('Please input the main tag!')
+        this.$notify('Please input the main tag!', 'warning')
         return
       }
       this.label = this.tag

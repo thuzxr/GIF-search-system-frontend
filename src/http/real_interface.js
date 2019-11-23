@@ -101,7 +101,9 @@ export const uploadUserInfo = (userInfo) => {
       City: userInfo.city,
       Country: userInfo.country,
       ZipCode: userInfo.zipCode,
-      About: userInfo.about
+      About: userInfo.about,
+      Birthday: userInfo.birthday,
+      Height: userInfo.height
     })
   })
 }

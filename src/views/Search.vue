@@ -5,7 +5,10 @@
       <search-input @doSearch="search"></search-input>
   </div>
   <div class="row justify-content-around mt-3">
-      <h2 v-show="err"> Oops! 找不到你想要的Gif </h2>
+      <h2 v-show="err"> Oops! 找不到你想要的Gif! </h2>
+  </div>
+  <div class="row justify-content-around mt--3 mb-3">
+      <h5 v-show="!noImg"> find {{ imgList.length }} gif(s) in {{ costTime }} ms! </h5>
   </div>
   <!-- <div class="row justify-content-around mt-3">
       <img src="../assets/dio.jpg" @click.stop="clickImg({name:'dio brando', url:'../assets/dio.jpg', title: 'dio brando'})">
@@ -25,9 +28,9 @@
         <div class="col-6">
           <div class="media align-items-center" slot="title">
             <span class="avatar">
-              <img src="../assets/dio.jpg">
+              <img src="../assets/jojo.jpg">
             </span>
-            <span class="mb-0 ml-2 text-primary font-weight-bold">dio brando</span>
+            <span class="mb-0 ml-2 text-primary font-weight-bold">Kujo Jotaro</span>
           </div>
         </div>
         <div class="col-3">
@@ -67,7 +70,9 @@ export default {
         title: ''
       },
       isliked: false,
-      isfavoured: false
+      isfavoured: false,
+      lastTime: 0,
+      costTime: 0
     }
   },
   computed: mapState({
@@ -100,31 +105,37 @@ export default {
       this.modalShow = visibility
     },
     search: function (text) {
-      this.$api.search(text).then(response => {
-        if (response.status === 'succeed') {
-          this.err = false
-          var list = response.result
-          console.log('result num: ', list.length)
-          for (let item of list) {
-            item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
-          }
-          this.imgList = list.map(function (item) {
-            var t = {
-              title: item.Title,
-              url: item.Oss_url,
-              thumbnail: item.Oss_url,
-              name: item.Name
+      const now = new Date().getTime()
+      if (this.lastTime + 1000 <= now) {
+        this.lastTime = now
+        this.$api.search(text).then(response => {
+          console.log('in search: ', response.time)
+          this.costTime = response.time / 10000000
+          if (response.status === 'succeed') {
+            this.err = false
+            var list = response.result
+            console.log('result num: ', list.length)
+            for (let item of list) {
+              item.Oss_url = item.Oss_url.slice(0, 4) + 's' + item.Oss_url.slice(4)
             }
-            return t
-          })
-        } else {
-          this.err = true
-          this.imgList = []
-          this.$notify('Oops! 找不到你想要的Gif', 'info')
-        }
-      }).catch(err => {
-        this.$notify(err.message, 'warning')
-      })
+            this.imgList = list.map(function (item) {
+              var t = {
+                title: item.Title,
+                url: item.Oss_url,
+                thumbnail: item.Oss_url,
+                name: item.Name
+              }
+              return t
+            })
+          } else {
+            this.err = true
+            this.imgList = []
+            this.$notify('Oops! 找不到你想要的Gif!', 'info')
+          }
+        }).catch(err => {
+          this.$notify(err.message, 'warning')
+        })
+      }
     }
   },
   components: {

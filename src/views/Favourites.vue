@@ -133,7 +133,6 @@ export default {
   },
   created: function () {
     this.$api.getFavourList().then(res => {
-      console.log('in favourite: ', res)
       if (res.result && res.result.length != 0) {
         this.err = false
         var list = res.result
@@ -149,7 +148,6 @@ export default {
           }
           return t
         })
-        console.log('in get favour: ', this.imgList[0])
       } else {
         this.err = true
         this.$store.commit('clearFavourList')
