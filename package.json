@@ -124,6 +124,7 @@
       "src/views/Register.vue",
       "src/views/Favourites.vue",
       "src/views/Login.vue",
+      "src/views/Manage.vue",
       "!src/router.js",
       "!**/node_modules/**"
     ]
