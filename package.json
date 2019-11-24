@@ -101,7 +101,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!(vue-slider-component)/)"
+      "/node_modules/(?!(vue-slider-component|vue-picture-input)/)"
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
@@ -126,6 +126,8 @@
       "src/views/Login.vue",
       "src/views/Manage.vue",
       "src/views/Theme.vue",
+      "src/views/Upload.vue",
+      "src/views/UserProfile.vue",
       "!src/router.js",
       "!**/node_modules/**"
     ]
