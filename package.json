@@ -101,7 +101,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/(?!(vue-slider-component)/)"
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
@@ -125,6 +125,7 @@
       "src/views/Favourites.vue",
       "src/views/Login.vue",
       "src/views/Manage.vue",
+      "src/views/Theme.vue",
       "!src/router.js",
       "!**/node_modules/**"
     ]
