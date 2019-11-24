@@ -2,7 +2,6 @@ import Theme from '@/views/Theme'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import api from '@/http/index'
-import VueSlider from 'vue-slider-component'
 
 const fakeStore = new Vuex.Store({
   state: {
@@ -21,7 +20,7 @@ describe('Theme', () => {
   let wrapper
   beforeEach(() => {
     // axios.get.mockClear()
-    wrapper = shallowMount(Theme, { store: fakeStore, localVue})
+    wrapper = shallowMount(Theme, { store: fakeStore, localVue })
   })
 
   it('check initialization', () => {
