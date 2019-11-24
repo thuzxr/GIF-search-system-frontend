@@ -24,10 +24,10 @@ describe('UserProfile', () => {
     wrapper = shallowMount(UserProfile, { store: fakeStore, localVue })
   })
 
-  it('check initialization',  () => {
+  it('check initialization', () => {
     expect(wrapper.vm.model.birthday).toBe('')
   })
-  it('submit should be called',  () => {
+  it('submit should be called', () => {
     wrapper.vm.submit()
   })
   it('ComingSoon shoule be called', () => {
